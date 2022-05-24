@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Product;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 
@@ -26,7 +28,10 @@ class DashboardSurveyController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.surveys.create', [
+            'products' => Product::all(),
+            'users' => User::where('is_role', '5')->get(),
+        ]);
     }
 
     /**
@@ -37,7 +42,30 @@ class DashboardSurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::where('id', $request->user_id)->first();
+
+        $product = Product::where('id', $request->product_id)->first();
+
+        $validatedData = $request->validate([
+            'user_id' => 'required',
+            'email' => 'required',
+            'product_id' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'phoneNumber' => 'required',
+            'surveyDate' => 'required',
+            'surveyTime' => 'required',
+            'description' => 'required',
+        ]);
+
+        $validatedData['name'] = $user->name;
+        $validatedData['product_name'] = $product->name;
+
+        // dd($validatedData);
+
+        Survey::create($validatedData);
+
+        return redirect('/dashboard/surveys')->with('success', 'New Survey has been scheduled');
     }
 
     /**
@@ -48,7 +76,9 @@ class DashboardSurveyController extends Controller
      */
     public function show(Survey $survey)
     {
-        //
+        return view('dashboard.surveys.show', [
+            'survey' => $survey,
+        ]);
     }
 
     /**
@@ -59,7 +89,12 @@ class DashboardSurveyController extends Controller
      */
     public function edit(Survey $survey)
     {
-        //
+        return view('dashboard.surveys.edit', [
+            'survey' => $survey,
+            'users' => User::where('is_role', '5')->get(),
+            'products' => Product::all(),
+
+        ]);
     }
 
     /**
@@ -71,7 +106,30 @@ class DashboardSurveyController extends Controller
      */
     public function update(Request $request, Survey $survey)
     {
-        //
+        $user = User::where('id', $request->user_id)->first();
+
+        $product = Product::where('id', $request->product_id)->first();
+
+        $validatedData = $request->validate([
+            'user_id' => 'required',
+            'email' => 'required',
+            'product_id' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'phoneNumber' => 'required',
+            'surveyDate' => 'required',
+            'surveyTime' => 'required',
+            'description' => 'required',
+        ]);
+
+        $validatedData['name'] = $user->name;
+        $validatedData['product_name'] = $product->name;
+
+        // dd($validatedData);
+
+        Survey::where('id', $survey->id)->update($validatedData);
+
+        return redirect('/dashboard/surveys')->with('success', 'Survey has been updated!');
     }
 
     /**
@@ -82,6 +140,9 @@ class DashboardSurveyController extends Controller
      */
     public function destroy(Survey $survey)
     {
-        //
+
+        Survey::destroy($survey->id);
+
+        return redirect('/dashboard/surveys')->with('success', 'Survey has been deleted');
     }
 }

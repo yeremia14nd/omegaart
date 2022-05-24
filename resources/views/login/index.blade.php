@@ -42,7 +42,6 @@
           <button class="w-100 btn btn-lg btn-primary mt-4" type="submit">Login</button>
         </form>
         <small class="d-block text-center my-3">Not registered? <a href="/register">Register Now!</a></small>
-        <small class="d-block text-center mt-5"><a href="/login-staff">Login as Staff!</a></small>
       </main>
     </div>
   </div>

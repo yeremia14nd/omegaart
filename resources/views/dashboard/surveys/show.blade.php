@@ -19,38 +19,32 @@
                         data-feather="x-circle"></span> Delete</button>
             </form>
             <div class="row">
-                <div class="col-md text-center">
-                    @if ($survey->imageAssets)
-                    <img id="unsplashImage" src="{{ asset('storage/' . $survey->imageAssets) }}"
-                        class="img-fluid img-thumbnail" alt="{{ $survey->name }}">
-                    @else
-                    <img id="unsplashImage" src="{{ $survey->imageAssets }}" class="img-fluid img-thumbnail"
-                        alt="{{ $survey->name }}">
-                    @endif
-                </div>
                 <div class="col-md">
-                    <h1 class="mb-2">{{ $survey->name }}</h1>
-                    <p class="my-0">Price start from <b>Rp. {{ number_format($survey->price / 1, 0) }},-</b></p>
-                    <p class="mt-0">Estimasi Pengerjaan {{ $survey->workDuration }} hari kerja</p>
-                    <p>
-                        {{-- Added By Staff <a href="" class="text-decoration-none">{{ $survey->employee->name }}</a>
-                        --}}
-                        in <a href="/categories/{{ $survey->category->slug }}" class="text-decoration-none">{{
-                            $survey->category->name
-                            }}</a>
-                    </p>
+                    <h1 class="mb-2 text-muted">Product: {{ $survey->product_name }}</h1>
                     <table class="table">
                         <tr>
-                            <td>Kategori</td>
-                            <td>: {{ $survey->category->name }}</td>
+                            <td>Customer Name</td>
+                            <td>: {{ $survey->name }}</td>
                         </tr>
                         <tr>
-                            <td>Berat</td>
-                            <td>: {{ $survey->weight }} Kg</td>
+                            <td>Address</td>
+                            <td>: {{ $survey->address }}</td>
                         </tr>
                         <tr>
-                            <td>Stock</td>
-                            <td>: {{ $survey->stock }} Unit</td>
+                            <td>City</td>
+                            <td>: {{ $survey->city }}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone Number</td>
+                            <td>: {{ $survey->phoneNumber }}</td>
+                        </tr>
+                        <tr>
+                            <td>Survey Date</td>
+                            <td>: {{ $survey->surveyDate }}</td>
+                        </tr>
+                        <tr>
+                            <td>SurveyTime</td>
+                            <td>: {{ $survey->surveyTime }}</td>
                         </tr>
                     </table>
                     <h5>Deskripsi</h5>

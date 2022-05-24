@@ -27,7 +27,7 @@ class DashboardCustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.customers.create');
     }
 
     /**
@@ -38,7 +38,29 @@ class DashboardCustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required|max:255',
+            'userName' => 'required|unique:users',
+            'imageAssets' => 'image|file|max:2048',
+            'email' => 'required|email',
+            'address' => 'required',
+            'phoneNumber' => 'required',
+        ];
+
+        // if ($request->userName != $user->userName) {
+        //     $rules['userName'] = 'required|unique:users';
+        // }
+
+        $validatedData = $request->validate($rules);
+        $validatedData['password'] = bcrypt('password');
+        $validatedData['is_role'] = 5; // number 5 is customer role
+
+        $validatedData['imageAssets'] = $request->file('imageAssets')->store('product-images');
+
+        User::create($validatedData);
+        // User::where('id', $user->id)->update($validatedData);
+
+        return redirect('/dashboard/customers')->with('success', 'Customers has been created!');
     }
 
     /**

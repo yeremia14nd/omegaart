@@ -31,7 +31,6 @@ class DashboardProductController extends Controller
      */
     public function create()
     {
-
         return view('dashboard.products.create', [
             'categories' => Category::all(),
         ]);
@@ -149,7 +148,6 @@ class DashboardProductController extends Controller
      */
     public function destroy(Product $product)
     {
-
         if ($product->imageAssets) {
             Storage::delete($product->imageAssets);
         }

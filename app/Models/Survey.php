@@ -10,6 +10,8 @@ class Survey extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with = ['user'];
+
 
     public function user()
     {

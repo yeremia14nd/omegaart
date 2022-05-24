@@ -18,7 +18,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Product</th>
-                <th scope="col">Email</th>
+                <th scope="col">Customer Name</th>
                 <th scope="col">Address</th>
                 <th scope="col">City</th>
                 <th scope="col">Description</th>
@@ -32,20 +32,20 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $survey->product_name }}</td>
-                <td>{{ $survey->email }}</td>
+                <td>{{ $survey->user->name }}</td>
                 <td>{{ $survey->address }}</td>
                 <td>{{ $survey->city }}</td>
                 <td>{{ $survey->description }}</td>
                 <td>{{ $survey->surveyDate }}</td>
                 <td>{{ $survey->surveyTime }}</td>
                 <td>
-                    <a href="/dashboard/surveys/{{ $survey->slug }}" class="badge bg-info">
+                    <a href="/dashboard/surveys/{{ $survey->id }}" class="badge bg-info">
                         <span data-feather="eye"></span>
                     </a>
-                    <a href="/dashboard/surveys/{{ $survey->slug }}/edit" class="badge bg-warning">
+                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-warning">
                         <span data-feather="edit"></span>
                     </a>
-                    <form action="/dashboard/surveys/{{ $survey->slug }}" method="post" class="d-inline">
+                    <form action="/dashboard/surveys/{{ $survey->id}}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
