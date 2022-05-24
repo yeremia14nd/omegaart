@@ -10,7 +10,7 @@ class Survey extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $with = ['user'];
+    protected $with = ['user', 'product'];
 
 
     public function user()
@@ -20,7 +20,12 @@ class Survey extends Model
 
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
     }
 
     public function production()

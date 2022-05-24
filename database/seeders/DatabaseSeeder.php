@@ -68,8 +68,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::factory(20)->create();
-        Order::factory(5)->create();
-        OrderItem::factory(40)->create();
+        // Order::factory(5)->create();
+        // OrderItem::factory(40)->create();
         Cart::factory(5)->create();
         CartItem::factory(15)->create();
     }

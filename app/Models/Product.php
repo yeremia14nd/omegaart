@@ -33,7 +33,7 @@ class Product extends Model
 
     public function survey()
     {
-        return $this->belongsToMany(Survey::class);
+        return $this->hasMany(Survey::class);
     }
 
     public function orderItem()

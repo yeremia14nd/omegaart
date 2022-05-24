@@ -22,12 +22,6 @@
           <small class="text-muted p-1 border rounded " style="font-size: 0.8em">{{
             $product->productAvailability->availability
             }}</small>
-          {{-- <p class="mt-2">
-            Added By Staff <a href="" class="text-decoration-none">{{ $product->employee->name }}</a> in <a
-              href="/categories/{{ $product->category->slug }}" class="text-decoration-none">{{
-              $product->category->name
-              }}</a>
-          </p> --}}
           <table class="table">
             <tr>
               <td>Kategori</td>
@@ -53,12 +47,14 @@
             </div>
           </form>
           @else
-          <form action="/surveys/create/{{ $product->slug }}" method="get">
+          <form action="/orders" method="post">
             @csrf
             <div class="d-grid gap-2">
-              {{-- <input type="hidden" class="form-control @error('product_id') is-invalid @enderror " id="product_id"
-                name="product_id" value="{{ $product }}"> --}}
-              <button type="submit" class="btn btn-primary">Go Survey</button>
+              <input type="hidden" class="form-control @error('product_id') is-invalid @enderror " id="product_id"
+                name="product_id" value="{{ $product->id }}">
+              <input type="hidden" class="form-control @error('user_id') is-invalid @enderror " id="user_id"
+                name="user_id" value="{{ auth()->user()->id }}">
+              <button type="submit" class="btn btn-primary">Go Order and Survey</button>
             </div>
           </form>
           @endif

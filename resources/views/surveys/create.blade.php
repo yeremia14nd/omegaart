@@ -8,13 +8,19 @@
             <h1 class="h2">Survey Appointment</h1>
         </div>
 
+        @if (session()->has('success'))
+        <div class="alert alert-success col-lg-6" role="alert">
+            {{ session('success') }}
+        </div>
+        @endif
+
         <div class="col-lg-6">
             <form method="post" action="/surveys" class="mb-5">
                 @csrf
                 <div class="mb-3">
                     <label for="product" class="form-label"> Product Name</label>
                     <input type="text" class="form-control @error('product') is-invalid @enderror " id="product"
-                        name="product" value="{{ $product->name }}">
+                        name="product" value="{{ $product->name }}" readonly>
                     @error('product')
                     <div class="invalid-feedback">
                         {{ $message }}

@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,12 +75,13 @@ Route::get('/categories/{category:slug}', function (Category $category) {
     ]);
 });
 
-Route::get('/users/{user}', function (User $user) {
-    return view('orders', [
-        'title' => 'User Orders',
-        'orders' => $user->order,
-    ]);
-});
+// Route::get('/users/{user}', function (User $user) {
+//     return view('orders', [
+//         'title' => 'User Orders',
+//         'orders' => $user->order,
+//     ]);
+// });
+Route::resource('/orders', OrderController::class)->middleware('auth');
 
 Route::get('/users/order-list/{order}', function (Order $order) {
     return view('order-list', [

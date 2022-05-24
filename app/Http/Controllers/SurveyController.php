@@ -32,15 +32,9 @@ class SurveyController extends Controller
      * @return \Illuminate\Http\Response
      */
     //untuk tampilan buat form survey
-    public function create(Request $request, Product $product)
+    public function create(Request $request)
     {
-
-        // dd($_GET);
-        // $product = $request->validate([
-        //     'product' => 'required',
-        // ]);
-        // $user = User::where('id', auth()->id)->get();
-
+        $product = Product::where('id', session('product'))->first();
         return view('surveys.create', [
             'title' => 'Survey Form',
             'active' => 'survey',
