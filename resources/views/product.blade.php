@@ -39,8 +39,9 @@
           <h5>Deskripsi</h5>
           <p>{{ $product->description }}</p>
           @if ($product->productAvailability->id === 1)
-          <form action="/cart/add/{{ $product->id }}" method="">
+          <form action="{{ route('cart.store') }}" method="post">
             @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
             <div class="d-grid gap-2">
               {{-- <a href="" class="btn btn-primary">Add To Cart</a> --}}
               <button type="submit" class="btn btn-primary">Add To Cart</button>

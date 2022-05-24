@@ -11,13 +11,32 @@ class Cart extends Model
 
     protected $guarded = ['id'];
 
+    protected $table = 'carts';
+
+    protected $fillable = [
+        'no_invoice',
+        'user_id',
+        'subtotal',
+        'total',
+        'status_cart',
+        'status'
+    ];
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
-    public function cartItem()
+    public function detail()
     {
-        return $this->hasMany(CartItem::class);
+        return $this->hasMany('App\Models\CartItem', 'cart_id');
+
+    }
+
+
+    public function updatetotal($itemcart, $subtotal) {
+        $this->attributes['subtotal'] = $itemcart->subtotal + $subtotal;
+        $this->attributes['total'] = $itemcart->total + $subtotal;
+        self::save();
     }
 }

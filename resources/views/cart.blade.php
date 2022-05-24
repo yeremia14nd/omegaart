@@ -1,76 +1,139 @@
 @extends('layouts.main')
 
 @section('container')
-<section class="py-5 text-center container bg-secondary ">
-  <div class="row">
-    <div class="col-md-8 mx-auto mt-3">
-      <h1 class="fw-bold mb-4">Cart</h1>
-    </div>
-  </div>
-</section>
-
-<div class="album bg-light mb-5">
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      @if (empty($cart) || count($cart) ==0 )
-      <h4>Tidak ada produk dalam cart</h4>
-      @else
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nama Produk</th>
-            <th scope="col">harga</th>
-            <th scope="col">Sub Total</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        @foreach ($cart as $c)
-        <tbody>
-          <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $c->nama_produk }}</td>
-            <td>{{ $c->harga_produk }}</td>
-            <td>{{ $c->jumlah }}</td>
-            <td>
-              <a href="/cart" class="badge bg-info">
-                <span data-feather="eye"></span>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-        @endforeach
-      </table>
-      @endif
-
-
-      {{-- @foreach ($cart as $item)
-      <div class="col">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-            role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>{{ $item->id }}</title>
-            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Cart ID: {{
-              $item->id }}</text>
-          </svg>
-
+    <div class="row">
+      <div class="col col-md-8">
+        @if(count($errors) > 0)
+          @foreach($errors->all() as $error)
+            <div class="alert alert-warning">{{ $error }}</div>
+          @endforeach
+        @endif
+        @if ($message = Session::get('error'))
+          <div class="alert alert-warning">
+            <p>{{ $message }}</p>
+          </div>
+        @endif
+        @if ($message = Session::get('success'))
+          <div class="alert alert-success">
+            <p>{{ $message }}</p>
+          </div>
+        @endif
+        <div class="card">
+          <div class="card-header">
+            Item
+          </div>
           <div class="card-body">
-            <p>Cart by User ID: <a href="" class="text-decoration-none">{{ $item->user->id }}</a></p>
-            <p class="card-text">Status: {{ $item->status }}</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <a href="/cart/cart-list/{{ $item->id }}"><button type="button"
-                    class="btn btn-sm btn-outline-secondary">View</button></a>
+            <table class="table table-stripped">
+              <thead>
+              <tr>
+                <th>No</th>
+                <th>Produk</th>
+                <th>Harga</th>
+                <th>Qty</th>
+                <th>Subtotal</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              @foreach($itemcart->detail as $detail)
+                <tr>
+                  <td>
+                    {{ $no++ }}
+                  </td>
+                  <td>
+                    {{ $detail->product->name }}
+                  </td>
+                  <td>
+                    {{ number_format($detail->price, 2) }}
+                  </td>
+                  <td>
+                    <div class="btn-group" role="group">
+                      <form action="{{ route('cart.update',$detail->id) }}" method="post">
+                        @method('patch')
+                        @csrf()
+                        <input type="hidden" name="param" value="kurang">
+                        <button class="btn btn-primary btn-sm">
+                          -
+                        </button>
+                      </form>
+                      <button class="btn btn-outline-primary btn-sm" disabled="true">
+                        {{ number_format($detail->quantity, 2) }}
+                      </button>
+                      <form action="{{ route('cart.update',$detail->id) }}" method="post">
+                        @method('patch')
+                        @csrf()
+                        <input type="hidden" name="param" value="tambah">
+                        <button class="btn btn-primary btn-sm">
+                          +
+                        </button>
+                      </form>
+                    </div>
+                  </td>
+                  <td>
+                    {{ number_format($detail->subtotal, 2) }}
+                  </td>
+                  <td>
+                    <form action="{{ route('cart.destroy', $detail->id) }}" method="post"
+                          style="display:inline;">
+                      @csrf
+                      {{ method_field('delete') }}
+                      <button type="submit" class="btn btn-sm btn-danger mb-2">
+                        Hapus
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+              @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-4">
+        <div class="card">
+          <div class="card-header">
+            Ringkasan
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <tr>
+                <td>No Invoice</td>
+                <td class="text-right">
+                  {{ $itemcart->no_invoice }}
+                </td>
+              </tr>
+              <tr>
+                <td>Subtotal</td>
+                <td class="text-right">
+                  {{ number_format($itemcart->subtotal, 2) }}
+                </td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td class="text-right">
+                  {{ number_format($itemcart->total, 2) }}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-primary btn-block">Checkout</button>
               </div>
-              <small class="text-muted">{{ $item->created_at->diffForHumans() }}</small>
+              <div class="col">
+                <form action="{{ url('kosongkan').'/'.$itemcart->id }}" method="post">
+                  @method('patch')
+                  @csrf()
+                  <button type="submit" class="btn btn-danger btn-block">Kosongkan</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      @endforeach --}}
     </div>
   </div>
-</div>
-
 
 @endsection

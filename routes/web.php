@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardCustomerController;
 use App\Http\Controllers\DashboardController;
@@ -52,6 +53,13 @@ Route::get('/contact', function () {
         "title" => "Contact",
         "active" => 'contact',
 
+    ]);
+});
+
+Route::get('/cart', function () {
+    return view('cart', [
+        "title" => "Cart",
+        "active" => 'cart',
     ]);
 });
 
@@ -138,3 +146,15 @@ Route::resource('/surveys', SurveyController::class)->middleware('auth');
 Route::resource('/dashboard/surveys', DashboardSurveyController::class)->middleware('auth');
 
 Route::resource('/profil', ProfilController::class)->parameters(['profil' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
+
+// shopping cart
+Route::group(['middleware' => 'auth', 'prefix' => 'cart'], function() {
+    // cart
+//   Route::patch('kosongkan/{id}', 'App\Http\Controllers\CartController@kosongkan');
+    // cart detail
+//   Route::resource('cartitem', 'App\Http\Controllers\CartItemController');
+    Route::get('/', [CartController::class, 'index'])->name('cart');
+    Route::post('/store', [CartItemController::class, 'store'])->name('cart.store');
+    Route::patch('/update/{id}', [CartItemController::class, 'update'])->name('cart.update');
+    Route::delete('/destroy/{id}', [CartItemController::class, 'destroy'])->name('cart.destroy');
+});
