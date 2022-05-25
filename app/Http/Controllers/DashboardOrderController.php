@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\UpdateOrderRequest;
-use App\Models\User;
-use App\Models\Product;
 use Illuminate\Http\Request;
 
-
-
-class OrderController extends Controller
+class DashboardOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.orders.index', [
+            'orders' => Order::all()
+        ]);
     }
 
     /**
@@ -36,27 +32,12 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreOrderRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderRequest $request)
+    public function store(Request $request)
     {
-        $user = User::where('id', $request->user_id)->first();
-
-        $product = Product::where('id', $request->product_id)->first();
-
-        $data = [
-            'user_id' => $user->id,
-            'product_id' => $product->id,
-        ];
-
-        $order = Order::create($data);
-
-        session(['order' => $order]);
-
-        return redirect('/surveys/create')->with([
-            'success' => 'Continue Order to Survey',
-        ]);
+        //
     }
 
     /**
@@ -67,7 +48,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('dashboard.orders.show', [
+            'order' => $order,
+        ]);
     }
 
     /**
@@ -78,19 +61,36 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('dashboard.orders.edit', [
+            'order' => $order,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateOrderRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function update(Request $request, Order $order)
     {
-        //
+        $rules = [
+            'is_surveyed' => 'required',
+            'is_invoice_sent' => 'required',
+            'is_paid_invoiced' => 'required',
+            'is_productioned' => 'required',
+            'is_installed' => 'required',
+            'is_final_invoice_sent' => 'required',
+            'is_final_invoice_paid' => 'required',
+            'status' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        Order::where('id', $order->id)->update($validatedData);
+
+        return redirect('/dashboard/orders')->with('success', 'Order has been updated!');
     }
 
     /**
@@ -102,8 +102,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         Order::destroy($order->id);
-        session()->forget('order');
 
-        return redirect('/shop');
+        return redirect('/dashboard/orders')->with('success', 'Order has been deleted');
     }
 }

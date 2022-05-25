@@ -3,16 +3,22 @@
 @section('container')
 <div class="container">
     <div class="row justify-content-center">
+        <form action="/orders/{{ $order->id }}" method="post" class="d-inline">
+            @method('delete')
+            @csrf
+            <button class="btn btn-danger mb-3"
+                onclick="return confirm('Are you sure to cancel order for survey?')"><span
+                    data-feather="x-circle"></span> Cancel Order for Survey</button>
+        </form>
+        @if (session()->has('success'))
+        <div class="alert alert-success text-center" role="alert">
+            {{ session('success') }}
+        </div>
+        @endif
         <div
             class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Survey Appointment</h1>
         </div>
-
-        @if (session()->has('success'))
-        <div class="alert alert-success col-lg-6" role="alert">
-            {{ session('success') }}
-        </div>
-        @endif
 
         <div class="col-lg-6">
             <form method="post" action="/surveys" class="mb-5">
@@ -106,7 +112,9 @@
                     </div>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Set Survey</button>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary col-lg-6">Set Survey</button>
+                </div>
             </form>
         </div>
     </div>

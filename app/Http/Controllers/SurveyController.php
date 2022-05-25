@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateSurveyRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
 
 class SurveyController extends Controller
 {
@@ -34,13 +35,22 @@ class SurveyController extends Controller
     //untuk tampilan buat form survey
     public function create(Request $request)
     {
-        $product = Product::where('id', session('product'))->first();
-        return view('surveys.create', [
-            'title' => 'Survey Form',
-            'active' => 'survey',
-            'product' => $product,
-            'user' => $request->user(),
-        ]);
+        $order = session('order');
+
+        if (session()->has('order')) {
+            $product = Product::where('id', $order->product_id)->first();
+            return view('surveys.create', [
+                'title' => 'Survey Form',
+                'active' => 'survey',
+                'order' => $order,
+                'product' => $product,
+                'user' => $request->user(),
+            ]);
+        } else {
+            Order::destroy($order->id);
+            session()->forget('order');
+            return redirect('/shop');
+        }
     }
 
     /**

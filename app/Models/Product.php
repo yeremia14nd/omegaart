@@ -36,6 +36,11 @@ class Product extends Model
         return $this->hasMany(Survey::class);
     }
 
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function orderItem()
     {
         return $this->hasMany(OrderItem::class);

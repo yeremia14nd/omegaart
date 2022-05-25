@@ -60,6 +60,9 @@
 						<div class="card-body">
 							<h5 class="card-title">{{ $item->name }}</h5>
 							<small class="text-muted">in Category {{ $item->category->name }}</small>
+							<small class="text-muted p-1 border rounded" style="font-size: 0.8em">{{
+								$item->productAvailability->availability
+								}}</small>
 							<p class="card-text pt-2">{{ $item->excerpt }}</p>
 							<a href="/products/{{ $item->slug }}" class="btn btn-primary">View Product</a>
 							<small class="text-muted">{{ $item->created_at->diffForHumans() }}</small>
