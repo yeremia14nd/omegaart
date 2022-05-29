@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Cart;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
 use App\Models\Product;
+
 
 class CartController extends Controller
 {
@@ -19,15 +22,28 @@ class CartController extends Controller
   {
     // $cart = session('cart');
     // return view('cart')->with('cart', $cart);
-    $itemuser = $request->user();
-    $itemcart = Cart::where('user_id', $itemuser->id)
-      ->where('status_cart', 'cart')
-      ->first();
-    $data = array('title' => 'Cart',
-      'itemcart' => $itemcart,
-      'title' => 'All Products',
-      'active' => 'shop',);
-    return view ('cart', $data)->with('no', 1);
+    if (Auth::check()) {
+      $itemuser = $request->user();
+      $itemcart = Cart::where('user_id', $itemuser->id)
+        ->where('status_cart', 'cart')
+        ->first();
+      $data = array(
+        'title' => 'Cart',
+        'itemcart' => $itemcart,
+        'title' => 'All Products',
+        'active' => 'shop',
+      );
+      return view('cart', $data)->with('no', 1);
+    } else {
+      $data = array(
+        'title' => 'Cart',
+        'cartsession' => session('cart'),
+        'title' => 'All Products',
+        'active' => 'shop',
+      );
+      return view('cart', $data)->with('no', 1);
+      // dd($data);
+    }
   }
 
   /**
@@ -112,10 +128,11 @@ class CartController extends Controller
     //
   }
 
-  public function kosongkan($id) {
+  public function kosongkan($id)
+  {
     $itemcart = Cart::findOrFail($id);
-    $itemcart->detail()->delete();//hapus semua item di cart detail
-    $itemcart->updatetotal($itemcart, '-'.$itemcart->subtotal);
+    $itemcart->detail()->delete(); //hapus semua item di cart detail
+    $itemcart->updatetotal($itemcart, '-' . $itemcart->subtotal);
     return back()->with('success', 'Cart berhasil dikosongkan');
   }
 }

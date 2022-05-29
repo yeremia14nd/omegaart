@@ -148,7 +148,7 @@ Route::resource('/dashboard/surveys', DashboardSurveyController::class)->middlew
 Route::resource('/profil', ProfilController::class)->parameters(['profil' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
 
 // shopping cart
-Route::group(['middleware' => 'auth', 'prefix' => 'cart'], function() {
+Route::group(['prefix' => 'cart'], function() {
     // cart
 //   Route::patch('kosongkan/{id}', 'App\Http\Controllers\CartController@kosongkan');
     // cart detail
@@ -157,4 +157,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'cart'], function() {
     Route::post('/store', [CartItemController::class, 'store'])->name('cart.store');
     Route::patch('/update/{id}', [CartItemController::class, 'update'])->name('cart.update');
     Route::delete('/destroy/{id}', [CartItemController::class, 'destroy'])->name('cart.destroy');
+    Route::patch('/kosongkan/{id}', [CartController::class, 'kosongkan'])->name('cart.kosongkan');
+    
+    Route::delete('remove-from-cart', [CartItemController::class, 'remove'])->name('cart.remove'); 
 });
