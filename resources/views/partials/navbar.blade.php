@@ -35,7 +35,18 @@
               <li><a class="dropdown-item" href="/profil/{{ auth()->user()->userName }}"><i class="bi bi-person"></i>
                   Profil</a></li>
               <li><a class="dropdown-item" href="/cart"><i class="bi bi-bag"></i> Cart</a></li>
-              <li><a class="dropdown-item" href="/status"><i class="bi bi-bell"></i> Status Pemesanan</a></li>
+              <li><a class="dropdown-item" href="/status"><i class="bi bi-bell"></i> Status Pemesanan <i
+                    class="bi bi-three-dots-vertical"></i></a>
+                <ul class="dropdown-menu dropdown-submenu">
+                  <li>
+                    <a class="dropdown-item" href="/surveys">Survey</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Invoice</a>
+                  </li>
+                </ul>
+              </li>
+
               @canany(['superadmin','admin'])
               <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-window-reverse"></i>
                   Dashboard</a></li>

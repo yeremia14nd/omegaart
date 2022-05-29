@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
             'is_role' => '2',
         ]);
 
-        User::factory(3)->create();
+        User::factory(10)->create();
         ProductAvailability::create([
             'availability' => 'Available Now'
         ]);

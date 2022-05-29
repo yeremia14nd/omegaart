@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardSurveyController;
 use App\Http\Controllers\DashboardOrderController;
+use App\Http\Controllers\DashboardStaffController;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
@@ -141,3 +142,5 @@ Route::resource('/dashboard/surveys', DashboardSurveyController::class)->middlew
 Route::resource('/profil', ProfilController::class)->parameters(['profil' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
 
 Route::resource('/dashboard/orders', DashboardOrderController::class)->middleware('auth');
+
+Route::resource('/dashboard/staffs', DashboardStaffController::class)->parameters(['staffs' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');

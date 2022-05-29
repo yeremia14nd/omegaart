@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class DashboardSurveyController extends Controller
 {
@@ -31,6 +33,7 @@ class DashboardSurveyController extends Controller
         return view('dashboard.surveys.create', [
             'products' => Product::all(),
             'users' => User::where('is_role', '5')->get(),
+            'assigns' => User::where('is_role', '4')->get(),
         ]);
     }
 
@@ -91,7 +94,7 @@ class DashboardSurveyController extends Controller
     {
         return view('dashboard.surveys.edit', [
             'survey' => $survey,
-            'users' => User::where('is_role', '5')->get(),
+            'assigns' => User::where('is_role', '4')->get(),
             'products' => Product::all(),
 
         ]);
@@ -106,13 +109,10 @@ class DashboardSurveyController extends Controller
      */
     public function update(Request $request, Survey $survey)
     {
-        $user = User::where('id', $request->user_id)->first();
-
         $product = Product::where('id', $request->product_id)->first();
 
         $validatedData = $request->validate([
-            'user_id' => 'required',
-            'email' => 'required',
+            'name' => 'required',
             'product_id' => 'required',
             'address' => 'required',
             'city' => 'required',
@@ -120,12 +120,22 @@ class DashboardSurveyController extends Controller
             'surveyDate' => 'required',
             'surveyTime' => 'required',
             'description' => 'required',
+            'assignTo' => 'required',
+            'surveyFile' => 'file|max:10240|nullable',
         ]);
 
-        $validatedData['name'] = $user->name;
         $validatedData['product_name'] = $product->name;
 
-        // dd($validatedData);
+        $user = User::where('name', $request->assignTo)->first();
+        $validatedData['assignTo'] = $user->name;
+
+
+        if ($request->file('surveyFile')) {
+            if ($request->oldFile) {
+                Storage::delete($request->oldFile);
+            }
+            $validatedData['surveyFile'] = $request->file('surveyFile')->store('survey-files');
+        }
 
         Survey::where('id', $survey->id)->update($validatedData);
 

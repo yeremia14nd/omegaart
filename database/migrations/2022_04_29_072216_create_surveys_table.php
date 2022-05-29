@@ -24,6 +24,8 @@ class CreateSurveysTable extends Migration
             $table->string('city');
             $table->string('phoneNumber');
             $table->string('description');
+            $table->string('assignTo')->nullable();
+            $table->string('surveyFile')->nullable();
             $table->date('surveyDate');
             $table->time('surveyTime');
             $table->timestamps();

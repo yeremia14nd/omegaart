@@ -17,13 +17,13 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Product</th>
                 <th scope="col">Customer Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">City</th>
-                <th scope="col">Description</th>
+                <th scope="col">Product to Survey</th>
                 <th scope="col">Survey Date</th>
                 <th scope="col">Survey Time</th>
+                <th scope="col">Surveyor Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">File Survey</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -31,13 +31,23 @@
             @foreach ($surveys as $survey)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $survey->product_name }}</td>
                 <td>{{ $survey->user->name }}</td>
-                <td>{{ $survey->address }}</td>
-                <td>{{ $survey->city }}</td>
-                <td>{{ $survey->description }}</td>
+                <td>{{ $survey->product_name }}</td>
                 <td>{{ $survey->surveyDate }}</td>
                 <td>{{ $survey->surveyTime }}</td>
+                <td>@if ($survey->assignTo)
+                    {{ $survey->assignTo }}
+                    @else
+                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Assign Role</a>
+                    @endif
+                </td>
+                <td>{{ $survey->address }}</td>
+                <td>@if ($survey->surveyFile)
+                    {{ $survey->surveyFile }}
+                    @else
+                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Upload</a>
+                    @endif
+                </td>
                 <td>
                     <a href="/dashboard/surveys/{{ $survey->id }}" class="badge bg-info">
                         <span data-feather="eye"></span>

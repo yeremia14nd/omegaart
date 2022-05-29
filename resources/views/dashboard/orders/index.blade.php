@@ -36,7 +36,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $order->product->name }}</td>
                 <td>{{ $order->user->name }}</td>
-                <td>{{ $order->created_at }}</td>
+                <td>{{ $order->created_at->format('l, d-M-Y, H:i A') }}</td>
                 <td class="{{ $order->is_surveyed == '1' ? 'bg-success fw-bold' : 'table-danger' }}">{{
                     $order->is_surveyed ==
                     '1' ?

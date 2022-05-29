@@ -89,6 +89,23 @@
                 name="description" placeholder=" @error('description') {{ $message }} @enderror "
                 value="{{ old('description') }}">
         </div>
+        <div class="mb-3">
+            <label for="assignTo" class="form-label">Assign Role</label>
+            <select class="form-select @error('assignTo') is-invalid @enderror" name="assignTo">
+                @foreach ($assigns as $assignRole)
+                @if (old('assignRole') == $assignRole->name)
+                <option value="{{ $assignRole->name }}" selected>{{ $assignRole->name }}</option>
+                @else
+                <option value="{{ $assignRole->name }}">{{ $assignRole->name }}</option>
+                @endif
+                @endforeach
+            </select>
+        </div>
+        @error('assignRole')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
         <button type="submit" class="btn btn-primary">Create survey</button>
     </form>
 </div>

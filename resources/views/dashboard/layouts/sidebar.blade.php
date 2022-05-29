@@ -43,6 +43,12 @@
           Surveys
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('dashboard/staffs*') ? 'active' : '' }}" href="/dashboard/staffs">
+          <span data-feather="users"></span>
+          All Staff
+        </a>
+      </li>
     </ul>
     @endcanany
   </div>

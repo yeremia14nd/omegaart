@@ -107,7 +107,16 @@ class SurveyController extends Controller
      */
     public function edit(Survey $survey)
     {
-        //
+        // dd($survey);
+        if ($survey->user_id === auth()->user()->id) {
+            return view('surveys.edit', [
+                'title' => 'Upadate Schedule',
+                'active' => 'survey',
+                'survey' => $survey,
+            ]);
+        } else {
+            return redirect('/surveys');
+        }
     }
 
     /**
@@ -119,7 +128,18 @@ class SurveyController extends Controller
      */
     public function update(UpdateSurveyRequest $request, Survey $survey)
     {
-        //
+        $validatedData = $request->validate([
+            'address' => 'required',
+            'city' => 'required',
+            'phoneNumber' => 'required',
+            'description' => 'required',
+            'surveyDate' => 'required',
+            'surveyTime' => 'required',
+        ]);
+
+        Survey::where('id', $survey->id)->update($validatedData);
+
+        return redirect('/surveys')->with('success', 'Survey has been updated');
     }
 
     /**
