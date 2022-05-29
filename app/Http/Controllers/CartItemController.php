@@ -48,7 +48,7 @@ class CartItemController extends Controller
     $itemuser = $request->user();
     $itemproduk = Product::findOrFail($id);
     // cek dulu apakah sudah ada shopping cart untuk user yang sedang login
-    
+
     if (Auth::check()) {
       $cart = Cart::where('user_id', $itemuser->id)
       ->where('status_cart', 'cart')
@@ -204,15 +204,35 @@ class CartItemController extends Controller
     }
   }
 
-  public function remove(Request $request)
+  public function update_quantity(Request $request, $id)
   {
-    if($request->id) {
+    $param = $request->param;
+    if($id)
+    {
+      if ($param == 'tambah') {
+        $cart = session()->get('cart');
+        $cart[$id]["quantity"]++;
+        session()->put('cart', $cart);
+        return back()->with('success', 'Item Berhasil diupdate');
+      }
+      if ($param == 'kurang'){
+        $cart = session()->get('cart');
+        $cart[$id]["quantity"]--;
+        session()->put('cart', $cart);
+        return back()->with('success', 'Item Berhasil diupdate');
+      }
+    }
+  }
+
+  public function remove($id)
+  {
+    if($id) {
       $cart = session()->get('cart');
-        if(isset($cart[$request->id])) {
-          unset($cart[$request->id]);
+        if(isset($cart[$id])) {
+          unset($cart[$id]);
           session()->put('cart', $cart);
         }
-      session()->flash('success', 'Product removed successfully');
+      return back()->with('success', 'Item Berhasil Dihapus');
     }
   }
 }
