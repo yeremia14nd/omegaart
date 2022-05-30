@@ -87,7 +87,10 @@
                   </tr>
                 @endforeach
               @else
+              @if(session('cart'))
+              <?php $total = 0 ?>
                 @foreach($cartsession as $cartse)
+                <?php $total += $cartse['price'] * $cartse['quantity'] ?>
                   <tr>
                     <td>
                       {{ $no++ }}
@@ -135,6 +138,7 @@
                   </tr>
                 @endforeach
               @endif
+              @endif
               </tbody>
             </table>
           </div>
@@ -169,18 +173,22 @@
               </table>
             @else
               <table class="table">
-                {{-- <tr>
+                <tr>
                   <td>Subtotal</td>
                   <td class="text-right">
-                    {{ number_format($cartsession['subtotal'], 2) }}
+                    @if(session('cart'))
+                    {{ number_format($total, 2) }}
+                    @endif
                   </td>
                 </tr>
                 <tr>
                   <td>Total</td>
                   <td class="text-right">
-                    {{ number_format($cartsession['total'], 2) }}
+                    @if(session('cart'))
+                    {{ number_format($total, 2) }}
+                    @endif
                   </td>
-                </tr> --}}
+                </tr>
               </table>
             @endif
           </div>
@@ -197,8 +205,8 @@
                     <button type="submit" class="btn btn-danger btn-block">Kosongkan</button>
                   </form>
                 @else
-                  <form action="" method="post">
-                    @method('patch')
+                  <form action="{{ route('cart.empty') }}" method="post">
+                    @method('post')
                     @csrf()
                     <button type="submit" class="btn btn-danger btn-block">Kosongkan</button>
                   </form>

@@ -49,7 +49,7 @@ class CartItemController extends Controller
     $itemproduk = Product::findOrFail($id);
     // cek dulu apakah sudah ada shopping cart untuk user yang sedang login
 
-    if (Auth::check()) {
+    if (Auth::check()) { //jika user sudah login
       $cart = Cart::where('user_id', $itemuser->id)
       ->where('status_cart', 'cart')
       ->first();
@@ -93,7 +93,7 @@ class CartItemController extends Controller
         $cartitem->cart->updatetotal($cartitem->cart, $subtotal);
       }
       return redirect()->route('cart')->with('success', 'Produk Berhasil Ditambah ke Cart');
-    } else {
+    } else { //jika user belum login
       $carts = session()->get('cart');
 
       //jika cart kosong

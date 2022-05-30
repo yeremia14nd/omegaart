@@ -135,4 +135,9 @@ class CartController extends Controller
     $itemcart->updatetotal($itemcart, '-' . $itemcart->subtotal);
     return back()->with('success', 'Cart berhasil dikosongkan');
   }
+
+  public function emptySession(){
+    session()->flush();
+    return back()->with('success', 'Cart berhasil dikosongkan');
+  }
 }

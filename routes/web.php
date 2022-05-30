@@ -159,6 +159,8 @@ Route::group(['prefix' => 'cart'], function() {
     Route::delete('/destroy/{id}', [CartItemController::class, 'destroy'])->name('cart.destroy');
     Route::patch('/kosongkan/{id}', [CartController::class, 'kosongkan'])->name('cart.kosongkan');
 
+    //cart session
     Route::delete('/remove-from-cart/{id}', [CartItemController::class, 'remove'])->name('cart.remove');
     Route::patch('/update-quantity/{id}', [CartItemController::class, 'update_quantity'])->name('cart.quantity');
+    Route::post('/empty_session', [CartController::class, 'emptySession'])->name('cart.empty');
 });
