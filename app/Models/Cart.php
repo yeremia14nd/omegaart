@@ -33,10 +33,93 @@ class Cart extends Model
 
     }
 
-
     public function updatetotal($itemcart, $subtotal) {
         $this->attributes['subtotal'] = $itemcart->subtotal + $subtotal;
         $this->attributes['total'] = $itemcart->total + $subtotal;
         self::save();
+    }
+
+    public static function addToCart($id_user, $item_cart) {
+        $cart = Cart::where('user_id', $id_user)->where('status_cart', 'cart')->first();
+
+        if ($cart) {
+            $itemcart = $cart;
+        } else {
+            $no_invoice = Cart::where('user_id', $id_user)->count();
+
+            // mencari jumlah cart berdasarkan user untuk dijadikan no invoice
+            $input['user_id'] = $id_user;
+            $input['no_invoice'] = 'INV ' . str_pad(($no_invoice + 1), '3', '0', STR_PAD_LEFT);
+            $input['status_cart'] = 'cart';
+            $input['status'] = 'belum';
+            $itemcart = Cart::create($input);
+        }
+
+        $check_cart = is_array($item_cart);
+        if($check_cart) {
+            // jika produk cart lebih dari 1
+            foreach($item_cart as $row) {
+                $itemproduk = Product::findOrFail($row['id']);
+
+                $cekdetail = CartItem::where('cart_id', $itemcart->id)
+                    ->where('product_id', $itemproduk->id)
+                    ->first();
+                
+                $qty = $row['quantity'];
+                $harga = $itemproduk->price;
+                $subtotal = $qty * $harga;
+                if ($cekdetail) {
+                    //update detail di tabel cart item
+                    $cekdetail->updatedetail($cekdetail, $qty, $harga);
+
+                    //update subtotal dan total di tabel cart
+                    $cekdetail->cart->updatetotal($cekdetail->cart, $subtotal);
+                } else {
+                    $inputan = null;
+                    $inputan['cart_id'] = $itemcart->id;
+                    $inputan['product_id'] = $itemproduk->id;
+                    $inputan['quantity'] = $qty;
+                    $inputan['price'] = $harga;
+                    $inputan['subtotal'] = $harga * $qty;
+                    $inputan['active'] = 1;
+
+                    $cartitem = CartItem::create($inputan);
+
+                    // update subtotal dan total di tabel cart
+                    $cartitem->cart->updatetotal($cartitem->cart, $subtotal);
+                }
+            }
+        } else {
+            // jika cuma 1
+            $itemproduk = Product::findOrFail($item_cart);
+
+            $cekdetail = CartItem::where('cart_id', $itemcart->id)
+                ->where('product_id', $itemproduk->id)
+                ->first();
+            
+            $qty = 1;
+            $harga = $itemproduk->price;
+            $subtotal = $qty * $harga;
+            if ($cekdetail) {
+                //update detail di tabel cart item
+                $cekdetail->updatedetail($cekdetail, $qty, $harga);
+
+                //update subtotal dan total di tabel cart
+                $cekdetail->cart->updatetotal($cekdetail->cart, $subtotal);
+            } else {
+                $inputan = null;
+                $inputan['cart_id'] = $itemcart->id;
+                $inputan['product_id'] = $itemproduk->id;
+                $inputan['quantity'] = $qty;
+                $inputan['price'] = $harga;
+                $inputan['subtotal'] = $harga * $qty;
+                $inputan['active'] = 1;
+
+                $cartitem = CartItem::create($inputan);
+
+                // update subtotal dan total di tabel cart
+                $cartitem->cart->updatetotal($cartitem->cart, $subtotal);
+            }
+        }
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\CartItem;
+use App\Models\Cart;
 
 class LoginController extends Controller
 {
@@ -25,6 +27,13 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            $user_id = Auth::user()->id;
+            $cart = session('cart');
+
+            if($cart) {
+                Cart::addToCart($user_id, $cart);
+            }
+            
             return redirect()->intended('/dashboard');
         }
 

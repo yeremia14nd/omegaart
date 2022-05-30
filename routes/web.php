@@ -149,10 +149,6 @@ Route::resource('/profil', ProfilController::class)->parameters(['profil' => 'us
 
 // shopping cart
 Route::group(['prefix' => 'cart'], function() {
-    // cart
-//   Route::patch('kosongkan/{id}', 'App\Http\Controllers\CartController@kosongkan');
-    // cart detail
-//   Route::resource('cartitem', 'App\Http\Controllers\CartItemController');
     Route::get('/', [CartController::class, 'index'])->name('cart');
     Route::post('/store', [CartItemController::class, 'store'])->name('cart.store');
     Route::patch('/update/{id}', [CartItemController::class, 'update'])->name('cart.update');
