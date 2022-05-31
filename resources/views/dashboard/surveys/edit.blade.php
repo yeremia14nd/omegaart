@@ -14,7 +14,7 @@
         <div class="mb-3">
             <label for="name" class="form-label">Name Of Customer to Survey</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                value="{{ old('name', $survey->user->name)}}" readonly>
+                value="{{ old('name', $survey->order->user->name)}}" readonly>
         </div>
         @error('name')
         <div class="invalid-feedback">
@@ -24,7 +24,7 @@
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                value="{{ old('email', $survey->email)}}" readonly>
+                value="{{ old('email', $survey->order->user->email)}}" readonly>
             @error('email')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -33,15 +33,13 @@
         </div>
         <div class="mb-3">
             <label for="product" class="form-label">Product</label>
-            <select class="form-select @error('product_id') is-invalid @enderror" name="product_id">
-                @foreach ($products as $product)
-                @if (old('product_id', $survey->product_id) == $product->id)
-                <option value="{{ $product->id }}" selected>{{ $product->name }}</option>
-                @else
-                <option value="{{ $product->id }}">{{ $product->name }}</option>
-                @endif
-                @endforeach
-            </select>
+            <input type="text" class="form-control @error('product') is-invalid @enderror" id="product" name="product"
+                value="{{ old('product', $survey->order->product->name)}}" readonly>
+            @error('product')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         @error('product_id')
         <div class="invalid-feedback">

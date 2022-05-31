@@ -118,7 +118,7 @@ class DashboardCustomerController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validatedData['imageAssets'] = $request->file('imageAssets')->store('product-images');
+            $validatedData['imageAssets'] = $request->file('imageAssets')->store('customer-images');
         }
 
         User::where('id', $user->id)->update($validatedData);

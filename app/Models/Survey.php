@@ -10,18 +10,7 @@ class Survey extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $with = ['user', 'product'];
-
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
+    protected $with = ['order'];
 
     public function order()
     {

@@ -7,7 +7,11 @@
             class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Change Survey Appointment</h1>
         </div>
-
+        <div class="d-flex justify-content-center">
+            <a href="/surveys/" class="btn btn-outline-danger px-5">
+                <span data-feather="arrow-left"></span> Cancel
+            </a>
+        </div>
         <div class="col-lg-6">
             <form method="post" action="/surveys/{{ $survey->id }}" class="mb-5">
                 @method('put')
@@ -15,7 +19,7 @@
                 <div class="mb-3">
                     <label for="product" class="form-label"> Product Name</label>
                     <input type="text" class="form-control @error('product') is-invalid @enderror " id="product"
-                        name="product" value="{{ $survey->product->name }}" readonly>
+                        name="product" value="{{ $survey->order->product->name }}" readonly>
                     @error('product')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -25,7 +29,7 @@
                 <div class="mb-3">
                     <label for="name" class="form-label"> Customer Name</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror " id="name" name="name"
-                        autofocus value="{{ old('name', $survey->user->name) }}" readonly>
+                        autofocus value="{{ old('name', $survey->order->user->name) }}" readonly>
                     @error('name')
                     <div class="invalid-feedback">
                         {{ $message }}

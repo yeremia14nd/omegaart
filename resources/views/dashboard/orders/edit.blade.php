@@ -1,12 +1,11 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
+<a href="/dashboard/orders" class="btn btn-success my-3"> <span data-feather="arrow-left"></span> Back to
+    All Orders</a>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Edit order</h1>
 </div>
-<a href="/dashboard/orders" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Back to
-    All order</a>
-
 <div class="col-lg-8">
     <form method="post" action="/dashboard/orders/{{ $order->id }}" class="mb-5">
         @method('put')

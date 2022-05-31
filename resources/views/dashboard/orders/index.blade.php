@@ -20,6 +20,7 @@
                 <th scope="col">Nama Produk</th>
                 <th scope="col">Customer</th>
                 <th scope="col">Tanggal Order</th>
+                <th scope="col">Survey Schedule</th>
                 <th scope="col">Survey</th>
                 <th scope="col">Invoice</th>
                 <th scope="col">Paid</th>
@@ -37,6 +38,10 @@
                 <td>{{ $order->product->name }}</td>
                 <td>{{ $order->user->name }}</td>
                 <td>{{ $order->created_at->format('l, d-M-Y, H:i A') }}</td>
+                <td class="{{ $order->is_survey_scheduled == '1' ? 'bg-success fw-bold' : 'table-danger' }}">{{
+                    $order->is_survey_scheduled ==
+                    '1' ?
+                    "Sudah dijadwal" : "Belum dijadwal" }}</td>
                 <td class="{{ $order->is_surveyed == '1' ? 'bg-success fw-bold' : 'table-danger' }}">{{
                     $order->is_surveyed ==
                     '1' ?

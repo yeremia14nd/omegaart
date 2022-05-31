@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('product_id')->constrained('products');
+            $table->boolean('is_survey_scheduled')->nullable();
             $table->boolean('is_surveyed')->nullable();
             $table->boolean('is_invoice_sent')->nullable();
             $table->boolean('is_paid_invoiced')->nullable();

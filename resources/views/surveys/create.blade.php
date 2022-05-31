@@ -23,6 +23,7 @@
         <div class="col-lg-6">
             <form method="post" action="/surveys" class="mb-5">
                 @csrf
+                <input type="hidden" id="order_id" name="order_id" value="{{ $order->id }}">
                 <div class="mb-3">
                     <label for="product" class="form-label"> Product Name</label>
                     <input type="text" class="form-control @error('product') is-invalid @enderror " id="product"
@@ -45,8 +46,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                        value="{{ old('email', $user->email) }}" readonly>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                        name="email" value="{{ old('email', $user->email) }}" readonly>
                     @error('email')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -73,7 +74,7 @@
                 </div>
                 <label for="phoneNumber" class="form-label">Phone Number</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
+                    <input type="tel" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
                         name="phoneNumber" value="{{ old('phoneNumber', $user->phoneNumber) }}">
                     @error('phoneNumber')
                     <div class="invalid-feedback"> {{ $message }}

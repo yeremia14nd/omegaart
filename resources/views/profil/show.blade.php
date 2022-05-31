@@ -21,6 +21,14 @@
                 </div>
                 <div class="col-md">
                     <h1 class="mb-2">{{ $userprofile->name }}</h1>
+                    <div class="col-md-4">
+                        <form action="/profil/{{ $userprofile->userName }}/edit" method="get">
+                            @csrf
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-outline-primary">Edit Profil</button>
+                            </div>
+                        </form>
+                    </div>
                     <table class="table">
                         <tr>
                             <td>Email</td>
@@ -39,13 +47,16 @@
                             <td>: {{ $userprofile->address }}</td>
                         </tr>
                     </table>
-                    <form action="/profil/{{ $userprofile->userName }}/edit" method="get">
-                        @csrf
-                        <div class="d-grid gap-2">
-                            {{-- <a href="" class="btn btn-primary">Add To Cart</a> --}}
-                            <button type="submit" class="btn btn-primary">Edit Profil</button>
-                        </div>
-                    </form>
+
+                    <div class="col-md-6 my-3">
+                        <form action="/profil/{{ $userprofile->userName }}/edit" method="get">
+                            @csrf
+                            <div class="d-grid gap-2">
+                                {{-- <a href="" class="btn btn-primary">Add To Cart</a> --}}
+                                <button type="submit" class="btn btn-primary">Change Password</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

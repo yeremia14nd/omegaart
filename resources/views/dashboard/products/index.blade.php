@@ -19,6 +19,8 @@
                 <th scope="col">#</th>
                 <th scope="col">Nama Produk</th>
                 <th scope="col">Kategori</th>
+                <th scope="col">Image</th>
+                <th scope="col">Work Duration</th>
                 <th scope="col">Harga</th>
                 <th scope="col">Action</th>
             </tr>
@@ -29,6 +31,9 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->category->name }}</td>
+                <td><img id="image" src="{{ asset('storage/' . $product->imageAssets) }}" class="img-fluid" width="50"
+                        alt="{{ $product->category->name }}"></td>
+                <td>{{ $product->workDuration }} Days</td>
                 <td>Rp. {{ number_format($product->price / 1, 0) }}</td>
                 <td>
                     <a href="/dashboard/products/{{ $product->slug }}" class="badge bg-info">

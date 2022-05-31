@@ -15,11 +15,7 @@ class CreateSurveysTable extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('product_id');
-            $table->string('product_name');
-            $table->string('name');
-            $table->string('email');
+            $table->foreignId('order_id');
             $table->string('address');
             $table->string('city');
             $table->string('phoneNumber');

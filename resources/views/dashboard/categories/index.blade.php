@@ -28,7 +28,8 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $category->name }}</td>
-                <td>{{ $category->imageAssets }}</td>
+                <td><img id="image" src="{{ asset('storage/' . $category->imageAssets) }}" class="img-fluid" width="50"
+                        alt="{{ $category->name }}"></td>
                 <td>{!! $category->description !!}</td>
                 <td>
                     <a href="/dashboard/categories/{{ $category->slug }}" class="badge bg-info">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class DashboardOrderController extends Controller
@@ -26,7 +28,10 @@ class DashboardOrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.orders.create', [
+            'users' => User::all(),
+            'products' => Product::where('product_availability_id', '2')->get(),
+        ]);
     }
 
     /**
@@ -37,7 +42,17 @@ class DashboardOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'user_id' => 'required',
+            'product_id' => 'required',
+            'status' => 'required',
+        ]);
+
+        Order::create($validatedData);
+
+        return redirect('/dashboard/orders')->with([
+            'success' => 'New Order has been added',
+        ]);
     }
 
     /**

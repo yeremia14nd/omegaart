@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Order;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -30,9 +31,10 @@ class DashboardSurveyController extends Controller
      */
     public function create()
     {
+        $order = Order::whereNull('is_survey_scheduled')->get();
+
         return view('dashboard.surveys.create', [
-            'products' => Product::all(),
-            'users' => User::where('is_role', '5')->get(),
+            'orders' => $order,
             'assigns' => User::where('is_role', '4')->get(),
         ]);
     }
@@ -45,28 +47,23 @@ class DashboardSurveyController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::where('id', $request->user_id)->first();
+        // $user = User::where('id', $request->user_id)->first();
 
-        $product = Product::where('id', $request->product_id)->first();
+        // $product = Product::where('id', $request->product_id)->first();
 
         $validatedData = $request->validate([
-            'user_id' => 'required',
-            'email' => 'required',
-            'product_id' => 'required',
+            'order_id' => 'required',
             'address' => 'required',
             'city' => 'required',
             'phoneNumber' => 'required',
             'surveyDate' => 'required',
             'surveyTime' => 'required',
             'description' => 'required',
+            'assignTo' => 'required',
         ]);
 
-        $validatedData['name'] = $user->name;
-        $validatedData['product_name'] = $product->name;
-
-        // dd($validatedData);
-
         Survey::create($validatedData);
+        Order::where('id', $request->order_id)->update(['is_survey_scheduled' => '1']);
 
         return redirect('/dashboard/surveys')->with('success', 'New Survey has been scheduled');
     }
@@ -135,6 +132,7 @@ class DashboardSurveyController extends Controller
                 Storage::delete($request->oldFile);
             }
             $validatedData['surveyFile'] = $request->file('surveyFile')->store('survey-files');
+            Order::where('id', $survey->order_id)->update(['is_surveyed' => 1]);
         }
 
         Survey::where('id', $survey->id)->update($validatedData);
@@ -154,5 +152,17 @@ class DashboardSurveyController extends Controller
         Survey::destroy($survey->id);
 
         return redirect('/dashboard/surveys')->with('success', 'Survey has been deleted');
+    }
+
+    public function checkOrder(Request $request)
+    {
+        $order = Order::where('id', $request->order_id)->first();
+
+        return response()->json([
+            'name' => $order->user->name,
+            'email' => $order->user->email,
+            'address' => $order->user->address,
+            'phoneNumber' => $order->user->phoneNumber,
+        ]);
     }
 }

@@ -35,7 +35,7 @@
                         </tr>
                         <tr>
                             <td>Order Date</td>
-                            <td>: {{ $order->created_at }}</td>
+                            <td>: {{ $order->created_at->format('l, d-M-Y, H:i A') }}</td>
                         </tr>
                         <tr>
                             <td>Survey</td>

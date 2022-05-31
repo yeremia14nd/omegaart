@@ -32,7 +32,7 @@
                     @foreach ($surveys as $survey)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $survey->product_name }}</td>
+                        <td>{{ $survey->order->product->name }}</td>
                         <td>{{ $survey->address }}</td>
                         <td>{{ $survey->city }}</td>
                         <td>{{ $survey->description }}</td>

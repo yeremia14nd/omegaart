@@ -31,8 +31,8 @@
             @foreach ($surveys as $survey)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $survey->user->name }}</td>
-                <td>{{ $survey->product_name }}</td>
+                <td>{{ $survey->order->user->name }}</td>
+                <td>{{ $survey->order->product->name }}</td>
                 <td>{{ $survey->surveyDate }}</td>
                 <td>{{ $survey->surveyTime }}</td>
                 <td>@if ($survey->assignTo)

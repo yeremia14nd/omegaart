@@ -11,18 +11,30 @@
     <form method="post" action="/dashboard/surveys" class="mb-5">
         @csrf
         <div class="mb-3">
-            <label for="user_id" class="form-label">Name Of Customer to Survey</label>
-            <select class="form-select @error('user_id') is-invalid @enderror" name="user_id" id="user_id">
-                @foreach ($users as $user)
-                @if (old('user_id') == $user->id)
-                <option value="{{ $user->id }}" selected>{{ $user->name }} </option>
+            <label for="order_id" class="form-label">Name Of Product Order</label>
+            <select class="form-select @error('order_id') is-invalid @enderror" name="order_id" id="order_id">
+                <option value="" class="text-muted">Choose Product Order...</option>
+                @foreach ($orders as $order)
+                @if (old('order_id') == $order->id)
+                <option value="{{ $order->id }}" selected>{{ $order->product->name }} </option>
                 @else
-                <option value="{{ $user->id }}">{{ $user->name }} </option>
+                <option value="{{ $order->id }}">{{ $order->product->name }} </option>
                 @endif
                 @endforeach
             </select>
         </div>
-        @error('user_id')
+        @error('order_id')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
+        <div class="mb-3">
+            <label for="customer" class="form-label">Customer Name</label>
+            <input type="text" class="form-control @error('customer') is-invalid @enderror" id="customer"
+                name="customer" value="{{ old('customer')}}" readonly>
+
+        </div>
+        @error('customer')
         <div class="invalid-feedback">
             {{ $message }}
         </div>
@@ -30,68 +42,52 @@
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                value="{{ old('email')}}">
+                value="{{ old('email')}}" readonly>
             @error('email')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
             @enderror
         </div>
-        <div class="mb-3">
-            <label for="product" class="form-label">Product</label>
-            <select class="form-select @error('product_id') is-invalid @enderror" name="product_id">
-                @foreach ($products as $product)
-                @if (old('product_id') == $product->id)
-                <option value="{{ $product->id }}" selected>{{ $product->name }}</option>
-                @else
-                <option value="{{ $product->id }}">{{ $product->name }}</option>
-                @endif
-                @endforeach
-            </select>
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <div class="input-group mb-3">
+            <input type="tel" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
+                name="phoneNumber" placeholder=" @error('phoneNumber') {{ $message }} @enderror "
+                value="{{ old('phoneNumber') }}" required>
         </div>
-        @error('product_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <label for="address" class="form-label">Address of Survey</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
-                placeholder=" @error('address') {{ $message }} @enderror " value="{{ old('address') }}">
+                placeholder=" @error('address') {{ $message }} @enderror " value="{{ old('address') }}" required>
         </div>
 
         <label for="city" class="form-label">City</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city"
-                placeholder=" @error('city') {{ $message }} @enderror " value="{{ old('city') }}">
-        </div>
-        <label for="phoneNumber" class="form-label">Phone Number</label>
-        <div class="input-group mb-3">
-            <input type="number" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
-                name="phoneNumber" placeholder=" @error('phoneNumber') {{ $message }} @enderror "
-                value="{{ old('phoneNumber') }}">
+                placeholder=" @error('city') {{ $message }} @enderror " value="{{ old('city') }}" required>
         </div>
         <label for="surveyDate" class="form-label">Survey Date</label>
         <div class="input-group mb-3">
             <input type="date" class="form-control @error('surveyDate') is-invalid @enderror" id="surveyDate"
                 name="surveyDate" placeholder=" @error('surveyDate') {{ $message }} @enderror "
-                value="{{ old('surveyDate') }}">
+                value="{{ old('surveyDate') }}" required>
         </div>
         <label for="surveyTime" class="form-label">Survey Time</label>
         <div class="input-group mb-3">
             <input type="time" class="form-control @error('surveyTime') is-invalid @enderror" id="surveyTime"
                 name="surveyTime" placeholder=" @error('surveyTime') {{ $message }} @enderror "
-                value="{{ old('surveyTime') }}">
+                value="{{ old('surveyTime') }}" required>
         </div>
         <label for="description" class="form-label">Description of the survey</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                 name="description" placeholder=" @error('description') {{ $message }} @enderror "
-                value="{{ old('description') }}">
+                value="{{ old('description') }}" required>
         </div>
         <div class="mb-3">
-            <label for="assignTo" class="form-label">Assign Role</label>
-            <select class="form-select @error('assignTo') is-invalid @enderror" name="assignTo">
+            <label for="assignTo" class="form-label">Assign Surveyor Role</label>
+            <select class="form-select @error('assignTo') is-invalid @enderror" name="assignTo" required>
+                <option value="" class="text-muted">Select surveyor...</option>
                 @foreach ($assigns as $assignRole)
                 @if (old('assignRole') == $assignRole->name)
                 <option value="{{ $assignRole->name }}" selected>{{ $assignRole->name }}</option>
@@ -110,16 +106,22 @@
     </form>
 </div>
 
-{{-- <script>
-    //cari tahu bagaimana mengambil data dari input nama dan masukkan ambil data email otomatis ketika memilih nama
-    // const name = document.querySelector('#user_id');
-    // const email = document.querySelector('#email');
+<script>
+    const order_id = document.querySelector('#order_id');
+    const customer = document.querySelector('#customer');
+    const email = document.querySelector('#email');
+    const address = document.querySelector('#address');
+    const phoneNumber = document.querySelector('#phoneNumber');
 
-    // name.addEventListener('change', function() {
-    //     fetch(name.value)              
-    //         .then(email.value = name.value)
-            
-    // });
-</script> --}}
-
+    order_id.addEventListener('change', function() {
+        fetch('/dashboard/surveys/checkOrder?order_id=' + order_id.value)
+            .then(response => response.json())
+            .then(data => [
+            customer.value = data.name, 
+            email.value = data.email,
+            address.value = data.address,
+            phoneNumber.value =  data.phoneNumber,
+         ])        
+    });
+</script>
 @endsection
