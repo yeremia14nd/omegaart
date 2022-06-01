@@ -30,7 +30,7 @@ class LoginController extends Controller
             $user_id = Auth::user()->id;
             $cart = session('cart');
 
-            if($cart) {
+            if($cart) { //jika ada data session, maka data cart akan masuk ke db setelah login
                 Cart::addToCart($user_id, $cart);
             }
             

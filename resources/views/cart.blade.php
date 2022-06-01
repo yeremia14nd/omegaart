@@ -195,7 +195,11 @@
           <div class="card-footer">
             <div class="row">
               <div class="col">
-                <button class="btn btn-primary btn-block">Checkout</button>
+                <form action="{{ route('cart.checkout') }}" method="POST">
+                  @method('post')
+                  @csrf
+                  <button class="btn btn-primary btn-block">Checkout</button>
+                </form>
               </div>
               <div class="col">
                 @if(Auth::check())

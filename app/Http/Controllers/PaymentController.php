@@ -15,7 +15,13 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $data = array(
+            'title' => 'Checkout',
+            'cartsession' => session('cart'),
+            'title' => 'Checkout',
+            'active' => 'shop'
+          );
+        return view('payment', $data);
     }
 
     /**

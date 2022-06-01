@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardCustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardSurveyController;
+use App\Http\Controllers\PaymentController;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
@@ -159,4 +160,9 @@ Route::group(['prefix' => 'cart'], function() {
     Route::delete('/remove-from-cart/{id}', [CartItemController::class, 'remove'])->name('cart.remove');
     Route::patch('/update-quantity/{id}', [CartItemController::class, 'update_quantity'])->name('cart.quantity');
     Route::post('/empty_session', [CartController::class, 'emptySession'])->name('cart.empty');
+});
+
+// payment
+Route::group(['prefix' => 'checkout'], function() {
+    Route::get('/', [PaymentController::class, 'index'])->name('checkout');
 });
