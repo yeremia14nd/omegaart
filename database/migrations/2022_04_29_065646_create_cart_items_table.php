@@ -19,7 +19,7 @@ class CreateCartItemsTable extends Migration
             $table->foreignId('cart_id');
             $table->integer('price');
             $table->integer('quantity');
-            $table->integer('subtotal');
+            $table->integer('subtotal')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });
