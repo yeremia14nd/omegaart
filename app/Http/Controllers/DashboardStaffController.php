@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
-class DashboardCustomerController extends Controller
+class DashboardStaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,13 @@ class DashboardCustomerController extends Controller
      */
     public function index()
     {
-        return view('dashboard.customers.index', [
-            'customers' => User::where('is_role', '5')->get(),
-        ]);
+        if (Gate::any(['superadmin', 'admin'])) {
+            return view('dashboard.staffs.index', [
+                'staffs' => User::whereIn('is_role', [2, 3, 4])->get(),
+            ]);
+        } else {
+            return redirect('/dashboard');
+        }
     }
 
     /**
@@ -27,7 +32,7 @@ class DashboardCustomerController extends Controller
      */
     public function create()
     {
-        return view('dashboard.customers.create');
+        return view('dashboard.staffs.create');
     }
 
     /**
@@ -47,20 +52,15 @@ class DashboardCustomerController extends Controller
             'phoneNumber' => 'required',
         ];
 
-        // if ($request->userName != $user->userName) {
-        //     $rules['userName'] = 'required|unique:users';
-        // }
-
         $validatedData = $request->validate($rules);
         $validatedData['password'] = bcrypt('password');
-        $validatedData['is_role'] = 5; // number 5 is customer role
+        $validatedData['is_role'] = $request->is_role;
 
-        $validatedData['imageAssets'] = $request->file('imageAssets')->store('product-images');
+        $validatedData['imageAssets'] = $request->file('imageAssets')->store('staff-images');
 
         User::create($validatedData);
-        // User::where('id', $user->id)->update($validatedData);
 
-        return redirect('/dashboard/customers')->with('success', 'Customers has been created!');
+        return redirect('/dashboard/staffs')->with('success', 'Staff has been created!');
     }
 
     /**
@@ -71,10 +71,12 @@ class DashboardCustomerController extends Controller
      */
     public function show(User $user)
     {
-
-        return view('dashboard.customers.show', [
-            'customer' => $user,
-        ]);
+        if (Gate::any(['superadmin', 'admin', 'estimator', 'teknisi'])) {
+            return view('dashboard.staffs.show', [
+                'staff' => $user,
+            ]);
+        }
+        return redirect('/dashboard');
     }
 
     /**
@@ -85,8 +87,8 @@ class DashboardCustomerController extends Controller
      */
     public function edit(User $user)
     {
-        return view('dashboard.customers.edit', [
-            'customer' => $user,
+        return view('dashboard.staffs.edit', [
+            'staff' => $user,
         ]);
     }
 
@@ -118,12 +120,12 @@ class DashboardCustomerController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validatedData['imageAssets'] = $request->file('imageAssets')->store('customer-images');
+            $validatedData['imageAssets'] = $request->file('imageAssets')->store('staff-images');
         }
 
         User::where('id', $user->id)->update($validatedData);
 
-        return redirect('/dashboard/customers')->with('success', 'Customers has been updated!');
+        return redirect('/dashboard/staffs')->with('success', 'Staff has been updated!');
     }
 
     /**
@@ -139,6 +141,6 @@ class DashboardCustomerController extends Controller
         }
         User::destroy($user->id);
 
-        return redirect('/dashboard/customers')->with('success', 'Customer has been deleted');
+        return redirect('/dashboard/staffs')->with('success', 'Staff has been deleted');
     }
 }

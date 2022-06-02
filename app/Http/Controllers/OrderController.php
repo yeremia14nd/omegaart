@@ -7,6 +7,8 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\User;
 use App\Models\Product;
+use Illuminate\Http\Request;
+
 
 
 class OrderController extends Controller
@@ -39,21 +41,8 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required|max:255',
-        //     'slug' => 'required|unique:products',
-        //     'category_id' => 'required',
-        //     'imageAssets' => 'required|image|file|max:2048',
-        //     'price' => 'required',
-        //     'workDuration' => 'required',
-        //     'weight' => 'required',
-        //     'stock' => 'required',
-        //     'description' => 'required',
-        // ]);
-        //user id
-        // dd($request->product_id);
         $user = User::where('id', $request->user_id)->first();
-        //product id
+
         $product = Product::where('id', $request->product_id)->first();
 
         $data = [
@@ -61,11 +50,12 @@ class OrderController extends Controller
             'product_id' => $product->id,
         ];
 
-        Order::create($data);
+        $order = Order::create($data);
+
+        session(['order' => $order]);
 
         return redirect('/surveys/create')->with([
             'success' => 'Continue Order to Survey',
-            'product' => $product->id,
         ]);
     }
 
@@ -111,6 +101,9 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        Order::destroy($order->id);
+        session()->forget('order');
+
+        return redirect('/shop');
     }
 }

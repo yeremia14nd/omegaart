@@ -24,7 +24,7 @@
                     <table class="table">
                         <tr>
                             <td>Customer Name</td>
-                            <td>: {{ $survey->name }}</td>
+                            <td>: {{ $survey->user->name }}</td>
                         </tr>
                         <tr>
                             <td>Address</td>
@@ -43,8 +43,27 @@
                             <td>: {{ $survey->surveyDate }}</td>
                         </tr>
                         <tr>
-                            <td>SurveyTime</td>
+                            <td>Survey Time</td>
                             <td>: {{ $survey->surveyTime }}</td>
+                        </tr>
+                        <tr>
+                            <td>Survey Assign To</td>
+                            <td>: @if ($survey->assignTo)
+                                {{ $survey->assignTo }}
+                                @else
+                                <a href="/dashboard/surveys/{{ $survey->id}}/edit" class="badge bg-primary">Assign
+                                    Role</a>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Survey File</td>
+                            <td>: @if ($survey->surveyFile)
+                                {{ $survey->surveyFile }}
+                                @else
+                                <a href="/dashboard/surveys/{{ $survey->id}}/edit" class="badge bg-primary">Upload</a>
+                                @endif
+                            </td>
                         </tr>
                     </table>
                     <h5>Deskripsi</h5>

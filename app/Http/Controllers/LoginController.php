@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CartItem;
 use App\Models\Cart;
+use Illuminate\Support\Facades\Gate;
 
 class LoginController extends Controller
 {
@@ -24,7 +25,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials) && Gate::any(['superadmin', 'admin', 'estimator', 'teknisi'])) {
             $request->session()->regenerate();
 
             $user_id = Auth::user()->id;
@@ -35,6 +36,11 @@ class LoginController extends Controller
             }
             
             return redirect()->intended('/dashboard');
+        }
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('/');
         }
 
         return back()->with('loginError', 'Login failed!');

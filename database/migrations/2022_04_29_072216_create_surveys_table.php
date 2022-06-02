@@ -15,15 +15,13 @@ class CreateSurveysTable extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('product_id');
-            $table->string('product_name');
-            $table->string('name');
-            $table->string('email');
+            $table->foreignId('order_id');
             $table->string('address');
             $table->string('city');
             $table->string('phoneNumber');
             $table->string('description');
+            $table->string('assignTo')->nullable();
+            $table->string('surveyFile')->nullable();
             $table->date('surveyDate');
             $table->time('surveyTime');
             $table->timestamps();

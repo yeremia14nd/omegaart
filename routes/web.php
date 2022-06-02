@@ -9,6 +9,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardSurveyController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\DashboardOrderController;
+use App\Http\Controllers\DashboardStaffController;
+use App\Http\Controllers\DashboardInvoiceController;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
@@ -144,6 +147,8 @@ Route::resource('/cart', Cart::class);
 Route::get('/surveys/create/{product:slug}', [SurveyController::class, 'create'])->middleware('auth');
 Route::resource('/surveys', SurveyController::class)->middleware('auth');
 
+Route::get('/dashboard/surveys/checkOrder', [DashboardSurveyController::class, 'checkOrder'])->middleware('auth');
+
 Route::resource('/dashboard/surveys', DashboardSurveyController::class)->middleware('auth');
 
 Route::resource('/profil', ProfilController::class)->parameters(['profil' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
@@ -166,3 +171,8 @@ Route::group(['prefix' => 'cart'], function() {
 Route::group(['prefix' => 'checkout'], function() {
     Route::get('/', [PaymentController::class, 'index'])->name('checkout');
 });
+Route::resource('/dashboard/orders', DashboardOrderController::class)->middleware('auth');
+
+Route::resource('/dashboard/staffs', DashboardStaffController::class)->parameters(['staffs' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
+
+Route::resource('/dashboard/invoices', DashboardInvoiceController::class)->middleware('auth');

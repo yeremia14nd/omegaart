@@ -24,7 +24,6 @@ class DashboardCategoryController extends Controller
         } else {
             abort(403);
         }
-        // $this->authorize('admin');
     }
 
     /**

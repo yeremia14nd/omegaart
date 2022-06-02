@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateSurveyRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
 
 class SurveyController extends Controller
 {
@@ -18,11 +19,14 @@ class SurveyController extends Controller
      */
     public function index()
     {
+        $order = Order::where('user_id', auth()->user()->id)->get()->modelKeys();
+
+        $survey = Survey::whereIn('order_id', $order)->get();
 
         return view('surveys.index', [
             'title' => 'Survey List',
             'active' => 'survey',
-            'surveys' => Survey::where('user_id', auth()->user()->id)->get(),
+            'surveys' => $survey,
         ]);
     }
 
@@ -34,13 +38,22 @@ class SurveyController extends Controller
     //untuk tampilan buat form survey
     public function create(Request $request)
     {
-        $product = Product::where('id', session('product'))->first();
-        return view('surveys.create', [
-            'title' => 'Survey Form',
-            'active' => 'survey',
-            'product' => $product,
-            'user' => $request->user(),
-        ]);
+        $order = session('order');
+
+        if (session()->has('order')) {
+            // $product = Product::where('id', $order->product_id)->first();
+            return view('surveys.create', [
+                'title' => 'Survey Form',
+                'active' => 'survey',
+                'order' => $order,
+                'product' => $order->product,
+                'user' => $request->user(),
+            ]);
+        } else {
+            Order::destroy($order->id);
+            session()->forget('order');
+            return redirect('/shop');
+        }
     }
 
     /**
@@ -52,13 +65,13 @@ class SurveyController extends Controller
     public function store(StoreSurveyRequest $request)
     {
         //mencari product yang disurvey dari nama produk di request
-        $name = $request->product;
-        $product = Product::where('name', $name)->first();
+        // $name = $request->product;
+        // $product = Product::where('name', $name)->first();
 
         $validatedData = $request->validate([
-            'product' => 'required',
-            'name' => 'required|max:255',
-            'email' => 'required|email',
+            // 'product' => 'required',
+            // 'name' => 'required|max:255',
+            // 'email' => 'required|email',
             'address' => 'required',
             'city' => 'required',
             'phoneNumber' => 'required',
@@ -67,12 +80,15 @@ class SurveyController extends Controller
             'surveyTime' => 'required',
         ]);
 
+        $validatedData['order_id'] = $request->order_id;
 
         //ubah nama dari 'product' menjadi 'product_name'
-        $validatedData['product_name'] = $validatedData['product'];
+        // $validatedData['product_name'] = $validatedData['product'];
 
-        $validatedData['user_id'] = $request->user()->id;
-        $validatedData['product_id'] = $product->id;
+        // $validatedData['user_id'] = $request->user()->id;
+        // $validatedData['product_id'] = $product->id;
+
+        Order::where('id', $request->order_id)->update(['is_survey_scheduled' => '1']);
 
         Survey::create($validatedData);
         return redirect('/surveys')->with('success', 'Survey has been scheduled');
@@ -97,7 +113,16 @@ class SurveyController extends Controller
      */
     public function edit(Survey $survey)
     {
-        //
+        // dd($survey);
+        if ($survey->order->user_id === auth()->user()->id) {
+            return view('surveys.edit', [
+                'title' => 'Upadate Schedule',
+                'active' => 'survey',
+                'survey' => $survey,
+            ]);
+        } else {
+            return redirect('/surveys');
+        }
     }
 
     /**
@@ -109,7 +134,18 @@ class SurveyController extends Controller
      */
     public function update(UpdateSurveyRequest $request, Survey $survey)
     {
-        //
+        $validatedData = $request->validate([
+            'address' => 'required',
+            'city' => 'required',
+            'phoneNumber' => 'required',
+            'description' => 'required',
+            'surveyDate' => 'required',
+            'surveyTime' => 'required',
+        ]);
+
+        Survey::where('id', $survey->id)->update($validatedData);
+
+        return redirect('/surveys')->with('success', 'Survey has been updated');
     }
 
     /**
