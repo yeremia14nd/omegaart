@@ -13,6 +13,9 @@
   <!-- Custom styles for this template -->
   <link href="/css/dashboard.css" rel="stylesheet">
 
+  {{-- Font Awesome --}}
+  <script src="https://kit.fontawesome.com/77607fceac.js" crossorigin="anonymous"></script>
+
   {{-- Trix Editor --}}
   <link rel="stylesheet" type="text/css" href="/css/trix.css">
   <script type="text/javascript" src="/js/trix.js"></script>

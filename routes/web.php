@@ -87,12 +87,6 @@ Route::get('/categories/{category:slug}', function (Category $category) {
     ]);
 });
 
-// Route::get('/users/{user}', function (User $user) {
-//     return view('orders', [
-//         'title' => 'User Orders',
-//         'orders' => $user->order,
-//     ]);
-// });
 Route::resource('/orders', OrderController::class)->middleware('auth');
 
 Route::get('/users/order-list/{order}', function (Order $order) {
@@ -102,20 +96,6 @@ Route::get('/users/order-list/{order}', function (Order $order) {
     ]);
 });
 
-// Route::get('/cart/{user}', function (User $user) {
-//     return view('cart', [
-//         'title' => 'User Cart',
-//         'cart' => $user->cart,
-//     ]);
-// });
-
-// Route::get('/cart/cart-list/{cart}', function (Cart $cart) {
-//     return view('cart-list', [
-//         'title' => 'Cart List Item',
-//         'cart' => $cart->cartItem,
-//     ]);
-// });
-
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -124,9 +104,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 
 // Route for Products Dashboard
@@ -154,7 +132,7 @@ Route::resource('/dashboard/surveys', DashboardSurveyController::class)->middlew
 Route::resource('/profil', ProfilController::class)->parameters(['profil' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
 
 // shopping cart
-Route::group(['prefix' => 'cart'], function() {
+Route::group(['prefix' => 'cart'], function () {
     Route::get('/', [CartController::class, 'index'])->name('cart');
     Route::post('/store', [CartItemController::class, 'store'])->name('cart.store');
     Route::patch('/update/{id}', [CartItemController::class, 'update'])->name('cart.update');
@@ -168,7 +146,7 @@ Route::group(['prefix' => 'cart'], function() {
 });
 
 // payment
-Route::group(['prefix' => 'checkout'], function() {
+Route::group(['prefix' => 'checkout'], function () {
     Route::get('/', [PaymentController::class, 'index'])->name('checkout');
 });
 Route::resource('/dashboard/orders', DashboardOrderController::class)->middleware('auth');
