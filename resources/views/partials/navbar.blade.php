@@ -21,6 +21,9 @@
           <li class="nav-item">
             <a class="nav-link {{ ($active === 'shop') ? 'active' : '' }}" href="/shop">Shop</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {{ ($active === 'cart') ? 'active' : '' }}" href="/cart">Cart</a>
+          </li>
         </ul>
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

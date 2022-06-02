@@ -2,11 +2,13 @@
 
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardCustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardSurveyController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\DashboardStaffController;
 use App\Http\Controllers\DashboardInvoiceController;
@@ -55,6 +57,13 @@ Route::get('/contact', function () {
         "title" => "Contact",
         "active" => 'contact',
 
+    ]);
+});
+
+Route::get('/cart', function () {
+    return view('cart', [
+        "title" => "Cart",
+        "active" => 'cart',
     ]);
 });
 
@@ -144,6 +153,24 @@ Route::resource('/dashboard/surveys', DashboardSurveyController::class)->middlew
 
 Route::resource('/profil', ProfilController::class)->parameters(['profil' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
 
+// shopping cart
+Route::group(['prefix' => 'cart'], function() {
+    Route::get('/', [CartController::class, 'index'])->name('cart');
+    Route::post('/store', [CartItemController::class, 'store'])->name('cart.store');
+    Route::patch('/update/{id}', [CartItemController::class, 'update'])->name('cart.update');
+    Route::delete('/destroy/{id}', [CartItemController::class, 'destroy'])->name('cart.destroy');
+    Route::patch('/kosongkan/{id}', [CartController::class, 'kosongkan'])->name('cart.kosongkan');
+
+    //cart session
+    Route::delete('/remove-from-cart/{id}', [CartItemController::class, 'remove'])->name('cart.remove');
+    Route::patch('/update-quantity/{id}', [CartItemController::class, 'update_quantity'])->name('cart.quantity');
+    Route::post('/empty_session', [CartController::class, 'emptySession'])->name('cart.empty');
+});
+
+// payment
+Route::group(['prefix' => 'checkout'], function() {
+    Route::get('/', [PaymentController::class, 'index'])->name('checkout');
+});
 Route::resource('/dashboard/orders', DashboardOrderController::class)->middleware('auth');
 
 Route::resource('/dashboard/staffs', DashboardStaffController::class)->parameters(['staffs' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
