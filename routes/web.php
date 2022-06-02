@@ -153,4 +153,5 @@ Route::resource('/dashboard/orders', DashboardOrderController::class)->middlewar
 
 Route::resource('/dashboard/staffs', DashboardStaffController::class)->parameters(['staffs' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
 
+Route::get('/dashboard/invoices/download/{id}', [DashboardInvoiceController::class, 'downloadFile'])->name('invoices.downloadFile')->middleware('auth');
 Route::resource('/dashboard/invoices', DashboardInvoiceController::class)->middleware('auth');

@@ -22,6 +22,7 @@
                 <th scope="col">Customer Name</th>
                 <th scope="col">Estimator</th>
                 <th scope="col">Description</th>
+                <th scope="col">File</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -30,18 +31,20 @@
             @foreach ($invoices as $invoice)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $invoice->order_b }}</td>
+                <td>Order Code: {{ $invoice->order_id }}</td>
                 <td>{{ $invoice->order->user->name}}</td>
                 <td>{{ $invoice->created_by}}</td>
-                <td>{{ $invoice->Description}}</td>
+                <td>{{ $invoice->description}}</td>
+                <td><a href="/dashboard/invoices/download/{{ $invoice->id }}">{{ $invoice->fileAsset }}</a>
+                </td>
                 <td>
-                    <a href="/dashboard/invoices/{{ $invoice->userName }}" class="badge bg-info">
+                    <a href="/dashboard/invoices/{{ $invoice->id }}" class="badge bg-info">
                         <span data-feather="eye"></span>
                     </a>
-                    <a href="/dashboard/invoices/{{ $invoice->userName }}/edit" class="badge bg-warning">
+                    <a href="/dashboard/invoices/{{ $invoice->id }}/edit" class="badge bg-warning">
                         <span data-feather="edit"></span>
                     </a>
-                    <form action="/dashboard/invoices/{{ $invoice->userName }}" method="post" class="d-inline">
+                    <form action="/dashboard/invoices/{{ $invoice->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"

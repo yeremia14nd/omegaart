@@ -8,7 +8,7 @@
     All Survey</a>
 
 <div class="col-lg-8">
-    <form method="post" action="/dashboard/surveys/{{ $survey->id }}" class="mb-5">
+    <form method="post" action="/dashboard/surveys/{{ $survey->id }}" class="mb-5" enctype="multipart/form-data">
         @method('put')
         @csrf
         <div class="mb-3">

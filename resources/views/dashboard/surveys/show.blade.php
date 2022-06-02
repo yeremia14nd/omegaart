@@ -20,11 +20,11 @@
             </form>
             <div class="row">
                 <div class="col-md">
-                    <h1 class="mb-2 text-muted">Product: {{ $survey->product_name }}</h1>
+                    <h1 class="mb-2 text-muted">Product: {{ $survey->order->product->name }}</h1>
                     <table class="table">
                         <tr>
                             <td>Customer Name</td>
-                            <td>: {{ $survey->user->name }}</td>
+                            <td>: {{ $survey->order->user->name }}</td>
                         </tr>
                         <tr>
                             <td>Address</td>

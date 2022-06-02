@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use App\Models\Order;
+use App\Models\Survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardInvoiceController extends Controller
 {
@@ -40,7 +42,23 @@ class DashboardInvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'order_id' => 'required',
+            'created_by' => 'required',
+            'description' => 'required',
+            'fileAsset' => 'required|file|max:10240'
+        ]);
+
+        $file = $request->file('fileAsset');
+        $name = $file->getClientOriginalName();
+
+        if ($request->file('fileAsset')) {
+            $validatedData['fileAsset'] = $request->file('fileAsset')->storeAs('invoice-files', $name);
+        }
+
+        Invoice::create($validatedData);
+
+        return redirect('/dashboard/invoices')->with('success', 'New Invoice has been added');
     }
 
     /**
@@ -51,7 +69,10 @@ class DashboardInvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        //
+        return view('dashboard.invoices.show', [
+            'invoice' => $invoice,
+            'survey' => Survey::where('order_id', $invoice->order_id)->first(),
+        ]);
     }
 
     /**
@@ -62,7 +83,10 @@ class DashboardInvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        //
+        return view('dashboard.invoices.edit', [
+            'invoice' => $invoice,
+            'orders' => Order::where('is_surveyed', '1')->get(),
+        ]);
     }
 
     /**
@@ -74,7 +98,26 @@ class DashboardInvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        //
+        $validatedData = $request->validate([
+            'order_id' => 'required',
+            'created_by' => 'required',
+            'description' => 'required',
+            'fileAsset' => 'file|max:10240'
+        ]);
+
+        if ($request->file('fileAsset')) {
+            $file = $request->file('fileAsset');
+            dd($file);
+            $name = $file->getClientOriginalName();
+            if ($request->oldFile) {
+                Storage::delete($request->oldFile);
+            }
+            $validatedData['fileAsset'] = $request->file('fileAsset')->storeAs('invoice-files', $name);
+        }
+
+        Invoice::where('id', $invoice->id)->update($validatedData);
+
+        return redirect('/dashboard/invoices')->with('success', 'Invoice has been updated');
     }
 
     /**
@@ -85,6 +128,18 @@ class DashboardInvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
-        //
+        if ($invoice->fileAsset) {
+            Storage::delete($invoice->fileAsset);
+        }
+        Invoice::destroy($invoice->id);
+
+        return redirect('/dashboard/invoices')->with('success', 'Invoice has been deleted');
+    }
+
+    public function downloadFile($id)
+    {
+        $invoice = Invoice::where('id', $id)->first();
+        $path = $invoice->fileAsset;
+        return Storage::download($path);
     }
 }

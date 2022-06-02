@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Yeremia Nd',
             'email' => 'yerind@gmail.com',
             'username' => 'yeremiand',
+            'address' => 'Jl. Pendekar 1 No. 7, Malang',
+            'phoneNumber' => '081122334455',
             'password' => bcrypt('password'),
             'is_role' => '1',
         ]);
@@ -35,6 +37,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Alicia',
             'email' => 'alicia@gmail.com',
             'username' => 'alicia',
+            'address' => 'Jl. Lestari 1 No. 7, Surabaya',
+            'phoneNumber' => '085544332212',
             'password' => bcrypt('password'),
             'is_role' => '2',
         ]);

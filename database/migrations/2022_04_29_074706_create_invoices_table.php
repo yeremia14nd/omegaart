@@ -18,7 +18,7 @@ class CreateInvoicesTable extends Migration
             $table->foreignId('order_id');
             $table->string('created_by');
             $table->text('description');
-            $table->string('fileAsset');
+            $table->string('fileAsset')->nullable();
             $table->timestamps();
         });
     }

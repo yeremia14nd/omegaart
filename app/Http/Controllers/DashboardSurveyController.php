@@ -92,8 +92,6 @@ class DashboardSurveyController extends Controller
         return view('dashboard.surveys.edit', [
             'survey' => $survey,
             'assigns' => User::where('is_role', '4')->get(),
-            'products' => Product::all(),
-
         ]);
     }
 
@@ -106,11 +104,7 @@ class DashboardSurveyController extends Controller
      */
     public function update(Request $request, Survey $survey)
     {
-        $product = Product::where('id', $request->product_id)->first();
-
         $validatedData = $request->validate([
-            'name' => 'required',
-            'product_id' => 'required',
             'address' => 'required',
             'city' => 'required',
             'phoneNumber' => 'required',
@@ -118,10 +112,8 @@ class DashboardSurveyController extends Controller
             'surveyTime' => 'required',
             'description' => 'required',
             'assignTo' => 'required',
-            'surveyFile' => 'file|max:10240|nullable',
+            'surveyFile' => 'image|file|max:10240|nullable',
         ]);
-
-        $validatedData['product_name'] = $product->name;
 
         $user = User::where('name', $request->assignTo)->first();
         $validatedData['assignTo'] = $user->name;

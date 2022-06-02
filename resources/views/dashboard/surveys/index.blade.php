@@ -21,7 +21,7 @@
                 <th scope="col">Product to Survey</th>
                 <th scope="col">Survey Date</th>
                 <th scope="col">Survey Time</th>
-                <th scope="col">Surveyor Name</th>
+                <th scope="col">Surveyor</th>
                 <th scope="col">Address</th>
                 <th scope="col">File Survey</th>
                 <th scope="col">Action</th>
@@ -38,14 +38,15 @@
                 <td>@if ($survey->assignTo)
                     {{ $survey->assignTo }}
                     @else
-                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Assign Role</a>
+                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Please Assign Role</a>
                     @endif
                 </td>
                 <td>{{ $survey->address }}</td>
                 <td>@if ($survey->surveyFile)
-                    {{ $survey->surveyFile }}
+                    <img id="image" src="{{ asset('storage/' . $survey->surveyFile) }}" class="img-fluid" width="50"
+                        alt="{{ $survey->surveyFile }}">
                     @else
-                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Upload</a>
+                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Please Upload</a>
                     @endif
                 </td>
                 <td>
