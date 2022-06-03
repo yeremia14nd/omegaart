@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\DashboardStaffController;
 use App\Http\Controllers\DashboardInvoiceController;
+use App\Http\Controllers\DashboardPaymentController;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
@@ -154,7 +155,7 @@ Route::resource('/dashboard/surveys', DashboardSurveyController::class)->middlew
 Route::resource('/profil', ProfilController::class)->parameters(['profil' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
 
 // shopping cart
-Route::group(['prefix' => 'cart'], function() {
+Route::group(['prefix' => 'cart'], function () {
     Route::get('/', [CartController::class, 'index'])->name('cart');
     Route::post('/store', [CartItemController::class, 'store'])->name('cart.store');
     Route::patch('/update/{id}', [CartItemController::class, 'update'])->name('cart.update');
@@ -168,7 +169,7 @@ Route::group(['prefix' => 'cart'], function() {
 });
 
 // payment
-Route::group(['prefix' => 'checkout'], function() {
+Route::group(['prefix' => 'checkout'], function () {
     Route::get('/', [PaymentController::class, 'index'])->name('checkout');
 });
 Route::resource('/dashboard/orders', DashboardOrderController::class)->middleware('auth');
@@ -176,3 +177,5 @@ Route::resource('/dashboard/orders', DashboardOrderController::class)->middlewar
 Route::resource('/dashboard/staffs', DashboardStaffController::class)->parameters(['staffs' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
 
 Route::resource('/dashboard/invoices', DashboardInvoiceController::class)->middleware('auth');
+
+Route::resource('/dashboard/payments', DashboardPaymentController::class)->middleware('auth');

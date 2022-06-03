@@ -17,12 +17,11 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->foreignId('invoice_id');
             $table->foreignId('user_id');
-            $table->integer('total_price_product');
             $table->integer('total_price_paid');
-            $table->boolean('hasPaidDownPayment');
-            $table->boolean('hasPaidFull');
-            $table->boolean('isConfirmed');
-            $table->string('imageAsset');
+            $table->boolean('has_paid_down_payment');
+            $table->boolean('has_paid_full');
+            $table->boolean('is_confirmed');
+            $table->string('image_asset');
             $table->string('description');
             $table->timestamps();
         });
