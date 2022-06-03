@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\DashboardStaffController;
 use App\Http\Controllers\DashboardInvoiceController;
+use App\Http\Controllers\DashboardPaymentController;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
@@ -155,3 +156,5 @@ Route::resource('/dashboard/staffs', DashboardStaffController::class)->parameter
 
 Route::get('/dashboard/invoices/download/{id}', [DashboardInvoiceController::class, 'downloadFile'])->name('invoices.downloadFile')->middleware('auth');
 Route::resource('/dashboard/invoices', DashboardInvoiceController::class)->middleware('auth');
+
+Route::resource('/dashboard/payments', DashboardPaymentController::class)->middleware('auth');
