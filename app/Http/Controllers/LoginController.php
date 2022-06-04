@@ -27,6 +27,11 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials) && Gate::any(['superadmin', 'admin', 'estimator', 'teknisi'])) {
             $request->session()->regenerate();
+            
+            return redirect()->intended('/dashboard');
+        }
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
             $user_id = Auth::user()->id;
             $cart = session('cart');
@@ -34,11 +39,6 @@ class LoginController extends Controller
             if($cart) { //jika ada data session, maka data cart akan masuk ke db setelah login
                 Cart::addToCart($user_id, $cart);
             }
-            
-            return redirect()->intended('/dashboard');
-        }
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
 
             return redirect()->intended('/');
         }
