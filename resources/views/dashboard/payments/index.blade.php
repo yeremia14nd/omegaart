@@ -12,7 +12,6 @@
 @endif
 
 <div class="table-responsive">
-    <a href="/dashboard/payments/create" class="btn btn-primary m-2">Create New payment</a>
     <table class="table table-striped table-sm">
         @if ($payments->has([0]))
         <thead>
@@ -24,7 +23,9 @@
                 <th scope="col">Product</th>
                 <th scope="col">Total Price</th>
                 <th scope="col">Paid</th>
+                <th scope="col">Payment Date</th>
                 <th scope="col">Confirmation</th>
+                <th scope="col">File</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -32,22 +33,28 @@
             @foreach ($payments as $payment)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $payment->invoice_id }}</td>
-                <td>{{ $payment->invoice->order->id }}</td>
+                <td>INV: {{ $payment->invoice_id }}</td>
+                <td>OR: {{ $payment->invoice->order->id }}</td>
                 <td>{{ $payment->user->name }}</td>
                 <td>{{ $payment->invoice->order->product->name }}</td>
-                <td>{{ $payment->invoice->total_price_product }}</td>
-                <td>{{ $payment->total_price_paid }}</td>
-                <td>{{ $payment->is_confirmed }}</td>
-                <td>{{ $payment->image_asset }}</td>
+                <td>Rp. {{ number_format($payment->invoice->total_price_product) }}</td>
+                <td>Rp. {{ number_format($payment->total_price_paid) }}</td>
+                <td>{{ $payment->created_at->diffForHumans() }}</td>
+                {{-- <td>{{ $payment->is_confirmed }}</td> --}}
+                <td class="{{ $payment->is_confirmed == '1' ? 'bg-success fw-bold' : 'table-danger' }}">{{
+                    $payment->is_confirmed ==
+                    '1' ?
+                    "Konfirmasi Benar" : "Belum dikonfirmasi" }}</td>
+                <td><img id="image" src="{{ asset('storage/' . $payment->image_asset) }}" class="img-fluid" width="50"
+                        alt="{{ $payment->image_asset }}"></td>
                 <td>
-                    <a href="/dashboard/payments/{{ $payment->slug }}" class="badge bg-info">
+                    <a href="/dashboard/payments/{{ $payment->id }}" class="badge bg-info">
                         <span data-feather="eye"></span>
                     </a>
-                    <a href="/dashboard/payments/{{ $payment->slug }}/edit" class="badge bg-warning">
+                    <a href="/dashboard/payments/{{ $payment->id }}/edit" class="badge bg-warning">
                         <span data-feather="edit"></span>
                     </a>
-                    <form action="/dashboard/payments/{{ $payment->slug }}" method="post" class="d-inline">
+                    <form action="/dashboard/payments/{{ $payment->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"

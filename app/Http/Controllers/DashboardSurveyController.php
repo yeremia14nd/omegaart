@@ -157,4 +157,11 @@ class DashboardSurveyController extends Controller
             'phoneNumber' => $order->user->phoneNumber,
         ]);
     }
+
+    public function downloadFile($id)
+    {
+        $survey = Survey::where('id', $id)->first();
+        $path = $survey->surveyFile;
+        return Storage::download($path);
+    }
 }

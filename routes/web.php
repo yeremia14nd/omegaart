@@ -25,6 +25,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,6 +129,8 @@ Route::resource('/surveys', SurveyController::class)->middleware('auth');
 
 Route::get('/dashboard/surveys/checkOrder', [DashboardSurveyController::class, 'checkOrder'])->middleware('auth');
 
+Route::get('/dashboard/surveys/download/{id}', [DashboardSurveyController::class, 'downloadFile'])->name('surveys.downloadFile')->middleware('auth');
+
 Route::resource('/dashboard/surveys', DashboardSurveyController::class)->middleware('auth');
 
 Route::resource('/profil', ProfilController::class)->parameters(['profil' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
@@ -150,9 +153,18 @@ Route::group(['prefix' => 'cart'], function () {
 Route::group(['prefix' => 'checkout'], function () {
     Route::get('/', [PaymentController::class, 'index'])->name('checkout');
 });
+
+Route::get('/dashboard/payments/download/{id}', [DashboardPaymentController::class, 'downloadFile'])->name('payments.downloadFile')->middleware('auth');
+
+// Payment for order survey product
+Route::resource('/payments', PaymentController::class)->middleware('auth');
+
+
 Route::resource('/dashboard/orders', DashboardOrderController::class)->middleware('auth');
 
 Route::resource('/dashboard/staffs', DashboardStaffController::class)->parameters(['staffs' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
+
+Route::resource('/invoices', InvoiceController::class)->middleware('auth');
 
 Route::get('/dashboard/invoices/download/{id}', [DashboardInvoiceController::class, 'downloadFile'])->name('invoices.downloadFile')->middleware('auth');
 Route::resource('/dashboard/invoices', DashboardInvoiceController::class)->middleware('auth');

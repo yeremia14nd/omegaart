@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
+use App\Models\Order;
+use App\Models\Payment;
+
 
 class InvoiceController extends Controller
 {
@@ -15,7 +18,17 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $order = Order::where('user_id', auth()->user()->id)->get()->modelKeys();
+
+        $invoices = Invoice::whereIn('order_id', $order)->get();
+        $payments = Payment::where('id', $invoices->modelKeys())->get();
+
+        return view('invoices.index', [
+            'title' => 'Invoice List',
+            'active' => 'invoice',
+            'invoices' => $invoices,
+            'payments' => $payments,
+        ]);
     }
 
     /**

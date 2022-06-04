@@ -45,6 +45,7 @@ class DashboardInvoiceController extends Controller
         $validatedData = $request->validate([
             'order_id' => 'required',
             'created_by' => 'required',
+            'total_price_product' => 'required',
             'description' => 'required',
             'fileAsset' => 'required|file|max:10240'
         ]);
@@ -57,6 +58,8 @@ class DashboardInvoiceController extends Controller
         }
 
         Invoice::create($validatedData);
+
+        Order::where('id', $request->order_id)->update(['is_invoice_sent' => 1]);
 
         return redirect('/dashboard/invoices')->with('success', 'New Invoice has been added');
     }
@@ -101,6 +104,7 @@ class DashboardInvoiceController extends Controller
         $validatedData = $request->validate([
             'order_id' => 'required',
             'created_by' => 'required',
+            'total_price_product' => 'required',
             'description' => 'required',
             'fileAsset' => 'file|max:10240'
         ]);

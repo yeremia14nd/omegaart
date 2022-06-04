@@ -45,7 +45,7 @@
                     <a class="dropdown-item" href="/surveys">Survey</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">Invoice</a>
+                    <a class="dropdown-item" href="/invoices">Invoice</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="#">Pemasangan</a>

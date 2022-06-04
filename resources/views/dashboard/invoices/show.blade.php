@@ -37,6 +37,7 @@
                     <p class="my-0">Invoice ID : <b> {{ $invoice->id}}</b></p>
                     <p class="my-0">Order ID : <b> {{ $invoice->order->id}}</b></p>
                     <p class="my-0">Product : <b> {{ $invoice->order->product->name}}</b></p>
+                    <p class="my-0">Price : <b> {{ $invoice->total_price_product}}</b></p>
                     <p class="my-0">Estimator : <b> {{ $invoice->created_by}}</b></p>
                     <p class="my-0">Surveyor : <b> {{ $survey->assignTo}}</b></p>
                     <p>Deskripsi : {!! $invoice->description !!}</p>

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use App\Models\Order;
+
+use Illuminate\Support\Facades\Storage;
+
 
 class DashboardPaymentController extends Controller
 {
@@ -48,7 +52,9 @@ class DashboardPaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        return view('dashboard.payments.show', [
+            'payment' => $payment,
+        ]);
     }
 
     /**
@@ -59,7 +65,9 @@ class DashboardPaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        //
+        return view('dashboard.payments.edit', [
+            'payment' => $payment,
+        ]);
     }
 
     /**
@@ -71,7 +79,24 @@ class DashboardPaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $rules = [
+            'has_paid_down_payment' => 'required',
+            'has_paid_full' => 'required',
+            'is_confirmed' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->has_paid_full) {
+            Order::where('id', $request->order_id)->update([
+                'is_final_invoice_sent' => 1,
+                'is_final_invoice_paid' => 1,
+            ]);
+        }
+
+        Payment::where('id', $payment->id)->update($validatedData);
+
+        return redirect('/dashboard/payments')->with('success', 'Payment has been updated!');
     }
 
     /**
@@ -83,5 +108,12 @@ class DashboardPaymentController extends Controller
     public function destroy(Payment $payment)
     {
         //
+    }
+
+    public function downloadFile($id)
+    {
+        $Payment = Payment::where('id', $id)->first();
+        $path = $Payment->image_asset;
+        return Storage::download($path);
     }
 }

@@ -11,10 +11,10 @@
     <form method="post" action="/dashboard/invoices" class="mb-5" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label for="order_id" class="form-label">Name Of Order</label>
+            <label for="order_id" class="form-label">Name Of Order Product</label>
             <select class="form-select @error('order_id') is-invalid @enderror" name="order_id" id="order_id">
-                @foreach ($orders as $order)
                 <option value="">Please select the Order Product</option>
+                @foreach ($orders as $order)
                 @if (old('order_id') == $order->id)
                 <option value="{{ $order->id }}" selected>{{ $order->product->name }} </option>
                 @else
@@ -44,11 +44,18 @@
                 name="description" placeholder=" @error('description') {{ $message }} @enderror "
                 value="{{ old('description') }}">
         </div>
+        <label for="total_price_product" class="form-label">Total Price of the Product</label>
+        <div class="input-group mb-3">
+            <input type="number" class="form-control @error('total_price_product') is-invalid @enderror"
+                id="total_price_product" name="total_price_product"
+                placeholder=" @error('total_price_product') {{ $message }} @enderror "
+                value="{{ old('total_price_product') }}">
+        </div>
         <div class="mb-3">
             <label for="fileAsset" class="form-label">Invoice File</label>
-            <img class="img-preview img-fluid mb-3 col-sm-5">
-            <input class="form-control @error('fileAsset') is-invalid @enderror" type="file" id="fileAsset"
-                name="fileAsset" onchange="previewImage()">
+            <iframe class="img-preview img-fluid mb-3 col-sm-5"></iframe>
+            <input class="form-control @error('fileAsset') is-invalid @enderror" type="file" id="image" name="fileAsset"
+                onchange="previewImage()">
             @error('fileAsset')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -58,5 +65,21 @@
         <button type="submit" class="btn btn-primary">Create Invoice</button>
     </form>
 </div>
+
+<script>
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview')
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+</script>
 
 @endsection

@@ -45,6 +45,13 @@
                 name="description" placeholder=" @error('description') {{ $message }} @enderror "
                 value="{{ old('description', $invoice->description) }}">
         </div>
+        <label for="total_price_product" class="form-label">Total Price of Product</label>
+        <div class="input-group mb-3">
+            <input type="number" class="form-control @error('total_price_product') is-invalid @enderror"
+                id="total_price_product" name="total_price_product"
+                placeholder=" @error('total_price_product') {{ $message }} @enderror "
+                value="{{ old('total_price_product', $invoice->total_price_product) }}">
+        </div>
         <div class="mb-3">
             <label for="fileAsset" class="form-label">Invoice File</label>
             <input type="hidden" name="oldFile" value="{{ $invoice->fileAsset }}" width="100">

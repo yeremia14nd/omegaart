@@ -21,6 +21,7 @@
                 <th scope="col">Order Code</th>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Estimator</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Description</th>
                 <th scope="col">File</th>
                 <th scope="col">Action</th>
@@ -34,6 +35,7 @@
                 <td>Order Code: {{ $invoice->order_id }}</td>
                 <td>{{ $invoice->order->user->name}}</td>
                 <td>{{ $invoice->created_by}}</td>
+                <td>Rp. {{ number_format($invoice->total_price_product / 1, 0) }}</td>
                 <td>{{ $invoice->description}}</td>
                 <td><a href="/dashboard/invoices/download/{{ $invoice->id }}">{{ $invoice->fileAsset }}</a>
                 </td>

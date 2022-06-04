@@ -59,7 +59,8 @@
                         <tr>
                             <td>Survey File</td>
                             <td>: @if ($survey->surveyFile)
-                                {{ $survey->surveyFile }}
+                                <a href="/dashboard/surveys/download/{{ $survey->id }}">{{ $survey->surveyFile
+                                    }}</a>
                                 @else
                                 <a href="/dashboard/surveys/{{ $survey->id}}/edit" class="badge bg-primary">Upload</a>
                                 @endif
