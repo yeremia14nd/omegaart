@@ -63,7 +63,7 @@
 
 
 
-
+  @yield('javascript')
 </body>
 
 </html>

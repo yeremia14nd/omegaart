@@ -194,7 +194,12 @@
           <div class="card-footer">
             <div class="row">
               <div class="col">
-                <button class="btn btn-primary btn-block" onclick="window.location='{{ route('checkout') }}'">Checkout</button>
+                <form action="{{ route('checkout.add') }}" method="post">
+                  @csrf
+                  <input type="hidden" name="total" value="{{ $itemcart->total }}">
+                  <input type="hidden" name="id_cart" value="{{ $itemcart->id }}">
+                  <button class="btn btn-primary btn-block">Checkout</button>
+                </form>
               </div>
               <div class="col">
                 @if(Auth::check())

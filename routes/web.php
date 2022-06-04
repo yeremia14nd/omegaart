@@ -151,7 +151,9 @@ Route::group(['prefix' => 'cart'], function () {
 
 // payment
 Route::group(['middleware' => 'auth', 'prefix' => 'checkout'], function () {
-    Route::get('/', [PaymentController::class, 'index'])->name('checkout');
+    Route::get('/{id}', [PaymentController::class, 'index'])->name('checkout');
+    Route::post('/add', [PaymentController::class, 'add_checkout'])->name('checkout.add');
+    Route::patch('/payment/{id}', [PaymentController::class, 'payment'])->name('checkout.payment');
 });
 
 Route::get('/dashboard/payments/download/{id}', [DashboardPaymentController::class, 'downloadFile'])->name('payments.downloadFile')->middleware('auth');
