@@ -75,8 +75,7 @@
                       {{ number_format($detail->subtotal, 2) }}
                     </td>
                     <td>
-                      <form action="{{ route('cart.destroy', $detail->id) }}" method="post"
-                            style="display:inline;">
+                      <form action="{{ route('cart.destroy', $detail->id) }}" method="post" style="display:inline;">
                         @csrf
                         {{ method_field('delete') }}
                         <button type="submit" class="btn btn-sm btn-danger mb-2">
@@ -195,11 +194,7 @@
           <div class="card-footer">
             <div class="row">
               <div class="col">
-                <form action="{{ route('checkout') }}" method="POST">
-                  @method('post')
-                  @csrf
-                  <button class="btn btn-primary btn-block">Checkout</button>
-                </form>
+                <button class="btn btn-primary btn-block" onclick="window.location='{{ route('checkout') }}'">Checkout</button>
               </div>
               <div class="col">
                 @if(Auth::check())
@@ -222,5 +217,4 @@
       </div>
     </div>
   </div>
-
 @endsection

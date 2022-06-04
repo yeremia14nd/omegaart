@@ -150,7 +150,7 @@ Route::group(['prefix' => 'cart'], function () {
 });
 
 // payment
-Route::group(['prefix' => 'checkout'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'checkout'], function () {
     Route::get('/', [PaymentController::class, 'index'])->name('checkout');
 });
 
