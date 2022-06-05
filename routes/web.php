@@ -4,6 +4,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\DashboardCategoryController;
+use App\Http\Controllers\DashboardConfirmationController;
 use App\Http\Controllers\DashboardCustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductController;
@@ -157,6 +158,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'checkout'], function () {
     Route::get('/confirmation/{id}', [PaymentController::class, 'confirmation_payment'])->name('checkout.confirmation');
 });
 
+Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
+  Route::resource('/confirmation', DashboardConfirmationController::class);
+  Route::patch('/confirmation/denied/{id}', [DashboardConfirmationController::class, 'denied'])->name('confirmation.denied');
+  Route::patch('/confirmation/approved/{id}', [DashboardConfirmationController::class, 'approved'])->name('confirmation.approved');
+});
+
 Route::get('/dashboard/payments/download/{id}', [DashboardPaymentController::class, 'downloadFile'])->name('payments.downloadFile')->middleware('auth');
 
 // Payment for order survey product
@@ -173,3 +180,4 @@ Route::get('/dashboard/invoices/download/{id}', [DashboardInvoiceController::cla
 Route::resource('/dashboard/invoices', DashboardInvoiceController::class)->middleware('auth');
 
 Route::resource('/dashboard/payments', DashboardPaymentController::class)->middleware('auth');
+

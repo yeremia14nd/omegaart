@@ -29,12 +29,23 @@ class Checkout extends Model
     return $this->belongsTo('App\Models\Cart', 'cart_id');
   }
 
+  public function user()
+  {
+    return $this->belongsTo('App\Models\User', 'user_id');
+  }
+
   public function updatecheckout($shipping, $payment, $payment_photo)
   {
     $this->attributes['shipping_address'] = $shipping;
     $this->attributes['payment_photo'] = $payment_photo;
     $this->attributes['payment_type'] = $payment;
     $this->attributes['status'] = 1;
+    self::save();
+  }
+
+  public function update_status($status)
+  {
+    $this->attributes['status'] = $status;
     self::save();
   }
 }
