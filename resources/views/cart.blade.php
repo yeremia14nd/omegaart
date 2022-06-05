@@ -86,57 +86,57 @@
                   </tr>
                 @endforeach
               @else
-              @if(session('cart'))
-              <?php $total = 0 ?>
-                @foreach($cartsession as $cartse)
-                <?php $total += $cartse['price'] * $cartse['quantity'] ?>
-                  <tr>
-                    <td>
-                      {{ $no++ }}
-                    </td>
-                    <td>
-                      {{ $cartse['name'] }}
-                    </td>
-                    <td>
-                      {{ number_format($cartse['price'], 2) }}
-                    </td>
-                    <td>
-                      <div class="btn-group" role="group">
-                        <form action="{{ route('cart.quantity',$cartse['id']) }}" method="post">
-                          @method('patch')
+                @if(session('cart'))
+                  <?php $total = 0 ?>
+                  @foreach($cartsession as $cartse)
+                    <?php $total += $cartse['price'] * $cartse['quantity'] ?>
+                    <tr>
+                      <td>
+                        {{ $no++ }}
+                      </td>
+                      <td>
+                        {{ $cartse['name'] }}
+                      </td>
+                      <td>
+                        {{ number_format($cartse['price'], 2) }}
+                      </td>
+                      <td>
+                        <div class="btn-group" role="group">
+                          <form action="{{ route('cart.quantity',$cartse['id']) }}" method="post">
+                            @method('patch')
+                            @csrf()
+                            <input type="hidden" name="param" value="kurang">
+                            <button class="btn btn-primary btn-sm">
+                              -
+                            </button>
+                          </form>
+                          <button class="btn btn-outline-primary btn-sm" disabled="true">
+                            {{ number_format($cartse['quantity'], 2) }}
+                          </button>
+                          <form action="{{ route('cart.quantity', $cartse['id']) }}" method="post">
+                            @method('patch')
+                            @csrf()
+                            <input type="hidden" name="param" value="tambah">
+                            <button class="btn btn-primary btn-sm update-cart">
+                              +
+                            </button>
+                          </form>
+                        </div>
+                      </td>
+                      <td>
+                        {{ number_format(($cartse['price'] * $cartse['quantity']), 2) }}
+                      </td>
+                      <td class="actions" data-th="">
+                        <form action="{{ route('cart.remove', $cartse['id']) }}" method="post">
+                          @method('delete')
                           @csrf()
-                          <input type="hidden" name="param" value="kurang">
-                          <button class="btn btn-primary btn-sm">
-                            -
+                          <button class="btn btn-sm btn-danger mb-2" data-id="{{ $cartse['id'] }}">Hapus
                           </button>
                         </form>
-                        <button class="btn btn-outline-primary btn-sm" disabled="true">
-                          {{ number_format($cartse['quantity'], 2) }}
-                        </button>
-                        <form action="{{ route('cart.quantity', $cartse['id']) }}" method="post">
-                          @method('patch')
-                          @csrf()
-                          <input type="hidden" name="param" value="tambah">
-                          <button class="btn btn-primary btn-sm update-cart">
-                            +
-                          </button>
-                        </form>
-                      </div>
-                    </td>
-                    <td>
-                      {{ number_format(($cartse['price'] * $cartse['quantity']), 2) }}
-                    </td>
-                    <td class="actions" data-th="">
-                      <form action="{{ route('cart.remove', $cartse['id']) }}" method="post">
-                        @method('delete')
-                        @csrf()
-                        <button class="btn btn-sm btn-danger mb-2" data-id="{{ $cartse['id'] }}">Hapus
-                        </button>
-                      </form>
-                    </td>
-                  </tr>
-                @endforeach
-              @endif
+                      </td>
+                    </tr>
+                  @endforeach
+                @endif
               @endif
               </tbody>
             </table>
@@ -176,7 +176,7 @@
                   <td>Subtotal</td>
                   <td class="text-right">
                     @if(session('cart'))
-                    {{ number_format($total, 2) }}
+                      {{ number_format($total, 2) }}
                     @endif
                   </td>
                 </tr>
@@ -184,7 +184,7 @@
                   <td>Total</td>
                   <td class="text-right">
                     @if(session('cart'))
-                    {{ number_format($total, 2) }}
+                      {{ number_format($total, 2) }}
                     @endif
                   </td>
                 </tr>
@@ -196,9 +196,13 @@
               <div class="col">
                 <form action="{{ route('checkout.add') }}" method="post">
                   @csrf
-                  <input type="hidden" name="total" value="{{ $itemcart->total }}">
-                  <input type="hidden" name="id_cart" value="{{ $itemcart->id }}">
-                  <button class="btn btn-primary btn-block">Checkout</button>
+                  @if(Auth::check())
+                    <input type="hidden" name="total" value="{{ $itemcart->total }}">
+                    <input type="hidden" name="id_cart" value="{{ $itemcart->id }}">
+                  @else
+                    <input type="hidden" name="total" value="{{ number_format($total, 2) }}">
+                  @endif
+                    <button class="btn btn-primary btn-block">Checkout</button>
                 </form>
               </div>
               <div class="col">

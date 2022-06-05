@@ -187,14 +187,20 @@ class PaymentController extends Controller
     if ($request->file('bukti_pembayaran')) {
       $payment_photo = $request->file('bukti_pembayaran')->store('payment');
       $checkout->updatecheckout($shipping_address, $payment_type, $payment_photo);
-      return back()->with('success', 'Pembayaran Sudah Terupload');
+      return redirect()->route('checkout.confirmation', $id);
     } else {
       return back()->with('error', 'Silahkan Upload Bukti Pembayaran Anda');
     }
   }
 
-  public function confirmation_payment(){
-    return view('payments.confirmation');
+  public function confirmation_payment($id){
+    $checkout = Checkout::findOrFail($id);
+    $data = array(
+      'title' => 'Confirmation',
+      'active' => 'confirmation',
+      'checkout' => $checkout
+    );
+    return view('payments.confirmation', $data);
   }
 
 }

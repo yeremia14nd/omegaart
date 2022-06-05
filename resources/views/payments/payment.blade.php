@@ -60,11 +60,11 @@
       <div class="row pr-4">
         <div class="col-6 py-4">
           <div class="form-section">
-            <h5 class="mb-3">Contact Information</h5>
+            <h5 class="mb-3">Informasi Kontak</h5>
             <input type="text" class="form-control" placeholder="Email address" value="{{ $users->email }}">
           </div>
           <div class="form-section">
-            <h5 class="mb-3">Shipping Address</h5>
+            <h5 class="mb-3">Alamat Pengiriman</h5>
             <div class="form-group row">
               <div class="col-6">
                 <input type="text" class="form-control" placeholder="First Name">
