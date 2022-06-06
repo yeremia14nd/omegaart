@@ -36,9 +36,9 @@
                         <td>{{ $invoice->description }}</td>
                         <td><a href="/dashboard/invoices/download/{{ $invoice->id }}">{{ $invoice->fileAsset }}</a></td>
                         <td>
-                            @if ($invoice->is_confirmed)
-                            <span class="badge badge-pill badge-success text-dark">Has Paid <i
-                                    class="bi bi-check-circle-fill"></i></br>In Production</span>
+                            @if ($invoice->is_paid_confirmed)
+                            <span class="badge badge-pill badge-success text-dark">Confirmed Paid <i
+                                    class="bi bi-check-circle-fill"></i></br>Product in Production</span>
                             @elseif ($invoice->order->is_paid_invoiced)
                             <span class="badge badge-pill badge-success text-dark">Has Paid <i
                                     class="bi bi-check-circle"></i></br>Waiting Confirmation</span>

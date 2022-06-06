@@ -136,7 +136,8 @@ class CartController extends Controller
     return back()->with('success', 'Cart berhasil dikosongkan');
   }
 
-  public function emptySession(){
+  public function emptySession()
+  {
     session()->flush();
     return back()->with('success', 'Cart berhasil dikosongkan');
   }

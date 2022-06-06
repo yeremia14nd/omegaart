@@ -51,10 +51,10 @@
           <form action="/orders" method="post">
             @csrf
             <div class="d-grid gap-2">
+              @if(Auth::check())
               <input type="hidden" class="form-control @error('product_id') is-invalid @enderror " id="product_id"
                 name="product_id" value="{{ $product->id }}">
-              <input type="hidden" class="form-control @error('user_id') is-invalid @enderror " id="user_id"
-                name="user_id" value="{{ auth()->user()->id }}">
+              @endif
               <button type="submit" class="btn btn-primary">Go Order and Survey</button>
             </div>
           </form>

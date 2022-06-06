@@ -41,7 +41,7 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        $user = User::where('id', $request->user_id)->first();
+        $user = auth()->user();
 
         $product = Product::where('id', $request->product_id)->first();
 
