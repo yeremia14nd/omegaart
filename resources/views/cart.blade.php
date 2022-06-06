@@ -199,8 +199,10 @@
                   @if(Auth::check())
                     <input type="hidden" name="total" value="{{ $itemcart->total }}">
                     <input type="hidden" name="id_cart" value="{{ $itemcart->id }}">
-                  @else
+                  @elseif(session('cart'))
                     <input type="hidden" name="total" value="{{ number_format($total, 2) }}">
+                  @else
+                    <input type="hidden" name="total" value="0">
                   @endif
                     <button class="btn btn-primary btn-block">Checkout</button>
                 </form>
