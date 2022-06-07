@@ -98,6 +98,7 @@ class DashboardProductController extends Controller
         return view('dashboard.products.edit', [
             'product' => $product,
             'categories' => Category::all(),
+            'product_availability' => ProductAvailability::all(),
         ]);
     }
 
@@ -113,6 +114,7 @@ class DashboardProductController extends Controller
         $rules = [
             'name' => 'required|max:255',
             'category_id' => 'required',
+            'product_availability_id' => 'required',
             'imageAssets' => 'image|file|max:2048',
             'price' => 'required',
             'workDuration' => 'required',

@@ -37,7 +37,7 @@
             </tr>
           </table>
           <h5>Deskripsi</h5>
-          <p>{{ $product->description }}</p>
+          <p>{!! $product->description !!}</p>
           @if ($product->productAvailability->id === 1)
           <form action="{{ route('cart.store') }}" method="post">
             @csrf
