@@ -56,9 +56,15 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('dashboard/payments*') ? 'active' : '' }}" href="/dashboard/confirmation">
+        <a class="nav-link {{ Request::is('dashboard/confirmation*') ? 'active' : '' }}" href="/dashboard/confirmation">
           <span data-feather="credit-card"></span>
           Payments For Available Order
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('dashboard/productions*') ? 'active' : '' }}" href="/dashboard/productions">
+          <span data-feather="refresh-cw"></span>
+          Productions
         </a>
       </li>
       <li class="nav-item">

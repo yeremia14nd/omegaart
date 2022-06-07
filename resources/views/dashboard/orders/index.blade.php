@@ -53,7 +53,7 @@
                     $order->is_paid_invoiced == '1' ? 'Invoice sudah dibayar' : 'Invoice belum
                     dibayar' }}</td>
                 <td class="{{ $order->is_productioned == '1' ? 'bg-success fw-bold' : 'table-danger' }}">{{
-                    $order->is_productioned == '1' ? 'Sudah diproses produksi' : 'Belum diproses
+                    $order->is_productioned == '1' ? 'Sudah selesai produksi' : 'Belum diproses
                     produksi' }}</td>
                 <td class="{{ $order->is_installed == '1' ? 'bg-success fw-bold' : 'table-danger' }}">{{
                     $order->is_installed == '1' ? 'Sudah dilakukan pemasangan' : 'Belum dilakukan

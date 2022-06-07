@@ -10,14 +10,11 @@ class Production extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with = ['order', 'survey'];
 
     public function survey()
     {
         return $this->belongsTo(Survey::class);
-    }
-    public function payment()
-    {
-        return $this->belongsTo(Payment::class);
     }
     public function order()
     {

@@ -14,6 +14,7 @@ use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\DashboardStaffController;
 use App\Http\Controllers\DashboardInvoiceController;
 use App\Http\Controllers\DashboardPaymentController;
+use App\Http\Controllers\DashboardProductionController;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
@@ -159,9 +160,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'checkout'], function () {
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
-  Route::resource('/confirmation', DashboardConfirmationController::class);
-  Route::patch('/confirmation/denied/{id}', [DashboardConfirmationController::class, 'denied'])->name('confirmation.denied');
-  Route::patch('/confirmation/approved/{id}', [DashboardConfirmationController::class, 'approved'])->name('confirmation.approved');
+    Route::resource('/confirmation', DashboardConfirmationController::class);
+    Route::patch('/confirmation/denied/{id}', [DashboardConfirmationController::class, 'denied'])->name('confirmation.denied');
+    Route::patch('/confirmation/approved/{id}', [DashboardConfirmationController::class, 'approved'])->name('confirmation.approved');
 });
 
 Route::get('/dashboard/payments/download/{id}', [DashboardPaymentController::class, 'downloadFile'])->name('payments.downloadFile')->middleware('auth');
@@ -181,3 +182,6 @@ Route::resource('/dashboard/invoices', DashboardInvoiceController::class)->middl
 
 Route::resource('/dashboard/payments', DashboardPaymentController::class)->middleware('auth');
 
+Route::get('/dashboard/productions/checkOrder', [DashboardProductionController::class, 'checkOrder'])->middleware('auth');
+
+Route::resource('/dashboard/productions', DashboardProductionController::class)->middleware('auth');

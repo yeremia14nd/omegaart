@@ -21,9 +21,4 @@ class Payment extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function production()
-    {
-        return $this->hasOne(Production::class);
-    }
 }

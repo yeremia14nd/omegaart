@@ -16,12 +16,10 @@ class CreateProductionsTable extends Migration
         Schema::create('productions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('survey_id');
-            $table->foreignId('payment_id');
             $table->foreignId('order_id');
-            $table->string('customer_name');
-            $table->date('startProduction');
-            $table->string('workDuration');
-            $table->string('fileAsset');
+            $table->date('start_production');
+            $table->string('work_duration');
+            $table->string('file_asset')->nullable();
             $table->string('worker_name');
             $table->boolean('isFinished');
             $table->timestamps();
