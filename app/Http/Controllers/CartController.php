@@ -141,4 +141,10 @@ class CartController extends Controller
     session()->flush();
     return back()->with('success', 'Cart berhasil dikosongkan');
   }
+
+  public function total_cart(){
+    $id = Auth::id();
+    $data = Cart::totalcart($id);
+    return $data;
+  }
 }
