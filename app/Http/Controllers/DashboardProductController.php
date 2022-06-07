@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductAvailability;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Storage;
@@ -32,6 +33,7 @@ class DashboardProductController extends Controller
     {
         return view('dashboard.products.create', [
             'categories' => Category::all(),
+            'product_availability' => ProductAvailability::all(),
         ]);
     }
 
@@ -50,6 +52,7 @@ class DashboardProductController extends Controller
             'name' => 'required|max:255',
             'slug' => 'required|unique:products',
             'category_id' => 'required',
+            'product_availability_id' => 'required',
             'imageAssets' => 'required|image|file|max:2048',
             'price' => 'required',
             'workDuration' => 'required',

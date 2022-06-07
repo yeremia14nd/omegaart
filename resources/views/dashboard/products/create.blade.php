@@ -48,6 +48,27 @@
         </div>
         @enderror
         <div class="mb-3">
+            <label for="product_availability_id" class="form-label">Availability</label>
+            <select class="form-select mb-3" @error('product_availability_id') is-invalid @enderror"
+                id="product_availability_id" name="product_availability_id">
+                <option value=''>Please choose availability
+                </option>
+                @foreach ($product_availability as $availability)
+                @if (old('product_availability_id') == $availability->id)
+                <option value="{{ $availability->id }}" selected>{{ $availability->availability }}</option>
+                @else
+                <option value="{{ $availability->id }}">{{ $availability->availability }}</option>
+                @endif
+                </option>
+                @endforeach
+            </select>
+        </div>
+        @error('product_availability_id')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
+        <div class="mb-3">
             <label for="image" class="form-label">Product Image</label>
             <img class="img-preview img-fluid mb-3 col-sm-5">
             <input class="form-control @error('imageAssets') is-invalid @enderror" type="file" id="image"
