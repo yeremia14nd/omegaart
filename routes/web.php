@@ -199,3 +199,5 @@ Route::resource('/dashboard/installments', DashboardInstallmentController::class
 Route::get('/notif', [NotifikasiController::class, 'notif'])->name('notif');
 
 Route::get('/total_cart', [CartController::class, 'total_cart']);
+
+Route::get('/checkout_read/{id}', [NotifikasiController::class, 'checkout_read']);
