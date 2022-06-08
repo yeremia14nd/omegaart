@@ -13,20 +13,20 @@
     <li class="nav-item dropdown">
       <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownNotif" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-bell fa-2x mt-3 mr-2"></i>
-        <span 
-          class="badge badge-light" 
-          id="unread_count" 
-          style="position: absolute; 
-                 right: -7px; 
-                 top: 8px; 
-                 background: #ccc; 
-                 color: #333; 
+        <span
+          class="badge badge-light"
+          id="unread_count"
+          style="position: absolute;
+                 right: -7px;
+                 top: 8px;
+                 background: #ccc;
+                 color: #333;
                  border-radius: 50%">
           0
         </span>
       </a>
       <ul class="dropdown-menu" id="notification_list">
-        <li><a href="#" class="dropdown-item"">
+        <li><a href="#" class="dropdown-item">
           <div class="profile_link">
             <div class="pd_content">
               <h6>ADA PEMBAYARAN BARU</h6>
