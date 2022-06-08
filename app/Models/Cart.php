@@ -56,7 +56,7 @@ class Cart extends Model
         if ($cart) {
             $itemcart = $cart;
         } else {
-            $no_invoice = Cart::where('user_id', $id_user)->count();
+            $no_invoice = Cart::all()->count();
 
             // mencari jumlah cart berdasarkan user untuk dijadikan no invoice
             $input['user_id'] = $id_user;
@@ -75,7 +75,7 @@ class Cart extends Model
                 $cekdetail = CartItem::where('cart_id', $itemcart->id)
                     ->where('product_id', $itemproduk->id)
                     ->first();
-                
+
                 $qty = $row['quantity'];
                 $harga = $itemproduk->price;
                 $subtotal = $qty * $harga;
@@ -107,7 +107,7 @@ class Cart extends Model
             $cekdetail = CartItem::where('cart_id', $itemcart->id)
                 ->where('product_id', $itemproduk->id)
                 ->first();
-            
+
             $qty = 1;
             $harga = $itemproduk->price;
             $subtotal = $qty * $harga;

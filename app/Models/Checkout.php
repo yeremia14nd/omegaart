@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Checkout extends Model
 {
@@ -47,5 +48,18 @@ class Checkout extends Model
   {
     $this->attributes['status'] = $status;
     self::save();
+  }
+
+  public static function history($id)
+  {
+    $data = DB::table('checkouts AS c')
+            ->selectRaw('ca.no_invoice, ca.total, c.payment_type, c.status')
+            ->join('carts AS ca', 'c.cart_id', '=', 'ca.id')
+            ->join('cart_items AS ci', 'ca.id', '=', 'ci.cart_id')
+            ->join('users AS u', 'c.user_id', '=', 'u.id')
+            ->where('u.id', $id)
+            ->groupBy('ca.id')
+            ->get();
+    return $data;
   }
 }

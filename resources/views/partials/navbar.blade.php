@@ -42,6 +42,9 @@
                     class="bi bi-three-dots-vertical"></i></a>
                 <ul class="dropdown-menu dropdown-submenu">
                   <li>
+                    <a class="dropdown-item" href="/history">History</a>
+                  </li>
+                  <li>
                     <a class="dropdown-item" href="/surveys">Survey</a>
                   </li>
                   <li>
