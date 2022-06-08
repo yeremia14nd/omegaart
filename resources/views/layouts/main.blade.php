@@ -18,6 +18,12 @@
 
   {{-- My Style --}}
   <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+      </script>
 </head>
 
 
@@ -54,9 +60,24 @@
           </div>
         </div>
       </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-      </script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $.ajax({
+      type: "GET",
+      url: "/total_cart",
+      dataType: "JSON",
+      success: function(data) {
+        if (data.total == 0) {
+          $('#count').text(' Cart');
+        } else {
+          $('#count').text(' ' + data.total + ' Cart');
+        }
+      },
+    });
+  })
+</script>
+
     </footer>
 
     {{-- <script src="/js/omegaart.js"></script> --}}

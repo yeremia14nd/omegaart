@@ -19,6 +19,9 @@
   {{-- Trix Editor --}}
   <link rel="stylesheet" type="text/css" href="/css/trix.css">
   <script type="text/javascript" src="/js/trix.js"></script>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
   <style>
     trix-toolbar [data-trix-button-group="file-tools"] {
@@ -40,7 +43,6 @@
     </div>
   </div>
 
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
   </script>
@@ -48,8 +50,26 @@
   <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
     integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
   </script>
+  
 
-  <script src="/js/dashboard.js"></script>
+  <script src="/js/dashboard.js"></script> 
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $.ajax({
+        type: "GET",
+        url: "/notif",
+        dataType: "JSON",
+        success: function(data) {
+          if (data.total == 0) {
+            $('#unread_count').removeClass('indicator');
+          } else {
+            $('#unread_count').addClass('indicator');
+            $('#unread_count').text(data.length);
+          }
+        },
+      });
+    })
+  </script>
 </body>
-
 </html>

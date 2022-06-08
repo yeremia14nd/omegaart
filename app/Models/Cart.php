@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Cart extends Model
 {
@@ -37,6 +38,16 @@ class Cart extends Model
         $this->attributes['subtotal'] = $itemcart->subtotal + $subtotal;
         $this->attributes['total'] = $itemcart->total + $subtotal;
         self::save();
+    }
+
+    public static function totalcart($id){
+      $data = DB::table('cart_items AS ci')
+              ->selectRaw('COUNT(ci.id) as total')
+              ->join('carts AS c', 'ci.cart_id', '=', 'c.id')
+              ->join('users AS u', 'c.user_id', '=', 'u.id')
+              ->where('u.id', $id)->where('c.status_cart', '=', 'cart')
+              ->first();
+      return $data;
     }
 
     public static function addToCart($id_user, $item_cart) {

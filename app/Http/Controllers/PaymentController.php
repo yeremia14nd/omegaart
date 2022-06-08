@@ -7,6 +7,7 @@ use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
 use App\Models\Invoice;
 use App\Models\Order;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\CartItem;
@@ -187,6 +188,10 @@ class PaymentController extends Controller
     if ($request->file('bukti_pembayaran')) {
       $payment_photo = $request->file('bukti_pembayaran')->store('payment');
       $checkout->updatecheckout($shipping_address, $payment_type, $payment_photo);
+
+      // Add notification
+      Notifikasi::createNotification("admin", "checkout");
+
       return redirect()->route('checkout.confirmation', $id);
     } else {
       return back()->with('error', 'Silahkan Upload Bukti Pembayaran Anda');
