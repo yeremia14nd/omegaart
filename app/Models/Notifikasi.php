@@ -49,7 +49,7 @@ class Notifikasi extends Model
         $notif->save();
     }
 
-    public static function createNotification($user_kat = 'admin', $kat, $target = null) {
+    public static function createNotification($user_kat = 'admin', $kat, $target = 0) {
         Notifikasi::create([
             "user_kategori" => $user_kat,
             "notif_target" => $target,

@@ -35,7 +35,7 @@
             <td>Bank Transfer</td>
           @elseif($row->payment_type == 'credit_card')
             <td>Credit Card</td>
-          @elseif($row->payment_type == 'Shopee Pay')
+          @elseif($row->payment_type == 'shopee_pay')
             <td>Shopee Pay</td>
           @elseif($row->payment_type == 'gopay')
             <td>Gopay</td>
