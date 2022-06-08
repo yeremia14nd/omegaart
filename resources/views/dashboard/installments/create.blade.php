@@ -34,6 +34,8 @@
             <label for="customer" class="form-label">Nama Customer</label>
             <input type="text" class="form-control @error('customer') is-invalid @enderror" id="customer"
                 name="customer" value="{{ old('customer')}}" readonly>
+            <input type="hidden" class="form-control @error('user_id') is-invalid @enderror" id="user_id" name="user_id"
+                value="{{ old('user_id')}}" readonly>
 
         </div>
         <label for="start_installment" class="form-label">Tanggal Mulai Pemasangan</label>
@@ -93,6 +95,7 @@
             .then(response => response.json())
             .then(data => [
             customer.value = data.name,                                  
+            user_id.value = data.user_id,                                  
             address.value = data.address,                                  
             city.value = data.city,                                  
          ])        

@@ -29,6 +29,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\InstallmentController;
 use App\Http\Controllers\NotifikasiController;
 
 /*
@@ -189,6 +190,10 @@ Route::get('/dashboard/productions/checkOrder', [DashboardProductionController::
 Route::resource('/dashboard/productions', DashboardProductionController::class)->middleware('auth');
 
 Route::get('/dashboard/installments/checkProduction', [DashboardInstallmentController::class, 'checkProduction'])->middleware('auth');
+
+Route::put('/installments/{installment}/confirmation', [InstallmentController::class, 'confirmationSchedule'])->middleware('auth');
+
+Route::resource('/installments', InstallmentController::class)->middleware('auth');
 
 Route::resource('/dashboard/installments', DashboardInstallmentController::class)->middleware('auth');
 Route::get('/notif', [NotifikasiController::class, 'notif'])->name('notif');

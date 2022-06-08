@@ -36,10 +36,13 @@
                         <td>{{ $invoice->description }}</td>
                         <td><a href="/dashboard/invoices/download/{{ $invoice->id }}">{{ $invoice->fileAsset }}</a></td>
                         <td>
-                            @if ($invoice->is_paid_confirmed)
+                            @if($invoice->order->is_final_invoice_paid)
+                            <span class="badge badge-pill badge-success text-dark">Pembayaran Lunas <i
+                                    class="bi bi-check-circle-fill"></i></span>
+                            @elseif ($invoice->is_paid_confirmed)
                             <span class="badge badge-pill badge-success text-dark">Pembayaran terkonfirmasi <i
                                     class="bi bi-check-circle-fill"></i></br>Produk dalam Produksi</span>
-                            @elseif ($invoice->order->is_paid_invoiced)
+                            @elseif ($invoice->is_paid_confirmed === 0)
                             <span class="badge badge-pill badge-success text-dark">Sudah dibayar <i
                                     class="bi bi-check-circle"></i></br>Menunggu Konfirmasi</span>
                             @else

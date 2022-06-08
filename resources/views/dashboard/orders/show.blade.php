@@ -70,7 +70,8 @@
                         </tr>
                         <tr>
                             <td>Final Invoice</td>
-                            <td class="{{ $order->final_invoice_sent == '1' ? 'bg-success fw-bold' : 'table-danger' }}">
+                            <td
+                                class="{{ $order->is_final_invoice_sent == '1' ? 'bg-success fw-bold' : 'table-danger' }}">
                                 : {{ $order->is_final_invoice_sent == '1' ? 'Invoice Final sudah dikirim' : 'Invoice
                                 Final belum
                                 dikirim' }}</td>

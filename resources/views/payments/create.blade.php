@@ -27,7 +27,7 @@
                                     <td>: {{ $invoice->order->product->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>harga</td>
+                                    <td>Harga</td>
                                     <td>:Rp. {{ number_format($invoice->total_price_product) }}</td>
                                 </tr>
                                 <tr>
@@ -46,7 +46,8 @@
                                     <td>: An. CV.OMEGA ART</td>
                                 </tr>
                             </table>
-                            <small>*Pembayaran DP minimal 50% dari total Invoice yaitu minimal Rp. {{
+                            <small>*Jika ini adalah pembayaran DP, maka minimal 50% dari total Invoice yaitu minimal Rp.
+                                {{
                                 number_format($invoice->total_price_product/2) }}</small></br>
                             <small>*Silahkan isi form Payment dibawah ini dan upload bukti Transfer. Admin akan mengecek
                                 dan
@@ -75,7 +76,7 @@
                         value="{{ old('total_price_paid') }}">
                 </div>
                 <div class="mb-3">
-                    <label for="image_asset" class="form-label">Bukti Tranfer</label>
+                    <label for="image_asset" class="form-label">Bukti Pembayaran Tranfer</label>
                     <img class="img-preview img-fluid mb-3 col-sm-5">
                     <input class="form-control @error('image_asset') is-invalid @enderror" type="file" id="image"
                         name="image_asset" onchange="previewImage()">

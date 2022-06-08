@@ -48,6 +48,7 @@ class DashboardInstallmentController extends Controller
 
         $rules = [
             'production_id' => 'required',
+            'user_id' => 'required',
             'start_installment' => 'required',
             'start_installment_time' => 'required',
             'address' => 'required',
@@ -70,7 +71,9 @@ class DashboardInstallmentController extends Controller
      */
     public function show(Installment $installment)
     {
-        //
+        return view('dashboard.installments.show', [
+            'installment' => $installment,
+        ]);
     }
 
     /**
@@ -119,7 +122,7 @@ class DashboardInstallmentController extends Controller
         }
 
         if ($request->is_installed) {
-            Order::where('id', $installment->production->order_id)->update(['is_productioned' => 1]);
+            Order::where('id', $installment->production->order_id)->update(['is_installed' => 1]);
         }
 
         Installment::where('id', $installment->id)->update($validatedData);
@@ -135,7 +138,12 @@ class DashboardInstallmentController extends Controller
      */
     public function destroy(Installment $installment)
     {
-        //
+        if ($installment->file_asset) {
+            Storage::delete($installment->file_asset);
+        }
+        Installment::destroy($installment->id);
+
+        return redirect('/dashboard/installments')->with('success', 'Pemasangan dihapus');
     }
 
     public function checkProduction(Request $request)
@@ -144,6 +152,7 @@ class DashboardInstallmentController extends Controller
 
         return response()->json([
             'name' => $production->order->user->name,
+            'user_id' => $production->order->user->id,
             'address' => $production->survey->address,
             'city' => $production->survey->city,
         ]);

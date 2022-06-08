@@ -98,6 +98,10 @@ class PaymentController extends Controller
 
     Order::where('id', $invoice->order->id)->update(['is_paid_invoiced' => 1]);
 
+    Invoice::where('id', $invoice->id)->update([
+      'is_paid_confirmed' => 0
+    ]);
+
     return redirect('/invoices')->with('success', 'Payment has been paid, waiting for confirmation');
   }
 
@@ -198,7 +202,8 @@ class PaymentController extends Controller
     }
   }
 
-  public function confirmation_payment($id){
+  public function confirmation_payment($id)
+  {
     $checkout = Checkout::findOrFail($id);
     $data = array(
       'title' => 'Confirmation',
@@ -207,5 +212,4 @@ class PaymentController extends Controller
     );
     return view('payments.confirmation', $data);
   }
-
 }

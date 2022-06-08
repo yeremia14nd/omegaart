@@ -48,7 +48,7 @@
                     <a class="dropdown-item" href="/invoices">Invoice</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">Pemasangan</a>
+                    <a class="dropdown-item" href="/installments">Pemasangan</a>
                   </li>
                 </ul>
               </li>

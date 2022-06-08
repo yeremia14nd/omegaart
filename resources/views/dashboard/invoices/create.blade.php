@@ -46,6 +46,9 @@
         </div>
         <label for="total_price_product" class="form-label">Total Harga Produk</label>
         <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Rp.</span>
+            </div>
             <input type="number" class="form-control @error('total_price_product') is-invalid @enderror"
                 id="total_price_product" name="total_price_product"
                 placeholder=" @error('total_price_product') {{ $message }} @enderror "

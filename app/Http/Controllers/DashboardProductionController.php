@@ -73,7 +73,9 @@ class DashboardProductionController extends Controller
      */
     public function show(Production $production)
     {
-        //
+        return view('dashboard.productions.show', [
+            'production' => $production,
+        ]);
     }
 
     /**
@@ -137,6 +139,9 @@ class DashboardProductionController extends Controller
      */
     public function destroy(Production $production)
     {
+        if ($production->file_asset) {
+            Storage::delete($production->file_asset);
+        }
         Production::destroy($production->id);
 
         return redirect('/dashboard/productions')->with('success', 'Produksi dihapus');
@@ -151,5 +156,12 @@ class DashboardProductionController extends Controller
             'name' => $order->user->name,
             'surveyor' => $survey->assignTo,
         ]);
+    }
+
+    public function downloadFile($id)
+    {
+        $production = Production::where('id', $id)->first();
+        $path = $production->file_asset;
+        return Storage::download($path);
     }
 }

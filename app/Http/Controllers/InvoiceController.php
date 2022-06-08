@@ -24,7 +24,7 @@ class InvoiceController extends Controller
         $payments = Payment::where('id', $invoices->modelKeys())->get();
 
         return view('invoices.index', [
-            'title' => 'Invoice List',
+            'title' => 'Daftar Invoice',
             'active' => 'invoice',
             'invoices' => $invoices,
             'payments' => $payments,

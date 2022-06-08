@@ -16,6 +16,7 @@ class CreateInstallmentsTable extends Migration
         Schema::create('installments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('production_id');
+            $table->foreignId('user_id');
             $table->date('start_installment');
             $table->time('start_installment_time');
             $table->boolean('is_customer_confirm_date')->nullable();

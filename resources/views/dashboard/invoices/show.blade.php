@@ -33,16 +33,42 @@
                     @endif
                 </div>
                 <div class="col-md">
-                    <h5 class="mb-2">Nama Customer : {{ $invoice->order->user->name }}</h5>
-                    <p class="my-0">Invoice ID : <b> {{ $invoice->id}}</b></p>
-                    <p class="my-0">Order ID : <b> {{ $invoice->order->id}}</b></p>
-                    <p class="my-0">Produk : <b> {{ $invoice->order->product->name}}</b></p>
-                    <p class="my-0">Harga : <b> {{ $invoice->total_price_product}}</b></p>
-                    <p class="my-0">Estimator : <b> {{ $invoice->created_by}}</b></p>
-                    <p class="my-0">Surveyor : <b> {{ $survey->assignTo}}</b></p>
-                    <p>Deskripsi : {!! $invoice->description !!}</p>
-                    <p>Download File : <a href="/dashboard/invoices/download/{{ $invoice->id }}">{{ $invoice->fileAsset
-                            }}</a></p>
+                    <h5 class="mb-2">Customer : {{ $invoice->order->user->name }}</h5>
+                    <table class="table">
+                        <tr>
+                            <td>Invoice Id</td>
+                            <td>: <b> {{ $invoice->id}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>Order Id</td>
+                            <td>: <b> {{ $invoice->order->id}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>Produk</td>
+                            <td>: <b> {{ $invoice->order->product->name}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>Harga</td>
+                            <td>: <b>Rp. {{ number_format($invoice->total_price_product)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Estimator</td>
+                            <td>: <b> {{ $invoice->created_by}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>Surveyor</td>
+                            <td>: <b> {{ $survey->assignTo}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>Deskripsi</td>
+                            <td>: {!! $invoice->description !!}</td>
+                        </tr>
+                        <tr>
+                            <td>Download File</td>
+                            <td>: <a href="/dashboard/invoices/download/{{ $invoice->id }}">{{ $invoice->fileAsset
+                                    }}</a></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

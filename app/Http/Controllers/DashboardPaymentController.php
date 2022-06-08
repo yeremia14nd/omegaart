@@ -88,10 +88,11 @@ class DashboardPaymentController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        if ($request->has_paid_full) {
-            Order::where('id', $request->order_id)->update([
+        if ($request->has_paid_full && $request->is_confirmed) {
+            Order::where('id', $payment->invoice->order_id)->update([
                 'is_final_invoice_sent' => 1,
                 'is_final_invoice_paid' => 1,
+                'status' => 'LUNAS',
             ]);
         }
 
@@ -112,13 +113,18 @@ class DashboardPaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        if ($payment->image_asset) {
+            Storage::delete($payment->image_asset);
+        }
+        Payment::destroy($payment->id);
+
+        return redirect('/dashboard/payments')->with('success', 'Pembayaran sudah dihapus');
     }
 
     public function downloadFile($id)
     {
-        $Payment = Payment::where('id', $id)->first();
-        $path = $Payment->image_asset;
+        $payment = Payment::where('id', $id)->first();
+        $path = $payment->image_asset;
         return Storage::download($path);
     }
 }
