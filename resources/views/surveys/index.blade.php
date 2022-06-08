@@ -37,8 +37,10 @@
                         <td>{{ $survey->description }}</td>
                         <td>{{ $survey->surveyDate }}</td>
                         <td>{{ $survey->surveyTime }}</td>
-                        <td>
-                            @if ($survey->order->is_surveyed)
+                        <td>@if($survey->order->is_invoice_sent)
+                            <span class="badge badge-pill badge-success text-dark">Survey Selesai <i
+                                    class="bi bi-check-circle-fill"></i></span>
+                            @elseif ($survey->order->is_surveyed)
                             <span class="badge badge-pill badge-success text-dark">Sudah disurvey <i
                                     class="bi bi-check-circle-fill"></i></br> Menunggu Invoice</span>
                             @else

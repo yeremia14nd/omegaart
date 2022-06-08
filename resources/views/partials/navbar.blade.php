@@ -38,7 +38,7 @@
               <li><a class="dropdown-item" href="/profil/{{ auth()->user()->userName }}"><i class="bi bi-person"></i>
                   Profil</a></li>
               <li><a class="dropdown-item" href="/cart"><i class="bi bi-bag"></i><span id="count"></span></a></li>
-              <li><a class="dropdown-item" href="/status"><i class="bi bi-bell"></i> Status Pemesanan <i
+              <li><a class="dropdown-item" href="#"><i class="bi bi-bell"></i> Status Pemesanan <i
                     class="bi bi-three-dots-vertical"></i></a>
                 <ul class="dropdown-menu dropdown-submenu">
                   <li>
