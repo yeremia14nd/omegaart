@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div
             class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Invoice Payments</h1>
+            <h1 class="h2">Pembayaran Invoice</h1>
         </div>
 
         <div class="row justify-content-center mb-3">
@@ -16,22 +16,22 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <h5>Payment Information</h5>
+                            <h5>Informasi Pembayaran</h5>
                             <table class="table table-sm">
                                 <tr>
                                     <td>Order ID</td>
                                     <td>: {{ $invoice->order_id }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Product</td>
+                                    <td>Produk</td>
                                     <td>: {{ $invoice->order->product->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Price</td>
+                                    <td>harga</td>
                                     <td>:Rp. {{ number_format($invoice->total_price_product) }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Invoice File</td>
+                                    <td>File Invoice</td>
                                     <td>: <a href="/dashboard/invoices/download/{{ $invoice->id }}">{{
                                             $invoice->fileAsset }}</a></td>
                                 </tr>
@@ -64,7 +64,7 @@
                     name="invoice_id" value="{{ $invoice->id }}">
                 <input type="hidden" class="form-control @error('user_id') is-invalid @enderror " id="user_id"
                     name="user_id" value="{{ auth()->user()->id }}">
-                <label for="total_price_paid" class="form-label">Total Price of Transfer</label>
+                <label for="total_price_paid" class="form-label">Total Harga yang Ditransfer</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupPrepend3">Rp</span>
@@ -75,7 +75,7 @@
                         value="{{ old('total_price_paid') }}">
                 </div>
                 <div class="mb-3">
-                    <label for="image_asset" class="form-label">Transfer Receipt</label>
+                    <label for="image_asset" class="form-label">Bukti Tranfer</label>
                     <img class="img-preview img-fluid mb-3 col-sm-5">
                     <input class="form-control @error('image_asset') is-invalid @enderror" type="file" id="image"
                         name="image_asset" onchange="previewImage()">
@@ -85,14 +85,14 @@
                     </div>
                     @enderror
                 </div>
-                <label for="description" class="form-label">Description of the Invoice</label>
+                <label for="description" class="form-label">Keterangan Pembayaran Invoice</label>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                         name="description" placeholder=" @error('description') {{ $message }} @enderror "
-                        value="{{ old('description') }}">
+                        value="{{ old('description') }}" placeholder="Saya sudah membayar DP">
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary col-lg-6">Confirm Payment</button>
+                    <button type="submit" class="btn btn-primary col-lg-6">Konfirmasi Pembayaran</button>
                 </div>
             </form>
         </div>

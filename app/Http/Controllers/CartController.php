@@ -31,7 +31,7 @@ class CartController extends Controller
         'title' => 'Cart',
         'itemcart' => $itemcart,
         'title' => 'All Products',
-        'active' => 'shop',
+        'active' => 'cart',
       );
       return view('cart', $data)->with('no', 1);
     } else {
@@ -39,7 +39,7 @@ class CartController extends Controller
         'title' => 'Cart',
         'cartsession' => session('cart'),
         'title' => 'All Products',
-        'active' => 'shop',
+        'active' => 'cart',
       );
       return view('cart', $data)->with('no', 1);
       // dd($data);

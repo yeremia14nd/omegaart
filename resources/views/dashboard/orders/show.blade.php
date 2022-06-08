@@ -7,34 +7,35 @@
     </div>
     <div class="row">
         <div class="col-lg-8">
-            <a href="/dashboard/orders" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Back to
-                All order</a>
+            <a href="/dashboard/orders" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali ke
+                Semua Order</a>
             <a href="/dashboard/orders/{{ $order->id}}/edit" class="btn btn-warning mb-3"> <span
-                    data-feather="edit"></span> Edit</a>
+                    data-feather="edit"></span> Ubah</a>
             <form action="/dashboard/orders/{{ $order->id }}" method="post" class="d-inline">
                 @method('delete')
                 @csrf
-                <button class="btn btn-danger mb-3" onclick="return confirm('Are you sure to delete this order?')"><span
-                        data-feather="x-circle"></span> Delete</button>
+                <button class="btn btn-danger mb-3"
+                    onclick="return confirm('Apakah anda yakin ingin menghapus order ini?')"><span
+                        data-feather="x-circle"></span> Hapus</button>
             </form>
             <div class="row">
                 <div class="col-md">
-                    <h1 class="mb-2 text-muted">Order Product: {{ $order->product->name }}</h1>
+                    <h1 class="mb-2 text-muted">Order Produk: {{ $order->product->name }}</h1>
                     <table class="table">
                         <tr>
-                            <td>Customer Name</td>
+                            <td>Nama Customer</td>
                             <td>: {{ $order->user->name }}</td>
                         </tr>
                         <tr>
-                            <td>Address</td>
+                            <td>Alamat</td>
                             <td>: {{ $order->user->address }}</td>
                         </tr>
                         <tr>
-                            <td>Phone Number</td>
+                            <td>Telepon</td>
                             <td>: {{ $order->user->phoneNumber }}</td>
                         </tr>
                         <tr>
-                            <td>Order Date</td>
+                            <td>Tanggal Order</td>
                             <td>: {{ $order->created_at->format('l, d-M-Y, H:i A') }}</td>
                         </tr>
                         <tr>
@@ -49,20 +50,20 @@
                                 }}</td>
                         </tr>
                         <tr>
-                            <td>Paid</td>
+                            <td>Terbayar</td>
                             <td class="{{ $order->is_paid_invoiced == '1' ? 'bg-success fw-bold' : 'table-danger' }}">:
                                 {{ $order->is_paid_invoiced == '1' ? 'Invoice sudah dibayar' : 'Invoice belum
                                 dibayar' }}
                             </td>
                         </tr>
                         <tr>
-                            <td>Production</td>
+                            <td>Produksi</td>
                             <td class="{{ $order->is_productioned == '1' ? 'bg-success fw-bold' : 'table-danger' }}">:
                                 {{ $order->is_productioned == '1' ? 'Sudah diproses produksi' : 'Belum diproses
                                 produksi' }}</td>
                         </tr>
                         <tr>
-                            <td>Installation</td>
+                            <td>Pemasangan</td>
                             <td class="{{ $order->is_installed == '1' ? 'bg-success fw-bold' : 'table-danger' }}">: {{
                                 $order->is_installed == '1' ? 'Sudah dilakukan pemasangan' : 'Belum dilakukan
                                 pemasangan' }}</td>
@@ -75,7 +76,7 @@
                                 dikirim' }}</td>
                         </tr>
                         <tr>
-                            <td>Full Paid</td>
+                            <td>Pembayaran Full</td>
                             <td
                                 class="{{ $order->is_final_invoice_paid == '1' ? 'bg-success fw-bold' : 'table-danger' }}">
                                 : {{ $order->is_final_invoice_paid == '1' ? 'Invoice Final sudah dibayar' : 'Invoice

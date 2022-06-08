@@ -2,18 +2,18 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Create New Survey</h1>
+    <h1 class="h2">Tambah Survey Baru</h1>
 </div>
-<a href="/dashboard/surveys" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Back to
-    All Survey</a>
+<a href="/dashboard/surveys" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali ke Semua
+    Survey</a>
 
 <div class="col-lg-8">
     <form method="post" action="/dashboard/surveys" class="mb-5">
         @csrf
         <div class="mb-3">
-            <label for="order_id" class="form-label">Name Of Product Order</label>
+            <label for="order_id" class="form-label">Nama Produk Order</label>
             <select class="form-select @error('order_id') is-invalid @enderror" name="order_id" id="order_id">
-                <option value="" class="text-muted">Choose Product Order...</option>
+                <option value="" class="text-muted">Pilih Produk Order...</option>
                 @foreach ($orders as $order)
                 @if (old('order_id') == $order->id)
                 <option value="{{ $order->id }}" selected>{{ $order->product->name }} </option>
@@ -29,7 +29,7 @@
         </div>
         @enderror
         <div class="mb-3">
-            <label for="customer" class="form-label">Customer Name</label>
+            <label for="customer" class="form-label">Nama Customer</label>
             <input type="text" class="form-control @error('customer') is-invalid @enderror" id="customer"
                 name="customer" value="{{ old('customer')}}" readonly>
 
@@ -49,45 +49,45 @@
             </div>
             @enderror
         </div>
-        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <label for="phoneNumber" class="form-label">Telepon</label>
         <div class="input-group mb-3">
             <input type="tel" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
                 name="phoneNumber" placeholder=" @error('phoneNumber') {{ $message }} @enderror "
                 value="{{ old('phoneNumber') }}" required>
         </div>
-        <label for="address" class="form-label">Address of Survey</label>
+        <label for="address" class="form-label">Alamat Survey</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
                 placeholder=" @error('address') {{ $message }} @enderror " value="{{ old('address') }}" required>
         </div>
 
-        <label for="city" class="form-label">City</label>
+        <label for="city" class="form-label">Kota</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city"
                 placeholder=" @error('city') {{ $message }} @enderror " value="{{ old('city') }}" required>
         </div>
-        <label for="surveyDate" class="form-label">Survey Date</label>
+        <label for="surveyDate" class="form-label">Tanggal Survey</label>
         <div class="input-group mb-3">
             <input type="date" class="form-control @error('surveyDate') is-invalid @enderror" id="surveyDate"
                 name="surveyDate" placeholder=" @error('surveyDate') {{ $message }} @enderror "
                 value="{{ old('surveyDate') }}" required>
         </div>
-        <label for="surveyTime" class="form-label">Survey Time</label>
+        <label for="surveyTime" class="form-label">Waktu Survey</label>
         <div class="input-group mb-3">
             <input type="time" class="form-control @error('surveyTime') is-invalid @enderror" id="surveyTime"
                 name="surveyTime" placeholder=" @error('surveyTime') {{ $message }} @enderror "
                 value="{{ old('surveyTime') }}" required>
         </div>
-        <label for="description" class="form-label">Description of the survey</label>
+        <label for="description" class="form-label">Deskripsi Survey</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                 name="description" placeholder=" @error('description') {{ $message }} @enderror "
                 value="{{ old('description') }}" required>
         </div>
         <div class="mb-3">
-            <label for="assignTo" class="form-label">Assign Surveyor Role</label>
+            <label for="assignTo" class="form-label">Surveyor yang Bertugas</label>
             <select class="form-select @error('assignTo') is-invalid @enderror" name="assignTo" required>
-                <option value="" class="text-muted">Select surveyor...</option>
+                <option value="" class="text-muted">Pilih surveyor...</option>
                 @foreach ($assigns as $assignRole)
                 @if (old('assignRole') == $assignRole->name)
                 <option value="{{ $assignRole->name }}" selected>{{ $assignRole->name }}</option>
@@ -102,7 +102,7 @@
             {{ $message }}
         </div>
         @enderror
-        <button type="submit" class="btn btn-primary">Create survey</button>
+        <button type="submit" class="btn btn-primary">Tambah Survey</button>
     </form>
 </div>
 

@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Payments</h1>
+    <h1 class="h2">Pembayaran</h1>
 </div>
 
 @if (session()->has('success'))
@@ -20,11 +20,11 @@
                 <th scope="col">Invoice ID</th>
                 <th scope="col">Order ID</th>
                 <th scope="col">Customer</th>
-                <th scope="col">Product</th>
-                <th scope="col">Total Price</th>
-                <th scope="col">Paid</th>
-                <th scope="col">Payment Date</th>
-                <th scope="col">Confirmation</th>
+                <th scope="col">Produk</th>
+                <th scope="col">Total harga</th>
+                <th scope="col">Terbayar</th>
+                <th scope="col">Tanggal Pembayaran</th>
+                <th scope="col">Konfirmasi</th>
                 <th scope="col">File</th>
                 <th scope="col">Action</th>
             </tr>
@@ -58,7 +58,7 @@
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Are you sure to delete this payment?')"><span
+                            onclick="return confirm('Apakah anda yakin ingin menghapus pembayaran ini?')"><span
                                 data-feather="x-circle"></span></button>
                     </form>
                 </td>
@@ -66,7 +66,7 @@
             @endforeach
         </tbody>
         @else
-        <h3 class="my-3 text-muted">there is no Payments</h3>
+        <h3 class="my-3 text-muted">Belum ada Pembayaran</h3>
         @endif
     </table>
 </div>

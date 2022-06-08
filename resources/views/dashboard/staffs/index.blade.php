@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Staffs List</h1>
+    <h1 class="h2">Daftar Staff</h1>
 </div>
 
 @if (session()->has('success'))
@@ -12,7 +12,7 @@
 @endif
 
 <div class="table-responsive">
-    <a href="/dashboard/staffs/create" class="btn btn-primary m-2">Create New staff</a>
+    <a href="/dashboard/staffs/create" class="btn btn-primary m-2">Tambah Staff Baru</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
@@ -20,8 +20,9 @@
                 <th scope="col">Nama staff</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
-                <th scope="col">Address</th>
-                <th scope="col">Phone Number</th>
+                <th scope="col">Alamat</th>
+                <th scope="col">Telepon</th>
+                <th scope="col">Role</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -34,6 +35,17 @@
                 <td>{{ $staff->email}}</td>
                 <td>{{ $staff->address}}</td>
                 <td>{{ $staff->phoneNumber}}</td>
+                <td>@if ($staff->is_role == 1)
+                    Super Admin
+                    @elseif($staff->is_role == 2)
+                    Admin
+                    @elseif($staff->is_role == 3)
+                    Estimator
+                    @elseif($staff->is_role == 4)
+                    Teknisi
+                    @else
+                    Belum ada Role
+                    @endif</td>
                 <td>
                     <a href="/dashboard/staffs/{{ $staff->userName }}" class="badge bg-info">
                         <span data-feather="eye"></span>
@@ -45,7 +57,7 @@
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Are you sure to delete this staff?')"><span
+                            onclick="return confirm('Apakah anda yakin ingin menghapus Staff ini?')"><span
                                 data-feather="x-circle"></span></button>
                     </form>
                 </td>

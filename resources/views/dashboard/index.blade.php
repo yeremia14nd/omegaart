@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Welcome back, {{ auth()->user()->name }}</h1>
+  <h1 class="h2">Selamat Datang, {{ auth()->user()->name }}</h1>
 </div>
 
 <div class="row">
@@ -32,7 +32,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-              Total Products</div>
+              Total Produk</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $products_count }} items</div>
           </div>
           <div class="col-auto">
@@ -49,11 +49,11 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Categories
+            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Kategori
             </div>
             <div class="row no-gutters align-items-center">
               <div class="col-auto">
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $categories_count }} Categories</div>
+                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $categories_count }} Kategori</div>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
               Total Order</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $orders_count }} Orders</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $orders_count }} Order</div>
           </div>
           <div class="col-auto">
             <i class="fa fa-clipboard-list fa-2x text-gray-300"></i>

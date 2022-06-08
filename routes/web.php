@@ -15,6 +15,7 @@ use App\Http\Controllers\DashboardStaffController;
 use App\Http\Controllers\DashboardInvoiceController;
 use App\Http\Controllers\DashboardPaymentController;
 use App\Http\Controllers\DashboardProductionController;
+use App\Http\Controllers\DashboardInstallmentController;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
@@ -185,3 +186,7 @@ Route::resource('/dashboard/payments', DashboardPaymentController::class)->middl
 Route::get('/dashboard/productions/checkOrder', [DashboardProductionController::class, 'checkOrder'])->middleware('auth');
 
 Route::resource('/dashboard/productions', DashboardProductionController::class)->middleware('auth');
+
+Route::get('/dashboard/installments/checkProduction', [DashboardInstallmentController::class, 'checkProduction'])->middleware('auth');
+
+Route::resource('/dashboard/installments', DashboardInstallmentController::class)->middleware('auth');

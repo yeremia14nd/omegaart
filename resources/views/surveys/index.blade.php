@@ -10,21 +10,20 @@
         @endif
         <div
             class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Your Survey Schedule List</h1>
+            <h1 class="h2">Daftar Survey Anda</h1>
         </div>
 
         <div class="table-responsive">
-            {{-- <a href="/dashboard/products/create" class="btn btn-primary m-2">Create New Product</a> --}}
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">City</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Survey Date</th>
-                        <th scope="col">Survey Time</th>
+                        <th scope="col">Produk</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">Kota</th>
+                        <th scope="col">Deskripsi</th>
+                        <th scope="col">Tanggal Survey</th>
+                        <th scope="col">Waktu Survey</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -39,9 +38,14 @@
                         <td>{{ $survey->surveyDate }}</td>
                         <td>{{ $survey->surveyTime }}</td>
                         <td>
+                            @if ($survey->order->is_surveyed)
+                            <span class="badge badge-pill badge-success text-dark">Sudah disurvey <i
+                                    class="bi bi-check-circle-fill"></i></br> Menunggu Invoice</span>
+                            @else
                             <a href="/surveys/{{ $survey->id }}/edit" class="badge bg-warning">
-                                <span data-feather="edit"></span> Change Schedule
+                                <span data-feather="edit"></span> Ubah Jadwal
                             </a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

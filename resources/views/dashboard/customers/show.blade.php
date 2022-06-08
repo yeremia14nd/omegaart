@@ -7,17 +7,16 @@
     </div>
     <div class="row">
         <div class="col-lg-8">
-            <a href="/dashboard/customers" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Back
-                to
-                All Customers</a>
+            <a href="/dashboard/customers" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali
+                ke Semua Customer</a>
             <a href="/dashboard/customers/{{ $customer->userName }}/edit" class="btn btn-warning mb-3"> <span
-                    data-feather="edit"></span> Edit</a>
+                    data-feather="edit"></span> Ubah</a>
             <form action="/dashboard/customers/{{ $customer->userName }}" method="post" class="d-inline">
                 @method('delete')
                 @csrf
                 <button class="btn btn-danger mb-3"
-                    onclick="return confirm('Are you sure to delete this customer?')"><span
-                        data-feather="x-circle"></span> Delete</button>
+                    onclick="return confirm('Apakah anda yakin ingin menghapus Customer ini?')"><span
+                        data-feather="x-circle"></span> Hapus</button>
             </form>
             <div class="row">
                 <div class="col-md text-center">
@@ -41,11 +40,11 @@
                             <td>: {{ $customer->email }}</td>
                         </tr>
                         <tr>
-                            <td>Address</td>
+                            <td>Alamat</td>
                             <td>: {{ $customer->address }}</td>
                         </tr>
                         <tr>
-                            <td>Phone</td>
+                            <td>Telepon</td>
                             <td>: {{ $customer->phoneNumber }}</td>
                         </tr>
                     </table>

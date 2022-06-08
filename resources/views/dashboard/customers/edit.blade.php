@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-<a href="/dashboard/customers" class="btn btn-success my-3"> <span data-feather="arrow-left"></span> Back to
-    All Customers</a>
+<a href="/dashboard/customers" class="btn btn-success my-3"> <span data-feather="arrow-left"></span> Kembali ke Semua
+    Customer</a>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Edit Customer</h1>
+    <h1 class="h2">Ubah Customer</h1>
 </div>
 
 <div class="col-lg-8">
@@ -14,7 +14,7 @@
         @method('put')
         @csrf
         <div class="mb-3">
-            <label for="name" class="form-label">Name Of customer</label>
+            <label for="name" class="form-label">Nama Customer</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror " id="name" name="name" autofocus
                 value="{{ old('name', $customer->name) }}">
             @error('name')
@@ -41,7 +41,7 @@
                 readonly>
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Customer Image</label>
+            <label for="image" class="form-label">Gambar Customer</label>
             <input type="hidden" name="oldImage" value="{{ $customer->imageAssets }}">
             @if ($customer->imageAssets)
             <img src="{{ asset('storage/' . $customer->imageAssets) }}"
@@ -57,21 +57,21 @@
             </div>
             @enderror
         </div>
-        <label for="address" class="form-label">Address</label>
+        <label for="address" class="form-label">Alamat</label>
         <div class="input-group mb-3">
-            <span class="input-group-text">Address</span>
+            <span class="input-group-text">Alamat</span>
             <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
                 placeholder=" @error('address') {{ $message }} @enderror "
                 value="{{ old('address', $customer->address) }}">
         </div>
-        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <label for="phoneNumber" class="form-label">Telepon</label>
         <div class="input-group mb-3">
             <input type="tel" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
                 name="phoneNumber" placeholder=" @error('phoneNumber') {{ $message }} @enderror "
                 value="{{ old('phoneNumber', $customer->phoneNumber) }}">
         </div>
 
-        <button type="submit" class="btn btn-primary">Edit customer</button>
+        <button type="submit" class="btn btn-primary">Ubah Customer</button>
     </form>
 </div>
 

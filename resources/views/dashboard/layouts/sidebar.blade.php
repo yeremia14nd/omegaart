@@ -7,12 +7,7 @@
           Dashboard
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link {{ Request::is('dashboard/products*') ? 'active' : '' }}" href="/dashboard/products">
-          <span data-feather="box"></span>
-          Products
-        </a>
-      </li>
+
     </ul>
     @canany(['superadmin','admin'])
     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-1 text-muted">
@@ -20,57 +15,69 @@
     </h6>
     <ul class="nav flex-column">
       <li class="nav-item">
+        <a class="nav-link {{ Request::is('dashboard/products*') ? 'active' : '' }}" href="/dashboard/products">
+          <span data-feather="box"></span>
+          Produk
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/categories*') ? 'active' : '' }}" href="/dashboard/categories">
           <span data-feather="grid"></span>
-          Categories of Product
+          Kategori Produk
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/customers*') ? 'active' : '' }}" href="/dashboard/customers">
           <span data-feather="users"></span>
-          Customers List
+          Daftar Customer
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/orders*') ? 'active' : '' }}" href="/dashboard/orders">
           <span data-feather="shopping-bag"></span>
-          Orders
+          Order
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/surveys*') ? 'active' : '' }}" href="/dashboard/surveys">
           <span data-feather="map"></span>
-          Surveys
+          Survey
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/invoices*') ? 'active' : '' }}" href="/dashboard/invoices">
-          <span data-feather="credit-card"></span>
-          Invoices For Survey Order
+          <span data-feather="file-text"></span>
+          Invoice untuk Order
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/payments*') ? 'active' : '' }}" href="/dashboard/payments">
           <span data-feather="credit-card"></span>
-          Payments For Invoice Order
+          Pembayaran Invoice Order
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/confirmation*') ? 'active' : '' }}" href="/dashboard/confirmation">
           <span data-feather="credit-card"></span>
-          Payments For Available Order
+          Pembayaran Available Produk
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/productions*') ? 'active' : '' }}" href="/dashboard/productions">
           <span data-feather="refresh-cw"></span>
-          Productions
+          Produksi
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('dashboard/installments*') ? 'active' : '' }}" href="/dashboard/installments">
+          <span data-feather="check-circle"></span>
+          Pemasangan
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/staffs*') ? 'active' : '' }}" href="/dashboard/staffs">
           <span data-feather="users"></span>
-          All Staff
+          Daftar Staff
         </a>
       </li>
     </ul>

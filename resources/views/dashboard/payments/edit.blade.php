@@ -2,17 +2,17 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Update Payment</h1>
+    <h1 class="h2">Perbaharui Pembayaran</h1>
 </div>
-<a href="/dashboard/payments" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Back to
-    All Payment</a>
+<a href="/dashboard/payments" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali ke Semua
+    Pembayaran</a>
 
 <div class="col-lg-8">
     <form method="post" action="/dashboard/payments/{{ $payment->id }}" class="mb-5" enctype="multipart/form-data">
         @method('put')
         @csrf
         <div class="mb-3">
-            <label for="name" class="form-label">Name Of Customer to payment</label>
+            <label for="name" class="form-label">Nama Customer yang membayar</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                 value="{{ old('name', $payment->user->name)}}" readonly>
         </div>
@@ -22,7 +22,7 @@
         </div>
         @enderror
         <div class="mb-3">
-            <label for="product" class="form-label">Product</label>
+            <label for="product" class="form-label">Produk</label>
             <input type="text" class="form-control @error('product') is-invalid @enderror" id="product" name="product"
                 value="{{ old('product', $payment->invoice->order->product->name)}}" readonly>
             @error('product')
@@ -36,7 +36,7 @@
             {{ $message }}
         </div>
         @enderror
-        <label for="has_paid_down_payment" class="form-label">Pay Down Payment</label>
+        <label for="has_paid_down_payment" class="form-label">Pembayaran Down Payment</label>
         <select class="form-select mb-3" @error('has_paid_down_payment') is-invalid @enderror"
             id="has_paid_down_payment" name="has_paid_down_payment">
             <option value='0' @if (old('has_paid_down_payment', $payment->has_paid_down_payment) == 0)
@@ -48,7 +48,7 @@
                 @endif>Sudah DP
             </option>
         </select>
-        <label for="has_paid_full" class="form-label">Pay Full</label>
+        <label for="has_paid_full" class="form-label">Pembayaran Full</label>
         <select class="form-select mb-3" @error('has_paid_full') is-invalid @enderror" id="has_paid_full"
             name="has_paid_full">
             <option value='0' @if (old('has_paid_full', $payment->has_paid_full) == 0)
@@ -60,7 +60,7 @@
                 @endif>Sudah Lunas
             </option>
         </select>
-        <label for="is_confirmed" class="form-label">Konfirmasi Data</label>
+        <label for="is_confirmed" class="form-label">Konfirmasi Bukti Tranfer</label>
         <select class="form-select mb-3" @error('is_confirmed') is-invalid @enderror" id="is_confirmed"
             name="is_confirmed">
             <option value='0' @if (old('is_confirmed', $payment->is_confirmed) == 0)
@@ -72,14 +72,14 @@
                 @endif>Sudah dikonfirmasi
             </option>
         </select>
-        <label for="description" class="form-label">Description of the Payment</label>
+        <label for="description" class="form-label">Deskripsi Pembayaran</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                 name="description" placeholder=" @error('description') {{ $message }} @enderror "
                 value="{{ old('description', $payment->description) }}" readonly>
         </div>
         <div class="mb-3">
-            <label for="image_asset" class="form-label">Payment Files</label>
+            <label for="image_asset" class="form-label">File Pembayaran</label>
             @if ($payment->image_asset)
             <img src="{{ asset('storage/' . $payment->image_asset) }}"
                 class="img-preview img-fluid mb-3 col-sm-5 d-block">
@@ -92,7 +92,7 @@
             </div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Update Payment</button>
+        <button type="submit" class="btn btn-primary">Perbaharui Pembayaran</button>
     </form>
 </div>
 

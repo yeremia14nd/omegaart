@@ -35,7 +35,8 @@
           <div class="row justify-content-between">
             <div class="col-md-4">
               <h2>OMEGA ART</h2>
-              <p>Omega Art is a producer and installer of interior and exterior for building.</p>
+              <p>Omega Art merupakan perusahaan yang bergerak dibidang pengerjaan dan pemasangan produk
+                interior dan eksterior untuk bangunan anda..</p>
             </div>
             <div class="col-2">
               <h5>Links</h5>

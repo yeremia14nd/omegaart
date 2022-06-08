@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Products</h1>
+    <h1 class="h2">Semua Produk</h1>
 </div>
 
 @if (session()->has('success'))
@@ -12,15 +12,15 @@
 @endif
 
 <div class="table-responsive">
-    <a href="/dashboard/products/create" class="btn btn-primary m-2">Create New Product</a>
+    <a href="/dashboard/products/create" class="btn btn-primary m-2">Tambah Produk</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Produk</th>
                 <th scope="col">Kategori</th>
-                <th scope="col">Image</th>
-                <th scope="col">Work Duration</th>
+                <th scope="col">gambar</th>
+                <th scope="col">Durasi Kerja</th>
                 <th scope="col">Harga</th>
                 <th scope="col">Action</th>
             </tr>
@@ -33,7 +33,7 @@
                 <td>{{ $product->category->name }}</td>
                 <td><img id="image" src="{{ asset('storage/' . $product->imageAssets) }}" class="img-fluid" width="50"
                         alt="{{ $product->category->name }}"></td>
-                <td>{{ $product->workDuration }} Days</td>
+                <td>{{ $product->workDuration }} Hari</td>
                 <td>Rp. {{ number_format($product->price / 1, 0) }}</td>
                 <td>
                     <a href="/dashboard/products/{{ $product->slug }}" class="badge bg-info">
@@ -46,7 +46,7 @@
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Are you sure to delete this product?')"><span
+                            onclick="return confirm('Apakah anda yakin ingin menghapus produk ini?')"><span
                                 data-feather="x-circle"></span></button>
                     </form>
                 </td>

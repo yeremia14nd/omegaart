@@ -6,8 +6,8 @@
     <div class="col-md-8 mx-auto">
       <h1 class="fw-bold mb-4">{{ $title }}</h1>
       <p>
-        <a href="/shop" class="btn btn-outline-info btn-lg px-4 me-sm-3">All Products</a>
-        <a href="/categories" class="btn btn-outline-info btn-lg px-4">Categories</a>
+        <a href="/shop" class="btn btn-outline-info btn-lg px-4 me-sm-3">Semua Produk</a>
+        <a href="/categories" class="btn btn-outline-info btn-lg px-4">Kategori</a>
       </p>
     </div>
   </div>

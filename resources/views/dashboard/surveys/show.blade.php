@@ -7,52 +7,52 @@
     </div>
     <div class="row">
         <div class="col-lg-8">
-            <a href="/dashboard/surveys" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Back to
-                All Survey</a>
+            <a href="/dashboard/surveys" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali
+                ke Semua Survey</a>
             <a href="/dashboard/surveys/{{ $survey->id}}/edit" class="btn btn-warning mb-3"> <span
-                    data-feather="edit"></span> Edit</a>
+                    data-feather="edit"></span> Ubah</a>
             <form action="/dashboard/surveys/{{ $survey->id }}" method="post" class="d-inline">
                 @method('delete')
                 @csrf
                 <button class="btn btn-danger mb-3"
-                    onclick="return confirm('Are you sure to delete this survey?')"><span
-                        data-feather="x-circle"></span> Delete</button>
+                    onclick="return confirm('Apakah anda yakin ingin menghapus survey ini?')"><span
+                        data-feather="x-circle"></span> Hapus</button>
             </form>
             <div class="row">
                 <div class="col-md">
-                    <h1 class="mb-2 text-muted">Product: {{ $survey->order->product->name }}</h1>
+                    <h1 class="mb-2 text-muted">Produk: {{ $survey->order->product->name }}</h1>
                     <table class="table">
                         <tr>
-                            <td>Customer Name</td>
+                            <td>Nama Customer</td>
                             <td>: {{ $survey->order->user->name }}</td>
                         </tr>
                         <tr>
-                            <td>Address</td>
+                            <td>Alamat</td>
                             <td>: {{ $survey->address }}</td>
                         </tr>
                         <tr>
-                            <td>City</td>
+                            <td>Kota</td>
                             <td>: {{ $survey->city }}</td>
                         </tr>
                         <tr>
-                            <td>Phone Number</td>
+                            <td>Telepon</td>
                             <td>: {{ $survey->phoneNumber }}</td>
                         </tr>
                         <tr>
-                            <td>Survey Date</td>
+                            <td>Tanggal Survey</td>
                             <td>: {{ $survey->surveyDate }}</td>
                         </tr>
                         <tr>
-                            <td>Survey Time</td>
+                            <td>Waktu Survey</td>
                             <td>: {{ $survey->surveyTime }}</td>
                         </tr>
                         <tr>
-                            <td>Survey Assign To</td>
+                            <td>Surveyor Bertugas</td>
                             <td>: @if ($survey->assignTo)
                                 {{ $survey->assignTo }}
                                 @else
-                                <a href="/dashboard/surveys/{{ $survey->id}}/edit" class="badge bg-primary">Assign
-                                    Role</a>
+                                <a href="/dashboard/surveys/{{ $survey->id}}/edit" class="badge bg-primary">Pilih
+                                    Surveyor</a>
                                 @endif
                             </td>
                         </tr>

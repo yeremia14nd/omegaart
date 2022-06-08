@@ -7,10 +7,9 @@
             <img src="/img/bg_home1.png" width="100%" class="center img-thumbnail text-center" alt="Omega Art">
         </div>
         <div class="col-md-6 align-items-center">
-            <h2 class="py-4">About us</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis,
-                lectus magna fringilla urna, porttitor. </br> Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor</p>
+            <h2 class="py-4">Tentang Kami</h2>
+            <p>Kami adalah perusahaan yang bergerak di bidang pengerjaan dan pemasangan produk-produk aluminium, kaca,
+                interior & exterior window blinds (gorden) dll</p>
         </div>
     </div>
 
@@ -18,7 +17,7 @@
 
     {{-- Projects Example --}}
     <div class="row">
-        <h1 class="text-center my-3">Our Projects</h1>
+        <h1 class="text-center my-3">Proyek Kami</h1>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col-md-4 mb-3">
                 <div class="card shadow-sm">

@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-<a href="/dashboard/categories" class="btn btn-success my-3"> <span data-feather="arrow-left"></span> Back to
-    All Categories</a>
+<a href="/dashboard/categories" class="btn btn-success my-3"> <span data-feather="arrow-left"></span> Kembali ke Semua
+    Kategori</a>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"> Edit Category</h1>
+    <h1 class="h2"> Ubat Kategori</h1>
 </div>
 
 <div class="col-lg-8">
@@ -12,7 +12,7 @@
         @method('put')
         @csrf
         <div class="mb-3">
-            <label for="name" class="form-label">Name Of Category</label>
+            <label for="name" class="form-label">Nama Kategori</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror " id="name" name="name" autofocus
                 value="{{ old('name', $category->name) }}">
             @error('name')
@@ -35,7 +35,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="image" class="form-label">Category Image</label>
+            <label for="image" class="form-label">Gambar Kategori</label>
             <input type="hidden" name="oldImage" value="{{ $category->imageAssets }}">
             @if ($category->imageAssets)
             <img src="{{ asset('storage/' . $category->imageAssets) }}"
@@ -53,7 +53,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
+            <label for="description" class="form-label">Deskripsi</label>
             <input id="description" type="hidden" name="description" class="@error('description') is-invalid @enderror"
                 value="{{ old('description', $category->description) }}">
             <trix-editor input="description"></trix-editor>
@@ -64,7 +64,7 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Edit Category</button>
+        <button type="submit" class="btn btn-primary">Ubah Kategori</button>
     </form>
 </div>
 

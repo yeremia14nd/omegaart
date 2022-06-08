@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Customers List</h1>
+    <h1 class="h2">Daftar Customer</h1>
 </div>
 
 @if (session()->has('success'))
@@ -12,15 +12,15 @@
 @endif
 
 <div class="table-responsive">
-    <a href="/dashboard/customers/create" class="btn btn-primary m-2">Create New customer</a>
+    <a href="/dashboard/customers/create" class="btn btn-primary m-2">Tambah Customer Baru</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Customer</th>
                 <th scope="col">Username</th>
-                <th scope="col">Address</th>
-                <th scope="col">Phone Number</th>
+                <th scope="col">Alamat</th>
+                <th scope="col">Telepon</th>
                 <th scope="col">Order</th>
                 <th scope="col">Status Order</th>
                 <th scope="col">Action</th>
@@ -47,7 +47,7 @@
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Are you sure to delete this customer?')"><span
+                            onclick="return confirm('Apakah anda yakin ingin menghapus Customer ini?')"><span
                                 data-feather="x-circle"></span></button>
                     </form>
                 </td>

@@ -6,11 +6,9 @@
 
     <a href="/profil/{{ $user->userName }}" class="btn btn-success my-3 col-sm-2"> <span
             data-feather="arrow-left"></span>
-        Back
-        to
-        Profil</a>
+        Kembali ke Profil</a>
     <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Edit Profile</h1>
+        <h1 class="h2">Ubah Profil</h1>
     </div>
 
     <div class="col-lg-6">
@@ -19,7 +17,7 @@
             @method('put')
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
+                <label for="name" class="form-label">Nama</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror " id="name" name="name"
                     autofocus value="{{ old('name', $user->name) }}">
                 @error('name')
@@ -39,7 +37,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">user Image</label>
+                <label for="image" class="form-label">Gambar Profil</label>
                 <input type="hidden" name="oldImage" value="{{ $user->imageAssets }}">
                 @if ($user->imageAssets)
                 <img src="{{ asset('storage/' . $user->imageAssets) }}"
@@ -62,21 +60,21 @@
                     placeholder=" @error('email') {{ $message }} @enderror " value="{{ old('email', $user->email) }}">
             </div>
 
-            <label for="address" class="form-label">Address</label>
+            <label for="address" class="form-label">Alamat</label>
             <div class="input-group mb-3">
-                <span class="input-group-text">Address</span>
+                <span class="input-group-text">Alamat</span>
                 <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
                     name="address" placeholder=" @error('address') {{ $message }} @enderror "
                     value="{{ old('address', $user->address) }}">
             </div>
-            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <label for="phoneNumber" class="form-label">Nomor Telepon</label>
             <div class="input-group mb-3">
                 <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
                     name="phoneNumber" placeholder=" @error('phoneNumber') {{ $message }} @enderror "
                     value="{{ old('phoneNumber', $user->phoneNumber) }}">
             </div>
 
-            <button type="submit" class="btn btn-primary">Edit Profil</button>
+            <button type="submit" class="btn btn-primary">Ubah Profil</button>
         </form>
     </div>
 </div>

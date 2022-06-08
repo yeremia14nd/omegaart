@@ -10,7 +10,7 @@
         @endif
         <div
             class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Invoice List</h1>
+            <h1 class="h2">Daftar Invoice</h1>
         </div>
 
         <div class="table-responsive">
@@ -19,10 +19,10 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Order Id</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Total Price</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Invoice File</th>
+                        <th scope="col">Produk</th>
+                        <th scope="col">Harga Total</th>
+                        <th scope="col">Deskripsi</th>
+                        <th scope="col">File Invoice</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -37,11 +37,11 @@
                         <td><a href="/dashboard/invoices/download/{{ $invoice->id }}">{{ $invoice->fileAsset }}</a></td>
                         <td>
                             @if ($invoice->is_paid_confirmed)
-                            <span class="badge badge-pill badge-success text-dark">Confirmed Paid <i
-                                    class="bi bi-check-circle-fill"></i></br>Product in Production</span>
+                            <span class="badge badge-pill badge-success text-dark">Pembayaran terkonfirmasi <i
+                                    class="bi bi-check-circle-fill"></i></br>Produk dalam Produksi</span>
                             @elseif ($invoice->order->is_paid_invoiced)
-                            <span class="badge badge-pill badge-success text-dark">Has Paid <i
-                                    class="bi bi-check-circle"></i></br>Waiting Confirmation</span>
+                            <span class="badge badge-pill badge-success text-dark">Sudah dibayar <i
+                                    class="bi bi-check-circle"></i></br>Menunggu Konfirmasi</span>
                             @else
                             <form action="/payments/create" method="get">
                                 <div class="d-grid gap-2">
@@ -49,8 +49,8 @@
                                         id="invoice_id" name="invoice_id" value="{{ $invoice->id }}">
                                     <input type="hidden" class="form-control @error('user_id') is-invalid @enderror "
                                         id="user_id" name="user_id" value="{{ auth()->user()->id }}">
-                                    <button type="submit" class="badge bg-success border-0">Continue
-                                        Payment</button>
+                                    <button type="submit" class="badge bg-success border-0">Lanjutkan
+                                        pembayaran</button>
                                 </div>
                             </form>
                             @endif

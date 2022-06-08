@@ -12,7 +12,7 @@
 @endif
 
 <div class="table-responsive">
-    <a href="/dashboard/orders/create" class="btn btn-primary m-2">Create New order</a>
+    <a href="/dashboard/orders/create" class="btn btn-primary m-2">Tambah Order Baru</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
@@ -20,14 +20,14 @@
                 <th scope="col">Nama Produk</th>
                 <th scope="col">Customer</th>
                 <th scope="col">Tanggal Order</th>
-                <th scope="col">Survey Schedule</th>
+                <th scope="col">Jadwal Survey</th>
                 <th scope="col">Survey</th>
                 <th scope="col">Invoice</th>
-                <th scope="col">Paid</th>
-                <th scope="col">Production</th>
-                <th scope="col">Installation</th>
+                <th scope="col">Terbayar</th>
+                <th scope="col">Produksi</th>
+                <th scope="col">Pemasangan</th>
                 <th scope="col">Final Invoice</th>
-                <th scope="col">Full Paid</th>
+                <th scope="col">Pembayaran Full</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -77,7 +77,7 @@
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Are you sure to delete this order?')"><span
+                            onclick="return confirm('Apakah anda yakin ingin menghapus order ini?')"><span
                                 data-feather="x-circle"></span></button>
                     </form>
                 </td>

@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('shop', [
-            "title" => "All Products",
+            "title" => "Semua Produk",
             "active" => 'shop',
             "products" => Product::latest()->filter(request(['search', 'category']))->paginate(9)->withQueryString()
         ]);

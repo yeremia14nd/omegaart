@@ -10,7 +10,7 @@
         @endif
         <div
             class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Profil Information</h1>
+            <h1 class="h2">Informasi Profil</h1>
         </div>
 
         <div class="col-md-8">
@@ -25,7 +25,7 @@
                         <form action="/profil/{{ $userprofile->userName }}/edit" method="get">
                             @csrf
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-outline-primary">Edit Profil</button>
+                                <button type="submit" class="btn btn-outline-primary">Ubah Profil</button>
                             </div>
                         </form>
                     </div>
@@ -39,11 +39,11 @@
                             <td>: {{ $userprofile->userName}}</td>
                         </tr>
                         <tr>
-                            <td>No Telephone</td>
+                            <td>Nomor Telepon</td>
                             <td>: {{ $userprofile->phoneNumber }}</td>
                         </tr>
                         <tr>
-                            <td>Address</td>
+                            <td>Alamat</td>
                             <td>: {{ $userprofile->address }}</td>
                         </tr>
                     </table>
@@ -52,8 +52,7 @@
                         <form action="/profil/{{ $userprofile->userName }}/edit" method="get">
                             @csrf
                             <div class="d-grid gap-2">
-                                {{-- <a href="" class="btn btn-primary">Add To Cart</a> --}}
-                                <button type="submit" class="btn btn-primary">Change Password</button>
+                                <button type="submit" class="btn btn-primary">Ubah Password</button>
                             </div>
                         </form>
                     </div>

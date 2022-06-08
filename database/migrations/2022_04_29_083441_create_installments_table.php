@@ -16,13 +16,15 @@ class CreateInstallmentsTable extends Migration
         Schema::create('installments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('production_id');
-            $table->string('customer_name');
-            $table->string('product_name');
             $table->date('start_installment');
-            $table->boolean('isCustomerConfirmDate');
+            $table->time('start_installment_time');
+            $table->boolean('is_customer_confirm_date')->nullable();
             $table->string('address');
+            $table->string('city');
             $table->string('worker');
-            $table->boolean('isInstalled');
+            $table->string('file_asset')->nullable();
+            $table->boolean('is_installed')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

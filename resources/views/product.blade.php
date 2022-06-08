@@ -3,9 +3,9 @@
 @section('container')
 <div class="container">
   <div class="row justify-content-center">
-    <h5 class="col-sm-4">Detail Products</h5>
+    <h5 class="col-sm-4">Rincian Produk</h5>
     <a href="/shop" class="text-decoration-none col-sm-4 d-flex align-items-end flex-column mt-auto px-0 text-end">
-      Back to Shop
+      Kembali ke toko
     </a>
   </div>
   <div class="row justify-content-center">
@@ -17,7 +17,7 @@
         </div>
         <div class="col-md">
           <h1 class="mb-2">{{ $product->name }}</h1>
-          <p class="my-0">Price start from <b>Rp. {{ number_format($product->price / 1, 0) }},-</b></p>
+          <p class="my-0">Harga mulai dari <b>Rp. {{ number_format($product->price / 1, 0) }},-</b></p>
           <p class="mt-0 mb-2">Estimasi Pengerjaan {{ $product->workDuration }} hari kerja</p>
           <small class="text-muted p-1 border rounded " style="font-size: 0.8em">{{
             $product->productAvailability->availability
@@ -44,7 +44,7 @@
             <input type="hidden" name="product_id" value="{{ $product->id }}">
             <div class="d-grid gap-2">
               {{-- <a href="" class="btn btn-primary">Add To Cart</a> --}}
-              <button type="submit" class="btn btn-primary">Add To Cart</button>
+              <button type="submit" class="btn btn-primary">Tambahkan ke keranjang</button>
             </div>
           </form>
           @else
@@ -55,7 +55,7 @@
               <input type="hidden" class="form-control @error('product_id') is-invalid @enderror " id="product_id"
                 name="product_id" value="{{ $product->id }}">
               @endif
-              <button type="submit" class="btn btn-primary">Go Order and Survey</button>
+              <button type="submit" class="btn btn-primary">Lanjut Order dan Survey</button>
             </div>
           </form>
           @endif

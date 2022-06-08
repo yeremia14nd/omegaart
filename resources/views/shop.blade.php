@@ -7,8 +7,8 @@
     <div class="col-md-8 mx-auto">
       <h1 class="fw-bold mb-4">{{ $title }}</h1>
       <p>
-        <a href="/shop" class="btn btn-outline-info btn-lg px-4 me-sm-3">All Products</a>
-        <a href="/categories" class="btn btn-outline-info btn-lg px-4">Categories</a>
+        <a href="/shop" class="btn btn-outline-info btn-lg px-4 me-sm-3">Semua Produk</a>
+        <a href="/categories" class="btn btn-outline-info btn-lg px-4">Kategori</a>
       </p>
     </div>
   </div>
@@ -17,7 +17,7 @@
       <form action="/shop">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Search.." name="search" value="{{ request('search') }}">
-          <button class="btn btn-outline-primary" type="submit">Search</button>
+          <button class="btn btn-outline-primary" type="submit">Cari</button>
         </div>
       </form>
     </div>
@@ -39,7 +39,7 @@
             $item->productAvailability->availability
             }}</small>
           <p class="card-text pt-2">{{ $item->excerpt }}</p>
-          <a href="/products/{{ $item->slug }}" class="btn btn-primary">View Product</a>
+          <a href="/products/{{ $item->slug }}" class="btn btn-primary">Lihat Produk</a>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
   </div>
 </div>
 @else
-<p class="text-center fs-4">No Product found.</p>
+<p class="text-center fs-4">Produk tidak ditemukan</p>
 @endif
 
 

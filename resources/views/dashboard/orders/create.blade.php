@@ -1,18 +1,18 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-<a href="/dashboard/orders" class="btn btn-success my-3"> <span data-feather="arrow-left"></span> Back to
-    All Orders</a>
+<a href="/dashboard/orders" class="btn btn-success my-3"> <span data-feather="arrow-left"></span> Kembali ke Semua
+    Order</a>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Create Order</h1>
+    <h1 class="h2">Tambah Order</h1>
 </div>
 <div class="col-lg-8">
     <form method="post" action="/dashboard/orders" class="mb-5">
         @csrf
         <div class="mb-3">
-            <label for="user_id" class="form-label">Name Of Customer to order</label>
+            <label for="user_id" class="form-label">Nama Customer yang order</label>
             <select class="form-select @error('user_id') is-invalid @enderror" name="user_id">
-                <option value="" class="text-muted">Select customer...</option>
+                <option value="" class="text-muted">Pilih customer...</option>
                 @foreach ($users as $user)
                 @if (old('user_id') == $user->id)
                 <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
@@ -28,9 +28,9 @@
         </div>
         @enderror
         <div class="mb-3">
-            <label for="product_id" class="form-label">Order Product Name</label>
+            <label for="product_id" class="form-label">Nama Produk Order</label>
             <select class="form-select @error('product_id') is-invalid @enderror" name="product_id">
-                <option value="" class="text-muted">Select product...</option>
+                <option value="" class="text-muted">Pilih produk...</option>
                 @foreach ($products as $product)
                 @if (old('product_id') == $product->id)
                 <option value="{{ $product->id }}" selected>{{ $product->name }}</option>
@@ -55,7 +55,7 @@
                 value="{{ old('status') }}">
             <trix-editor input="status"></trix-editor>
         </div>
-        <button type="submit" class="btn btn-primary">Create Order</button>
+        <button type="submit" class="btn btn-primary">Tambah Order</button>
     </form>
 </div>
 

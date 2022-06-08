@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Surveys</h1>
+    <h1 class="h2">Daftar Survey</h1>
 </div>
 
 @if (session()->has('success'))
@@ -12,17 +12,17 @@
 @endif
 
 <div class="table-responsive">
-    <a href="/dashboard/surveys/create" class="btn btn-primary m-2">Create New Survey</a>
+    <a href="/dashboard/surveys/create" class="btn btn-primary m-2">Tambah Survey Baru</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Product to Survey</th>
-                <th scope="col">Survey Date</th>
-                <th scope="col">Survey Time</th>
+                <th scope="col">Nama Customer</th>
+                <th scope="col">Produk Survey</th>
+                <th scope="col">Tanggal Survey</th>
+                <th scope="col">Waktu Survey</th>
                 <th scope="col">Surveyor</th>
-                <th scope="col">Address</th>
+                <th scope="col">Alamat</th>
                 <th scope="col">File Survey</th>
                 <th scope="col">Action</th>
             </tr>
@@ -38,7 +38,8 @@
                 <td>@if ($survey->assignTo)
                     {{ $survey->assignTo }}
                     @else
-                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Please Assign Role</a>
+                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Silahkan Pilih
+                        Surveyor</a>
                     @endif
                 </td>
                 <td>{{ $survey->address }}</td>
@@ -46,7 +47,7 @@
                     <img id="image" src="{{ asset('storage/' . $survey->surveyFile) }}" class="img-fluid" width="50"
                         alt="{{ $survey->surveyFile }}">
                     @else
-                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Please Upload</a>
+                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Silahkan Upload</a>
                     @endif
                 </td>
                 <td>

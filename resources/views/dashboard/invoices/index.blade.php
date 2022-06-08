@@ -12,17 +12,17 @@
 @endif
 
 <div class="table-responsive">
-    <a href="/dashboard/invoices/create" class="btn btn-primary m-2">Create New invoice</a>
+    <a href="/dashboard/invoices/create" class="btn btn-primary m-2">Buat Invoice Baru</a>
     <table class="table table-striped table-sm">
         @if ($invoices->has([0]))
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Order Code</th>
-                <th scope="col">Customer Name</th>
+                <th scope="col">Nama Customer</th>
                 <th scope="col">Estimator</th>
-                <th scope="col">Total Price</th>
-                <th scope="col">Description</th>
+                <th scope="col">Total Harga</th>
+                <th scope="col">Deskripsi</th>
                 <th scope="col">File</th>
                 <th scope="col">Action</th>
             </tr>
@@ -50,7 +50,7 @@
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Are you sure to delete this invoice?')"><span
+                            onclick="return confirm('Apakah anda yakin ingin menghapus Invoice ini?')"><span
                                 data-feather="x-circle"></span></button>
                     </form>
                 </td>
@@ -58,7 +58,7 @@
             @endforeach
         </tbody>
         @else
-        <h3 class="my-3 text-muted">there is no Invoices</h3>
+        <h3 class="my-3 text-muted">Belum ada Invoice</h3>
         @endif
     </table>
 </div>

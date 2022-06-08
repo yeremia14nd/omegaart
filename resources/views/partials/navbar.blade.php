@@ -13,13 +13,13 @@
             <a class="nav-link {{ ($active === 'home') ? 'active' : '' }}" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ ($active === 'about') ? 'active' : '' }}" href="/about">About</a>
+            <a class="nav-link {{ ($active === 'about') ? 'active' : '' }}" href="/about">Tentang</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ ($active === 'contact') ? 'active' : '' }}" href="/contact">Contact</a>
+            <a class="nav-link {{ ($active === 'contact') ? 'active' : '' }}" href="/contact">Kontak</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ ($active === 'shop') ? 'active' : '' }}" href="/shop">Shop</a>
+            <a class="nav-link {{ ($active === 'shop') ? 'active' : '' }}" href="/shop">Toko</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{ ($active === 'cart') ? 'active' : '' }}" href="/cart">Cart</a>

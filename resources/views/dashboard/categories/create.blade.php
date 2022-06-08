@@ -1,17 +1,17 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-<a href="/dashboard/categories" class="btn btn-success my-3"> <span data-feather="arrow-left"></span> Back to
-    All Categories</a>
+<a href="/dashboard/categories" class="btn btn-success my-3"> <span data-feather="arrow-left"></span> Kembali ke Semua
+    Kategori</a>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"> Create New Category</h1>
+    <h1 class="h2"> Buat Kategori Baru</h1>
 </div>
 
 <div class="col-lg-8">
     <form method="post" action="/dashboard/categories" class="mb-5" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label for="name" class="form-label">Name Of Category</label>
+            <label for="name" class="form-label">Nama Kategori</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror " id="name" name="name" autofocus
                 value="{{ old('name') }}">
             @error('name')
@@ -34,7 +34,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="image" class="form-label">Category Image</label>
+            <label for="image" class="form-label">Gambar Kategori</label>
             <img class="img-preview img-fluid mb-3 col-sm-5">
             <input class="form-control @error('imageAssets') is-invalid @enderror" type="file" id="image"
                 name="imageAssets" onchange="previewImage()">
@@ -46,7 +46,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
+            <label for="description" class="form-label">Deskripsi</label>
             <input id="description" type="hidden" name="description" class="@error('description') is-invalid @enderror"
                 value="{{ old('description') }}">
             <trix-editor input="description"></trix-editor>
@@ -57,7 +57,7 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Create category</button>
+        <button type="submit" class="btn btn-primary">Buat Kategori</button>
     </form>
 </div>
 
