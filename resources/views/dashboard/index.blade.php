@@ -50,11 +50,12 @@
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                 To do List</div>
-              @if ($todo['checkout'] == 0)
+              @if ($todo['checkout'] == 0 && $todo['survey'] == 0)
               <div class="h5 mb-0 font-weight-bold text-gray-800">Tidak ada Order Atau Survey yang masuk</div>
               @else
-                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{{ url('/dashboard/confirmation') }}">{{ $todo['checkout'] }} Pesanan menunggu
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{{ url('/dashboard/confirmation') }}" style="text-decoration:none">{{ $todo['checkout'] }} Pesanan menunggu
                   dikonfirmasi.</a></div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{{ url('/dashboard/surveys') }}" style="text-decoration:none">{{ $todo['survey'] }} Survey menunggu surveyor.</a></div>
               @endif
             </div>
             <div class="col-auto">

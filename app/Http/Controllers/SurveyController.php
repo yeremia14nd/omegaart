@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notifikasi;
 use App\Models\Survey;
 use App\Http\Requests\StoreSurveyRequest;
 use App\Http\Requests\UpdateSurveyRequest;
@@ -89,6 +90,8 @@ class SurveyController extends Controller
         // $validatedData['product_id'] = $product->id;
 
         Order::where('id', $request->order_id)->update(['is_survey_scheduled' => '1']);
+
+        Notifikasi::createNotification("admin", "survey");
 
         Survey::create($validatedData);
         return redirect('/surveys')->with('success', 'Survey has been scheduled');

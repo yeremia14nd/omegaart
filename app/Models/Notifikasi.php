@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\SurveyController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -64,7 +65,8 @@ class Notifikasi extends Model
   public static function to_do_list()
   {
     $data = [
-      'checkout' => self::total_checkout()
+      'checkout' => self::total_checkout(),
+      'survey' => self::total_surveys()
     ];
     return $data;
   }
@@ -72,6 +74,12 @@ class Notifikasi extends Model
   public function total_checkout()
   {
     $data = Checkout::where('status', 1)->count();
+    return $data;
+  }
+
+  public function total_surveys()
+  {
+    $data = Survey::where('assignTo', null)->count();
     return $data;
   }
 }

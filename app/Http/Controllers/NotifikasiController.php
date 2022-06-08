@@ -10,15 +10,19 @@ class NotifikasiController extends Controller
   public function notif()
   {
     $data = [
-       'data' => Notifikasi::all_notif(),
-       'unread' => Notifikasi::unread_notif()
+      'data' => Notifikasi::all_notif(),
+      'unread' => Notifikasi::unread_notif()
     ];
     return $data;
   }
 
-  public function checkout_read($id)
+  public function checkout_read($id, $kategori)
   {
     Notifikasi::changeStatus($id);
-    return redirect('/dashboard/confirmation');
+    if ($kategori == 'checkout') {
+      return redirect('/dashboard/confirmation');
+    } elseif ($kategori == 'survey') {
+      return redirect('/dashboard/surveys');
+    }
   }
 }
