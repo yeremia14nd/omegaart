@@ -93,7 +93,7 @@
               </div>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="No Telpon">
+              <input type="text" class="form-control" name="phone_number" placeholder="No Telpon">
             </div>
           </div>
           <div class="form-section">

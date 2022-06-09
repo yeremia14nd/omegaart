@@ -22,7 +22,8 @@ class Checkout extends Model
     'shipping_address',
     'status',
     'cart_id',
-    'payment_type'
+    'payment_type',
+    'phone_number'
   ];
 
   public function cart()
@@ -35,11 +36,12 @@ class Checkout extends Model
     return $this->belongsTo('App\Models\User', 'user_id');
   }
 
-  public function updatecheckout($shipping, $payment, $payment_photo)
+  public function updatecheckout($shipping, $payment, $payment_photo, $phone)
   {
     $this->attributes['shipping_address'] = $shipping;
     $this->attributes['payment_photo'] = $payment_photo;
     $this->attributes['payment_type'] = $payment;
+    $this->attributes['phone_number'] = $phone;
     $this->attributes['status'] = 1;
     self::save();
   }
