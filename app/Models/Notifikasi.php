@@ -71,13 +71,13 @@ class Notifikasi extends Model
     return $data;
   }
 
-  public function total_checkout()
+  public static function total_checkout()
   {
     $data = Checkout::where('status', 1)->count();
     return $data;
   }
 
-  public function total_surveys()
+  public static function total_surveys()
   {
     $data = Survey::where('assignTo', null)->count();
     return $data;
