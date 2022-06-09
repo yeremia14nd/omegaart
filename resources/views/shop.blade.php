@@ -38,7 +38,7 @@
           <small class="text-muted p-1 border rounded" style="font-size: 0.8em">{{
             $item->productAvailability->availability
             }}</small>
-          <p class="card-text pt-2">{{ $item->excerpt }}</p>
+          <p class="card-text pt-2">{!! $item->excerpt !!}</p>
           <a href="/products/{{ $item->slug }}" class="btn btn-primary">Lihat Produk</a>
         </div>
       </div>

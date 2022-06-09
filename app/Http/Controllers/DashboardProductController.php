@@ -66,7 +66,7 @@ class DashboardProductController extends Controller
         }
 
         // $validatedData['employee_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->description), 25);
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->description), 150);
         // $validatedData['imageAssets'] = 'images1';
 
         Product::create($validatedData);

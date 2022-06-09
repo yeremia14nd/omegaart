@@ -24,7 +24,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ $item->name }}</h5>
           <small class="text-muted">dalam Kategori {{ $item->category->name }}</small>
-          <p class="card-text pt-2">{{ $item->excerpt }}</p>
+          <p class="card-text pt-2">{!! $item->excerpt !!}</p>
           <a href="/products/{{ $item->slug }}" class="btn btn-primary">Lihat Produk</a>
           <small class="text-muted">{{ $item->created_at->diffForHumans() }}</small>
         </div>
