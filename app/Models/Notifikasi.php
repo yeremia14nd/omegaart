@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Controllers\SurveyController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Notifikasi extends Model
 {
@@ -81,5 +82,14 @@ class Notifikasi extends Model
   {
     $data = Survey::where('assignTo', null)->count();
     return $data;
+  }
+
+  public static function surveys($id)
+  {
+   $data =  DB::table('orders AS o')
+            ->join('surveys AS s', 's.order_id', '=', 'o.id')
+            ->whereNotNull('s.assignTo')->whereNull('o.is_invoice_sent')->where('o.user_id', $id)
+            ->count();
+   return $data;
   }
 }
