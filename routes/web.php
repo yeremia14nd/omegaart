@@ -16,6 +16,7 @@ use App\Http\Controllers\DashboardInvoiceController;
 use App\Http\Controllers\DashboardPaymentController;
 use App\Http\Controllers\DashboardProductionController;
 use App\Http\Controllers\DashboardInstallmentController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HistoryController;
 use App\Models\Cart;
 use App\Models\User;
@@ -198,8 +199,11 @@ Route::resource('/installments', InstallmentController::class)->middleware('auth
 
 Route::resource('/dashboard/installments', DashboardInstallmentController::class)->middleware('auth');
 Route::get('/notif', [NotifikasiController::class, 'notif'])->name('notif');
+Route::get('/notif_customer', [NotifikasiController::class, 'notif_customer']);
 
 Route::get('/total_cart', [CartController::class, 'total_cart']);
+Route::get('/total_surveys', [SurveyController::class, 'total_surveys']);
+Route::get('/total_pemesanan', [CustomerController::class, 'total_pemesanan']);
 
 Route::get('/checkout_read/{id}/{kategori}', [NotifikasiController::class, 'checkout_read']);
 

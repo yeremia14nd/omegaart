@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 class SurveyController extends Controller
 {
@@ -160,5 +161,12 @@ class SurveyController extends Controller
     public function destroy(Survey $survey)
     {
         //
+    }
+
+    public function total_surveys()
+    {
+      $id = Auth::id();
+      $data = Survey::totalsurvey($id);
+      return $data;
     }
 }

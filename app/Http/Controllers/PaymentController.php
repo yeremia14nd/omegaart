@@ -185,13 +185,15 @@ class PaymentController extends Controller
     $kota = $request->kota;
     $kelurahan = $request->kelurahan;
     $kodepos = $request->kodepos;
+    $phone = $request->phone_number;
+
 
     $shipping_address = $address . ', ' . $kelurahan . ', ' . $kota . ', ' . $provinsi . ', ' . $kodepos;
     $payment_type = $request->payment;
 
     if ($request->file('bukti_pembayaran')) {
       $payment_photo = $request->file('bukti_pembayaran')->store('payment');
-      $checkout->updatecheckout($shipping_address, $payment_type, $payment_photo);
+      $checkout->updatecheckout($shipping_address, $payment_type, $payment_photo, $phone);
 
       // Add notification
       Notifikasi::createNotification("admin", "checkout");

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NotifikasiController extends Controller
 {
@@ -24,5 +25,12 @@ class NotifikasiController extends Controller
     } elseif ($kategori == 'survey') {
       return redirect('/dashboard/surveys');
     }
+  }
+
+  public function notif_customer(){
+    $data = [
+      'unread' => Notifikasi::surveys(Auth::id())
+    ];
+    return $data;
   }
 }
