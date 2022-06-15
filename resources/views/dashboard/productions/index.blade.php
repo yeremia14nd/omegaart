@@ -45,8 +45,9 @@
                     <img id="image" src="{{ asset('storage/' . $production->file_asset) }}" class="img-fluid" width="50"
                         alt="{{ $production->file_asset }}">
                     @else
-                    <a href="/dashboard/productions/{{ $production->id }}/edit" class="badge bg-primary">Please
-                        Upload</a>
+                    <a href="/dashboard/productions/{{ $production->id }}/confirmProduction"
+                        class="badge bg-primary">Konfirmasi Selesai <br>
+                        Silahkan unggah Gambar</a>
                     @endif
                 </td>
                 <td>

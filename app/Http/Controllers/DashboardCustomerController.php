@@ -47,10 +47,6 @@ class DashboardCustomerController extends Controller
             'phoneNumber' => 'required',
         ];
 
-        // if ($request->userName != $user->userName) {
-        //     $rules['userName'] = 'required|unique:users';
-        // }
-
         $validatedData = $request->validate($rules);
         $validatedData['password'] = bcrypt('password');
         $validatedData['is_role'] = 5; // number 5 is customer role
@@ -58,7 +54,6 @@ class DashboardCustomerController extends Controller
         $validatedData['imageAssets'] = $request->file('imageAssets')->store('product-images');
 
         User::create($validatedData);
-        // User::where('id', $user->id)->update($validatedData);
 
         return redirect('/dashboard/customers')->with('success', 'Customers has been created!');
     }

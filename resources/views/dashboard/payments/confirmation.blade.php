@@ -42,7 +42,7 @@
         @else
         <td>Bank Transfer</td>
         @endif
-        <td>Rp. {{ number_format($row->cart->total, 2) }}</td>
+        <td>Rp. {{ number_format($row->cart->total) }}</td>
         <td>
           @if(isset($row->payment_photo))
           <a href="{{ asset('storage/' . $row->payment_photo) }}" target="_blank"><img

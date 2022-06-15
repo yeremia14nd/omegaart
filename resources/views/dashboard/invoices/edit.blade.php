@@ -11,24 +11,16 @@
     <form method="post" action="/dashboard/invoices/{{ $invoice->id }}" class="mb-5" enctype="multipart/form-data">
         @method('put')
         @csrf
-        <div class="my-3">
-            <label for="order_id" class="form-label">Nama Order</label>
-            <select class="form-select @error('order_id') is-invalid @enderror" name="order_id" id="order_id">
-                @foreach ($orders as $order)
-                <option value="">Silahkan Pilih Order</option>
-                @if (old('order_id', $invoice->order_id) == $order->id)
-                <option value="{{ $order->id }}" selected>{{ $order->product->name }} </option>
-                @else
-                <option value="{{ $order->id }}">{{ $order->product->name }} </option>
-                @endif
-                @endforeach
-            </select>
+        <div class="mb-3">
+            <label for="text" class="form-label">Nama Order</label>
+            <input type="text" class="form-control @error('order_id') is-invalid @enderror" id="order_id"
+                name="order_id" value="{{ old('order_id', $invoice->order->product->name)}}" readonly>
+            @error('order_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('order_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <div class="mb-3">
             <label for="text" class="form-label">Estimator</label>
             <input type="text" class="form-control @error('created_by') is-invalid @enderror" id="created_by"
@@ -69,7 +61,7 @@
             </div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Perbaharui Invoice</button>
+        <button type="submit" class="btn btn-primary">Ubah Invoice</button>
     </form>
 </div>
 

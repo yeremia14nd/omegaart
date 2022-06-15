@@ -130,6 +130,41 @@ class DashboardInstallmentController extends Controller
         return redirect('/dashboard/installments')->with('success', 'Informasi Pemasangan telah diperbaharui!');
     }
 
+    public function updateConfirmInstallment(Installment $installment)
+    {
+        return view('dashboard.installments.confirm-installment', [
+            'installment' => $installment,
+        ]);
+    }
+
+    public function confirmInstallment(Request $request, Installment $installment)
+    {
+        $rules = [
+            'file_asset' => 'required|image|file|max:10240',
+            'is_installed' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('file_asset')) {
+            if ($request->oldFile) {
+                Storage::delete($request->oldFile);
+            }
+            $validatedData['file_asset'] = $request->file('file_asset')->store('installment-files');
+            if ($request->is_installed) {
+                Order::where('id', $installment->production->order_id)->update(['is_productioned' => 1]);
+            }
+        }
+
+        if ($request->is_installed) {
+            Order::where('id', $installment->production->order_id)->update(['is_installed' => 1]);
+        }
+
+        Installment::where('id', $installment->id)->update($validatedData);
+
+        return redirect('/dashboard/installments')->with('success', 'Konfirmasi produk sudah terpasang!');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

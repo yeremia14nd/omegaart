@@ -122,7 +122,7 @@
                       <p class="title">{{ $detail->product->name }}</p>
                       <span class="qty">Qty : {{ $detail->quantity }}</span>
                     </div>
-                    <p class="price">Rp. {{ number_format($detail->price, 2) }}</p>
+                    <p class="price">Rp. {{ number_format($detail->price) }}</p>
                   </div>
                 </div>
                 @endforeach
@@ -137,7 +137,7 @@
               <div class="ringkasan d-flex flex-column">
                 <div class="information d-flex justify-content-between">
                   <p>Total Biaya</p>
-                  <b>Rp. {{ number_format($cart_item->total, 2) }}</b>
+                  <b>Rp. {{ number_format($cart_item->total) }}</b>
                 </div>
               </div>
               <hr class="my-4">
@@ -227,7 +227,7 @@
                     <p class="title">{{ $detail->product->name }}</p>
                     <span class="qty">Qty : {{ $detail->quantity }}</span>
                   </div>
-                  <p class="price">Rp. {{ number_format($detail->price, 2) }}</p>
+                  <p class="price">Rp. {{ number_format($detail->price) }},-</p>
                 </div>
               </div>
               @endforeach

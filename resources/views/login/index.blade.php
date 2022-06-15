@@ -41,7 +41,7 @@
           </div>
           <button class="w-100 btn btn-lg btn-primary mt-4" type="submit">Login</button>
         </form>
-        <small class="d-block text-center my-3">Belum Terdaftar? <a href="/register">Daftar Sekarang!</a></small>
+        <small class="d-block text-center my-3">Belum Terdaftar? <a href="/register">Daftar</a> sekarang!</small>
       </main>
     </div>
   </div>

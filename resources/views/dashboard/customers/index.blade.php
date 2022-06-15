@@ -19,10 +19,10 @@
                 <th scope="col">#</th>
                 <th scope="col">Nama Customer</th>
                 <th scope="col">Username</th>
+                <th scope="col">Email</th>
                 <th scope="col">Alamat</th>
                 <th scope="col">Telepon</th>
-                <th scope="col">Order</th>
-                <th scope="col">Status Order</th>
+                <th scope="col">Foto Profil</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -32,10 +32,11 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $customer->name }}</td>
                 <td>{{ $customer->userName}}</td>
+                <td>{{ $customer->email}}</td>
                 <td>{{ $customer->address}}</td>
                 <td>{{ $customer->phoneNumber}}</td>
-                <td>Order</td>
-                <td>Status order</td>
+                <td><img id="image" src="{{ asset('storage/' . $customer->imageAssets) }}" class="img-fluid" width="50"
+                        alt="{{ $customer->username }}"></td>
                 <td>
                     <a href="/dashboard/customers/{{ $customer->userName }}" class="badge bg-info">
                         <span data-feather="eye"></span>

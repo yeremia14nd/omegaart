@@ -29,6 +29,16 @@
         </div>
         @enderror
         <div class="mb-3">
+            <label for="text" class="form-label">Nama Customer</label>
+            <input type="text" class="form-control @error('customer') is-invalid @enderror" id="customer"
+                name="customer" value="{{ old('customer')}}" readonly>
+            @error('customer')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
+        <div class="mb-3">
             <label for="text" class="form-label">Estimator</label>
             <input type="text" class="form-control @error('created_by') is-invalid @enderror" id="created_by"
                 name="created_by" value="{{ old('created_by', auth()->user()->name)}}" readonly>
@@ -83,6 +93,16 @@
             imgPreview.src = oFREvent.target.result;
         }
     }
+    const order_id = document.querySelector('#order_id');
+    const customer = document.querySelector('#customer');
+
+    order_id.addEventListener('change', function() {
+        fetch('/dashboard/invoices/checkOrder?order_id=' + order_id.value)
+            .then(response => response.json())
+            .then(data => [
+            customer.value = data.name,                                   
+         ])        
+    }); 
 </script>
 
 @endsection

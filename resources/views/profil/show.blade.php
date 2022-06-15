@@ -49,7 +49,7 @@
                     </table>
 
                     <div class="col-md-6 my-3">
-                        <form action="/profil/{{ $userprofile->userName }}/edit" method="get">
+                        <form action="/profil/{{ $userprofile->userName }}/editPassword" method="get">
                             @csrf
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary">Ubah Password</button>

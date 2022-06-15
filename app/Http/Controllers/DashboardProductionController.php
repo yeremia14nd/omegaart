@@ -137,6 +137,41 @@ class DashboardProductionController extends Controller
      * @param  \App\Models\Production  $production
      * @return \Illuminate\Http\Response
      */
+    public function updateConfirmProduction(Production $production)
+    {
+        return view('dashboard.productions.confirm-production', [
+            'production' => $production,
+        ]);
+    }
+
+    public function confirmProduction(Request $request, Production $production)
+    {
+        $rules = [
+            'file_asset' => 'required|image|file|max:10240',
+            'isFinished' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('file_asset')) {
+            if ($request->oldFile) {
+                Storage::delete($request->oldFile);
+            }
+            $validatedData['file_asset'] = $request->file('file_asset')->store('production-files');
+            if ($request->isFinished) {
+                Order::where('id', $production->order_id)->update(['is_productioned' => 1]);
+            }
+        }
+
+        if ($request->isFinished) {
+            Order::where('id', $production->order_id)->update(['is_productioned' => 1]);
+        }
+
+        Production::where('id', $production->id)->update($validatedData);
+
+        return redirect('/dashboard/productions')->with('success', 'Produksi telah dikonfirmasi selesai!');
+    }
+
     public function destroy(Production $production)
     {
         if ($production->file_asset) {

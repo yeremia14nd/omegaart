@@ -18,7 +18,8 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Order Code</th>
+                <th scope="col">Order Id</th>
+                <th scope="col">Nama Produk</th>
                 <th scope="col">Nama Customer</th>
                 <th scope="col">Estimator</th>
                 <th scope="col">Total Harga</th>
@@ -32,7 +33,8 @@
             @foreach ($invoices as $invoice)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>Order Code: {{ $invoice->order_id }}</td>
+                <td>Order Id: {{ $invoice->order_id }}</td>
+                <td>{{ $invoice->order->product->name }}</td>
                 <td>{{ $invoice->order->user->name}}</td>
                 <td>{{ $invoice->created_by}}</td>
                 <td>Rp. {{ number_format($invoice->total_price_product / 1, 0) }}</td>

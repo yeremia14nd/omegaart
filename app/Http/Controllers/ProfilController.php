@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class ProfilController extends Controller
 {
@@ -69,7 +70,20 @@ class ProfilController extends Controller
     {
         if ($user->id === auth()->user()->id) {
             return view('profil.edit', [
-                'title' => 'Edit Profil',
+                'title' => 'Ubah Profil',
+                'active' => 'profil',
+                'user' => $user,
+            ]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function editPassword(User $user)
+    {
+        if ($user->id === auth()->user()->id) {
+            return view('profil.edit-password', [
+                'title' => 'Ubah Password',
                 'active' => 'profil',
                 'user' => $user,
             ]);
@@ -112,6 +126,38 @@ class ProfilController extends Controller
         User::where('id', $user->id)->update($validatedData);
 
         return redirect('/profil' . '/' . $user->userName)->with('success', 'Profil has been updated!');
+    }
+
+    public function updatePassword(Request $request, User $user)
+    {
+        if (!Hash::check($request->oldPassword, $request->user()->password)) {
+            return back()->withErrors([
+                'oldPassword' => ['Password lama salah!']
+            ]);
+        }
+
+        if ($request->password !== $request->newConfirmPassword) {
+            return back()->withErrors([
+                'password' => ['Password baru dan konfirmasi password tidak sama!']
+            ]);
+        }
+
+        $rules = [
+            'oldPassword' => 'required',
+            'password' => 'required|min:5|max:255',
+            'newConfirmPassword' => 'required|min:5|max:255',
+
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        User::where('id', $user->id)->update([
+            'password' => $validatedData['password']
+        ]);
+
+        return redirect('/profil' . '/' . $user->userName)->with('success', 'Password sudah diubah!');
     }
 
     /**

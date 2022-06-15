@@ -140,6 +140,8 @@ Route::get('/dashboard/surveys/download/{id}', [DashboardSurveyController::class
 
 Route::resource('/dashboard/surveys', DashboardSurveyController::class)->middleware('auth');
 
+Route::get('/profil/{user:userName}/editPassword', [ProfilController::class, 'editPassword'])->middleware('auth');
+Route::put('/profil/{user:userName}/updatePassword', [ProfilController::class, 'updatePassword'])->middleware('auth');
 Route::resource('/profil', ProfilController::class)->parameters(['profil' => 'user',])->scoped(['user' => 'userName',])->middleware('auth');
 
 // shopping cart
@@ -182,14 +184,23 @@ Route::resource('/dashboard/staffs', DashboardStaffController::class)->parameter
 
 Route::resource('/invoices', InvoiceController::class)->middleware('auth');
 
+Route::get('/dashboard/invoices/checkOrder', [DashboardInvoiceController::class, 'checkOrder'])->middleware('auth');
 Route::get('/dashboard/invoices/download/{id}', [DashboardInvoiceController::class, 'downloadFile'])->name('invoices.downloadFile')->middleware('auth');
 Route::resource('/dashboard/invoices', DashboardInvoiceController::class)->middleware('auth');
 
 Route::resource('/dashboard/payments', DashboardPaymentController::class)->middleware('auth');
 
+Route::get('/dashboard/productions/{production}/confirmProduction', [DashboardProductionController::class, 'updateConfirmProduction'])->middleware('auth');
+
+Route::put('/dashboard/productions/{production}/confirmProduction', [DashboardProductionController::class, 'confirmProduction'])->middleware('auth');
+
 Route::get('/dashboard/productions/checkOrder', [DashboardProductionController::class, 'checkOrder'])->middleware('auth');
 
 Route::resource('/dashboard/productions', DashboardProductionController::class)->middleware('auth');
+
+Route::get('/dashboard/installments/{installment}/confirmInstallment', [DashboardInstallmentController::class, 'updateConfirmInstallment'])->middleware('auth');
+
+Route::put('/dashboard/installments/{installment}/confirmInstallment', [DashboardInstallmentController::class, 'confirmInstallment'])->middleware('auth');
 
 Route::get('/dashboard/installments/checkProduction', [DashboardInstallmentController::class, 'checkProduction'])->middleware('auth');
 

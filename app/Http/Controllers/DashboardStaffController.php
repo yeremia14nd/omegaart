@@ -102,30 +102,14 @@ class DashboardStaffController extends Controller
     public function update(Request $request, User $user)
     {
         $rules = [
-            'name' => 'required|max:255',
-            // 'userName' => 'required|unique',
-            'imageAssets' => 'image|file|max:2048',
-            'email' => 'required|email',
-            'address' => 'required',
-            'phoneNumber' => 'required',
+            'is_role' => 'required',
         ];
-
-        if ($request->userName != $user->userName) {
-            $rules['userName'] = 'required|unique:users';
-        }
 
         $validatedData = $request->validate($rules);
 
-        if ($request->file('imageAssets')) {
-            if ($request->oldImage) {
-                Storage::delete($request->oldImage);
-            }
-            $validatedData['imageAssets'] = $request->file('imageAssets')->store('staff-images');
-        }
-
         User::where('id', $user->id)->update($validatedData);
 
-        return redirect('/dashboard/staffs')->with('success', 'Staff has been updated!');
+        return redirect('/dashboard/staffs')->with('success', 'Role dari Staff sudah dibaharui!');
     }
 
     /**

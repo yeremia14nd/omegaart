@@ -3,6 +3,8 @@
 @section('container')
 <div class="container">
     <div class="row justify-content-center">
+        <a href="/invoices" class="btn btn-success my-3 col-sm-2"> <span data-feather="arrow-left"></span>
+            Kembali</a>
         <div
             class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Pembayaran Invoice</h1>

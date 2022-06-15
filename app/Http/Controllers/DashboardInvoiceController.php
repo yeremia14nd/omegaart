@@ -102,7 +102,6 @@ class DashboardInvoiceController extends Controller
     public function update(Request $request, Invoice $invoice)
     {
         $validatedData = $request->validate([
-            'order_id' => 'required',
             'created_by' => 'required',
             'total_price_product' => 'required',
             'description' => 'required',
@@ -121,7 +120,7 @@ class DashboardInvoiceController extends Controller
 
         Invoice::where('id', $invoice->id)->update($validatedData);
 
-        return redirect('/dashboard/invoices')->with('success', 'Invoice has been updated');
+        return redirect('/dashboard/invoices')->with('success', 'Invoice sudah di dibaharui');
     }
 
     /**
@@ -138,6 +137,15 @@ class DashboardInvoiceController extends Controller
         Invoice::destroy($invoice->id);
 
         return redirect('/dashboard/invoices')->with('success', 'Invoice has been deleted');
+    }
+
+    public function checkOrder(Request $request)
+    {
+        $order = Order::where('id', $request->order_id)->first();
+
+        return response()->json([
+            'name' => $order->user->name,
+        ]);
     }
 
     public function downloadFile($id)

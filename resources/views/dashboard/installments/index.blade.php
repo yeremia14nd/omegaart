@@ -54,8 +54,8 @@
                     <img id="image" src="{{ asset('storage/' . $installment->file_asset) }}" class="img-fluid"
                         width="50" alt="{{ $installment->file_asset }}">
                     @else
-                    <a href="/dashboard/installments/{{ $installment->id }}/edit" class="badge bg-primary">Please
-                        Upload</a>
+                    <a href="/dashboard/installments/{{ $installment->id }}/confirmInstallment"
+                        class="badge bg-primary">Konfirmasi Pemasangan Selesai <br> Silahkan Unggah Foto</a>
                     @endif
                 </td>
                 <td>

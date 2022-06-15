@@ -57,7 +57,8 @@
             <div class="input-group mb-3">
                 <span class="input-group-text">Email</span>
                 <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                    placeholder=" @error('email') {{ $message }} @enderror " value="{{ old('email', $user->email) }}">
+                    placeholder=" @error('email') {{ $message }} @enderror " value="{{ old('email', $user->email) }}"
+                    readonly>
             </div>
 
             <label for="address" class="form-label">Alamat</label>
