@@ -26,6 +26,8 @@ class Checkout extends Model
     'phone_number'
   ];
 
+  protected $with = ['cart'];
+
   public function cart()
   {
     return $this->belongsTo('App\Models\Cart', 'cart_id');
@@ -55,13 +57,13 @@ class Checkout extends Model
   public static function history($id)
   {
     $data = DB::table('checkouts AS c')
-            ->selectRaw('ca.no_invoice, ca.total, c.payment_type, c.status')
-            ->join('carts AS ca', 'c.cart_id', '=', 'ca.id')
-            ->join('cart_items AS ci', 'ca.id', '=', 'ci.cart_id')
-            ->join('users AS u', 'c.user_id', '=', 'u.id')
-            ->where('u.id', $id)
-            ->groupBy('ca.id')
-            ->get();
+      ->selectRaw('ca.no_invoice, ca.total, c.payment_type, c.status')
+      ->join('carts AS ca', 'c.cart_id', '=', 'ca.id')
+      ->join('cart_items AS ci', 'ca.id', '=', 'ci.cart_id')
+      ->join('users AS u', 'c.user_id', '=', 'u.id')
+      ->where('u.id', $id)
+      ->groupBy('ca.id')
+      ->get();
     return $data;
   }
 }

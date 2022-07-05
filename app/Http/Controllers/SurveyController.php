@@ -95,7 +95,7 @@ class SurveyController extends Controller
         Notifikasi::createNotification("admin", "survey");
 
         Survey::create($validatedData);
-        return redirect('/surveys')->with('success', 'Survey has been scheduled');
+        return redirect('/surveys')->with('success', 'Survey sudah dijadwal');
     }
 
     /**
@@ -149,7 +149,7 @@ class SurveyController extends Controller
 
         Survey::where('id', $survey->id)->update($validatedData);
 
-        return redirect('/surveys')->with('success', 'Survey has been updated');
+        return redirect('/surveys')->with('success', 'Jadwal Survey berhasil diubah');
     }
 
     /**
@@ -165,8 +165,8 @@ class SurveyController extends Controller
 
     public function total_surveys()
     {
-      $id = Auth::id();
-      $data = Survey::totalsurvey($id);
-      return $data;
+        $id = Auth::id();
+        $data = Survey::totalsurvey($id);
+        return $data;
     }
 }

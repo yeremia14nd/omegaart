@@ -16,7 +16,7 @@ class DashboardCustomerController extends Controller
     public function index()
     {
         return view('dashboard.customers.index', [
-            'customers' => User::where('is_role', '5')->get(),
+            'customers' => User::where('role_id', '5')->get(),
         ]);
     }
 
@@ -49,7 +49,7 @@ class DashboardCustomerController extends Controller
 
         $validatedData = $request->validate($rules);
         $validatedData['password'] = bcrypt('password');
-        $validatedData['is_role'] = 5; // number 5 is customer role
+        $validatedData['role_id'] = 5; // number 5 is customer role
 
         $validatedData['imageAssets'] = $request->file('imageAssets')->store('product-images');
 

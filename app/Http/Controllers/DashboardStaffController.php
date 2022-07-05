@@ -18,7 +18,7 @@ class DashboardStaffController extends Controller
     {
         if (Gate::any(['superadmin', 'admin'])) {
             return view('dashboard.staffs.index', [
-                'staffs' => User::whereIn('is_role', [2, 3, 4])->get(),
+                'staffs' => User::whereIn('role_id', [2, 3, 4])->get(),
             ]);
         } else {
             return redirect('/dashboard');
@@ -54,7 +54,7 @@ class DashboardStaffController extends Controller
 
         $validatedData = $request->validate($rules);
         $validatedData['password'] = bcrypt('password');
-        $validatedData['is_role'] = $request->is_role;
+        $validatedData['role_id'] = $request->role_id;
 
         $validatedData['imageAssets'] = $request->file('imageAssets')->store('staff-images');
 
@@ -102,7 +102,7 @@ class DashboardStaffController extends Controller
     public function update(Request $request, User $user)
     {
         $rules = [
-            'is_role' => 'required',
+            'role_id' => 'required',
         ];
 
         $validatedData = $request->validate($rules);

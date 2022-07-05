@@ -62,8 +62,8 @@
                 value="{{ old('phoneNumber') }}">
         </div>
         <div class="mb-3">
-            <label for="is_role" class="form-label">Role Staff</label>
-            <select class="form-select @error('is_role') is-invalid @enderror" name="is_role" required>
+            <label for="role_id" class="form-label">Role Staff</label>
+            <select class="form-select @error('role_id') is-invalid @enderror" name="role_id" required>
                 <option value="">Silahkan pilih role</option>
                 <option value="2">Admin</option>
                 <option value="3">Estimator</option>

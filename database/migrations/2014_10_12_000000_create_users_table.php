@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('role_id')->constrained('roles')->unsigned()->nullable();
             $table->string('name');
             $table->string('userName')->unique();
             $table->string('email')->unique();
@@ -23,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('phoneNumber')->nullable();
             $table->string('imageAssets')->nullable();
-            $table->string('is_role')->default('5');
             $table->rememberToken();
             $table->timestamps();
         });

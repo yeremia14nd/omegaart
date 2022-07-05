@@ -102,7 +102,7 @@ class PaymentController extends Controller
       'is_paid_confirmed' => 0
     ]);
 
-    return redirect('/invoices')->with('success', 'Payment has been paid, waiting for confirmation');
+    return redirect('/invoices')->with('success', 'Pembayaran berhasil, menunggu konfirmasi');
   }
 
   /**

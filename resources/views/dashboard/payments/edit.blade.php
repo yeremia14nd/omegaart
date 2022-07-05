@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Perbaharui Pembayaran</h1>
+    <h1 class="h2">Konfirmasi Pembayaran</h1>
 </div>
 <a href="/dashboard/payments" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali ke Semua
     Pembayaran</a>
@@ -92,7 +92,7 @@
             </div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Perbaharui Pembayaran</button>
+        <button type="submit" class="btn btn-primary">Konfirmasi Pembayaran</button>
     </form>
 </div>
 

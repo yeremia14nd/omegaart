@@ -25,6 +25,7 @@
                 <th scope="col">Total Harga</th>
                 <th scope="col">Deskripsi</th>
                 <th scope="col">File</th>
+                <th scope="col">Validasi Invoice</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -40,6 +41,23 @@
                 <td>Rp. {{ number_format($invoice->total_price_product / 1, 0) }}</td>
                 <td>{{ $invoice->description}}</td>
                 <td><a href="/dashboard/invoices/download/{{ $invoice->id }}">{{ $invoice->fileAsset }}</a>
+                </td>
+                <td>
+                    @if ($invoice->is_validated)
+                    Sudah divalidasi!
+                    @elseif($invoice->is_validated === 0)
+                    Ditolak. Silahkan direvisi.
+                    @else
+                    <form action="/dashboard/invoices/{{ $invoice->id}}/validation" method="post">
+                        @method('put')
+                        @csrf
+                        <div class="d-grid gap-2">
+                            <input type="hidden" class="form-control @error('is_validated') is-invalid @enderror "
+                                id="is_validated" name="is_validated" value='1'>
+                            <button type="submit" class="badge bg-success border-0">Validasi Invoice</button>
+                        </div>
+                    </form>
+                    @endif
                 </td>
                 <td>
                     <a href="/dashboard/invoices/{{ $invoice->id }}" class="badge bg-info">

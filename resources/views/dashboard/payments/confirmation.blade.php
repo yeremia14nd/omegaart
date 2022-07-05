@@ -17,7 +17,9 @@
       <tr>
         <th scope="col">No</th>
         <th scope="col">Nama Customer</th>
+        <th scope="col">Nama Produk </th>
         <th scope="col">Alamat Pengiriman</th>
+        <th scope="col">No Telepon</th>
         <th scope="col">Tipe Pembayaran</th>
         <th scope="col">Total</th>
         <th scope="col">Bukti Pembayaran</th>
@@ -30,7 +32,13 @@
       <tr>
         <td>{{ $loop->iteration }}</td>
         <td>{{ $row->user->name }}</td>
+        <td>
+          @foreach($row->cart->detail as $items)
+          {{ $loop->iteration }}. {{ $items->product->name }} <strong> ({{ $items->quantity }} unit) </strong> <br>
+          @endforeach
+        </td>
         <td>{{ $row->shipping_address }}</td>
+        <td>{{ $row->phone_number }}</td>
         @if($row->payment_type == 'bank_transfer')
         <td>Bank Transfer</td>
         @elseif($row->payment_type == 'credit_card')

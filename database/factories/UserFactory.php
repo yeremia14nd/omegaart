@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'address' => $this->faker->address(),
             'phoneNumber' => $this->faker->phoneNumber(),
             'imageAssets' => $this->faker->imageUrl(360, 360, 'animals', true),
-            'is_role' => mt_rand(3, 5),
+            'role_id' => mt_rand(3, 5),
             'remember_token' => Str::random(10),
         ];
     }

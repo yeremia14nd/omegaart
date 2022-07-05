@@ -47,7 +47,8 @@
                     <img id="image" src="{{ asset('storage/' . $survey->surveyFile) }}" class="img-fluid" width="50"
                         alt="{{ $survey->surveyFile }}">
                     @else
-                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Silahkan Upload</a>
+                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Konfirmasi Survey
+                        Selesai <br>Silahkan Upload</a>
                     @endif
                 </td>
                 <td>

@@ -10,6 +10,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductAvailability;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +23,21 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-
+        Role::create([
+            'name' => 'superadmin',
+        ]);
+        Role::create([
+            'name' => 'admin',
+        ]);
+        Role::create([
+            'name' => 'estimator',
+        ]);
+        Role::create([
+            'name' => 'teknisi',
+        ]);
+        Role::create([
+            'name' => 'customer',
+        ]);
         User::create([
             'name' => 'Yeremia Nd',
             'email' => 'yerind@gmail.com',
@@ -30,7 +45,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Pendekar 1 No. 7, Malang',
             'phoneNumber' => '081122334455',
             'password' => bcrypt('password'),
-            'is_role' => '1',
+            'role_id' => 1,
         ]);
 
         User::create([
@@ -40,10 +55,12 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Lestari 1 No. 7, Surabaya',
             'phoneNumber' => '085544332212',
             'password' => bcrypt('password'),
-            'is_role' => '2',
+            'role_id' => 2,
         ]);
 
         User::factory(10)->create();
+
+
         ProductAvailability::create([
             'availability' => 'Available Now'
         ]);

@@ -35,13 +35,13 @@
                 <td>{{ $staff->email}}</td>
                 <td>{{ $staff->address}}</td>
                 <td>{{ $staff->phoneNumber}}</td>
-                <td>@if ($staff->is_role == 1)
+                <td>@if ($staff->role_id == 1)
                     Super Admin
-                    @elseif($staff->is_role == 2)
+                    @elseif($staff->role_id == 2)
                     Admin
-                    @elseif($staff->is_role == 3)
+                    @elseif($staff->role_id == 3)
                     Estimator
-                    @elseif($staff->is_role == 4)
+                    @elseif($staff->role_id == 4)
                     Teknisi
                     @else
                     Belum ada Role

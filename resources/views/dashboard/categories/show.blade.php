@@ -9,15 +9,6 @@
         <div class="col-lg-8">
             <a href="/dashboard/categories" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span>
                 Kembali ke Semua Kategori</a>
-            <a href="/dashboard/categories/{{ $category->slug }}/edit" class="btn btn-warning mb-3"> <span
-                    data-feather="edit"></span> Ubah</a>
-            <form action="/dashboard/categories/{{ $category->slug }}" method="post" class="d-inline">
-                @method('delete')
-                @csrf
-                <button class="btn btn-danger mb-3"
-                    onclick="return confirm('Apakah anda yakin ingin menghapus kategori ini?')"><span
-                        data-feather="x-circle"></span> Hapus</button>
-            </form>
             <div class="row">
                 <div class="col-md text-center">
                     @if ($category->imageAssets)

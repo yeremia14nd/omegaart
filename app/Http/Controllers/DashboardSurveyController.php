@@ -17,6 +17,16 @@ class DashboardSurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permit:superadmin,admin,teknisi,estimator')->only(['index', 'show', 'checkOrder', 'downloadFile']);
+        $this->middleware('permit:superadmin,admin')->only(['create', 'store']);
+        $this->middleware('permit:superadmin,admin,teknisi')->only(['edit', 'update']);
+        $this->middleware('permit:superadmin,admin')->only('destroy');
+    }
+
     public function index()
     {
         return view('dashboard.surveys.index', [
@@ -35,7 +45,7 @@ class DashboardSurveyController extends Controller
 
         return view('dashboard.surveys.create', [
             'orders' => $order,
-            'assigns' => User::where('is_role', '4')->get(),
+            'assigns' => User::where('role_id', '4')->get(),
         ]);
     }
 
@@ -47,10 +57,6 @@ class DashboardSurveyController extends Controller
      */
     public function store(Request $request)
     {
-        // $user = User::where('id', $request->user_id)->first();
-
-        // $product = Product::where('id', $request->product_id)->first();
-
         $validatedData = $request->validate([
             'order_id' => 'required',
             'address' => 'required',
@@ -91,7 +97,7 @@ class DashboardSurveyController extends Controller
     {
         return view('dashboard.surveys.edit', [
             'survey' => $survey,
-            'assigns' => User::where('is_role', '4')->get(),
+            'assigns' => User::where('role_id', '4')->get(),
         ]);
     }
 

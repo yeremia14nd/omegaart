@@ -9,15 +9,6 @@
         <div class="col-lg-8">
             <a href="/dashboard/surveys" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali
                 ke Semua Survey</a>
-            <a href="/dashboard/surveys/{{ $survey->id}}/edit" class="btn btn-warning mb-3"> <span
-                    data-feather="edit"></span> Ubah</a>
-            <form action="/dashboard/surveys/{{ $survey->id }}" method="post" class="d-inline">
-                @method('delete')
-                @csrf
-                <button class="btn btn-danger mb-3"
-                    onclick="return confirm('Apakah anda yakin ingin menghapus survey ini?')"><span
-                        data-feather="x-circle"></span> Hapus</button>
-            </form>
             <div class="row">
                 <div class="col-md">
                     <h1 class="mb-2 text-muted">Produk: {{ $survey->order->product->name }}</h1>

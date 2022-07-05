@@ -32,8 +32,8 @@ class DashboardInstallmentController extends Controller
     public function create()
     {
         return view('dashboard.installments.create', [
-            'productions' => Production::where('isFinished', 1)->get(),
-            'workers' => User::where('is_role', 4)->get(),
+            'productions' => Production::where('isFinished', 1)->where('onInstallment', 0)->get(),
+            'workers' => User::where('role_id', 4)->get(),
         ]);
     }
 
@@ -55,6 +55,8 @@ class DashboardInstallmentController extends Controller
             'city' => 'required',
             'worker' => 'required',
         ];
+
+        Production::where('id', $request->production_id)->update(['onInstallment' => 1]);
 
         $validatedData = $request->validate($rules);
 
@@ -86,7 +88,7 @@ class DashboardInstallmentController extends Controller
     {
         return view('dashboard.installments.edit', [
             'installment' => $installment,
-            'workers' => User::where('is_role', 4)->get(),
+            'workers' => User::where('role_id', 4)->get(),
         ]);
     }
 
@@ -176,6 +178,8 @@ class DashboardInstallmentController extends Controller
         if ($installment->file_asset) {
             Storage::delete($installment->file_asset);
         }
+        Production::where('id', $installment->production_id)->update(['onInstallment' => 0]);
+
         Installment::destroy($installment->id);
 
         return redirect('/dashboard/installments')->with('success', 'Pemasangan dihapus');

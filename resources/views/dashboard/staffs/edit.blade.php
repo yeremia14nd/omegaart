@@ -61,18 +61,18 @@
                 value="{{ old('phoneNumber', $staff->phoneNumber) }}" readonly>
         </div>
         <div class="mb-3">
-            <label for="is_role" class="form-label">Role Staff</label>
+            <label for="role_id" class="form-label">Role Staff</label>
             <br>
-            <small class="mb-2">Role saat ini @if ($staff->is_role === '2')
+            <small class="mb-2">Role saat ini @if ($staff->role_id === '2')
                 Admin
-                @elseif ($staff->is_role === '3')
+                @elseif ($staff->role_id === '3')
                 Estimator
-                @elseif ($staff->is_role === '4')
+                @elseif ($staff->role_id === '4')
                 Teknisi
                 @else
                 Tidak ada Role Staff
                 @endif</small>
-            <select class="form-select @error('is_role') is-invalid @enderror" name="is_role" required>
+            <select class="form-select @error('role_id') is-invalid @enderror" name="role_id" required>
                 <option value="">Silahkan ubah role</option>
                 <option value="2">Admin</option>
                 <option value="3">Estimator</option>

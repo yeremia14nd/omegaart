@@ -28,6 +28,7 @@ class User extends Authenticatable
     // ];
 
     protected $guarded = ['id'];
+    protected $with = ['role'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -63,5 +64,18 @@ class User extends Authenticatable
     public function payment()
     {
         return $this->hasMany(Payment::class);
+    }
+
+    public function hasRole($role): bool
+    {
+        if (is_string($role))
+            $role = Role::where('name', $role)->first();
+
+        return $this->role->contains($role);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

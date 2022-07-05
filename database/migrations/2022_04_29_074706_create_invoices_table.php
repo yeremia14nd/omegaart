@@ -19,6 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->string('created_by');
             $table->integer('total_price_product');
             $table->text('description');
+            $table->boolean('is_validated')->nullable();
             $table->boolean('is_paid_confirmed')->nullable();
             $table->string('fileAsset')->nullable();
             $table->timestamps();

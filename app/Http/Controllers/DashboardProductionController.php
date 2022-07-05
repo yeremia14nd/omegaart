@@ -34,7 +34,7 @@ class DashboardProductionController extends Controller
     {
         return view('dashboard.productions.create', [
             'orders' => Order::where('is_paid_invoiced', 1)->where('is_productioned', null)->get(),
-            'workers' => User::where('is_role', 4)->get(),
+            'workers' => User::where('role_id', 4)->get(),
         ]);
     }
 
@@ -58,6 +58,7 @@ class DashboardProductionController extends Controller
         $validatedData = $request->validate($rules);
         $validatedData['survey_id'] = $survey->id;
         $validatedData['isFinished'] = 0;
+        $validatedData['onInstallment'] = 0;
 
         Production::create($validatedData);
         Order::where('id', $request->order_id)->update(['is_productioned' => 0]);
@@ -89,7 +90,7 @@ class DashboardProductionController extends Controller
         return view('dashboard.productions.edit', [
             'production' => $production,
             'surveyor' => $production->survey->assignTo,
-            'workers' => User::where('is_role', 4)->get(),
+            'workers' => User::where('role_id', 4)->get(),
         ]);
     }
 

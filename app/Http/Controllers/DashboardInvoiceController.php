@@ -154,4 +154,15 @@ class DashboardInvoiceController extends Controller
         $path = $invoice->fileAsset;
         return Storage::download($path);
     }
+
+    public function validationInvoice(Request $request, Invoice $invoice)
+    {
+        $validatedData = $request->validate([
+            'is_validated' => 'required',
+        ]);
+
+        Invoice::where('id', $invoice->id)->update($validatedData);
+
+        return redirect('/dashboard/invoices')->with('success', 'Invoice sudah divalidasi');
+    }
 }

@@ -24,10 +24,10 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+        // dd(Auth::attempt($credentials) && Gate::any(['superadmin', 'admin', 'estimator', 'teknisi']));
         if (Auth::attempt($credentials) && Gate::any(['superadmin', 'admin', 'estimator', 'teknisi'])) {
             $request->session()->regenerate();
-            
+
             return redirect()->intended('/dashboard');
         }
         if (Auth::attempt($credentials)) {
@@ -36,14 +36,14 @@ class LoginController extends Controller
             $user_id = Auth::user()->id;
             $cart = session('cart');
 
-            if($cart) { //jika ada data session, maka data cart akan masuk ke db setelah login
+            if ($cart) { //jika ada data session, maka data cart akan masuk ke db setelah login
                 Cart::addToCart($user_id, $cart);
             }
 
             return redirect()->intended('/');
         }
 
-        return back()->with('loginError', 'Login failed!');
+        return back()->with('loginError', 'Gagal login!');
     }
 
     public function logout(Request $request)

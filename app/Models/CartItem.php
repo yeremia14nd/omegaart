@@ -22,6 +22,8 @@ class CartItem extends Model
         'active'
     ];
 
+    protected $with = ['product'];
+
     public function product()
     {
         return $this->belongsTo('App\Models\Product', 'product_id');
@@ -33,10 +35,10 @@ class CartItem extends Model
     }
 
     // function untuk update qty, sama subtotal
-    public function updatedetail($itemdetail, $qty, $harga) {
+    public function updatedetail($itemdetail, $qty, $harga)
+    {
         $this->attributes['quantity'] = $itemdetail->quantity + $qty;
         $this->attributes['subtotal'] = $itemdetail->subtotal + ($qty * $harga);
         self::save();
     }
-
 }

@@ -9,22 +9,25 @@
         <div class="col-lg-8">
             <a href="/dashboard/payments" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali
                 ke Semua Pembayaran</a>
-            <a href="/dashboard/payments/{{ $payment->id}}/edit" class="btn btn-warning mb-3"> <span
-                    data-feather="edit"></span> Ubah</a>
-            <form action="/dashboard/payments/{{ $payment->id }}" method="post" class="d-inline">
-                @method('delete')
-                @csrf
-                <button class="btn btn-danger mb-3"
-                    onclick="return confirm('Apakah anda yakin ingin menghapus pembayaran ini?')"><span
-                        data-feather="x-circle"></span> Hapus</button>
-            </form>
             <div class="row">
                 <div class="col-md">
                     <h1 class="mb-2 text-muted">Produk: {{ $payment->invoice->order->product->name }}</h1>
                     <table class="table">
                         <tr>
+                            <td>Invoice Id</td>
+                            <td>: {{ $payment->invoice_id }}</td>
+                        </tr>
+                        <tr>
+                            <td>Order Id</td>
+                            <td>: {{ $payment->invoice->order->id }}</td>
+                        </tr>
+                        <tr>
                             <td>Nama Customer</td>
                             <td>: {{ $payment->user->name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Harga Produk</td>
+                            <td>: Rp. {{ number_format($payment->invoice->total_price_product) }}</td>
                         </tr>
                         <tr>
                             <td>Total Harga Terbayar</td>

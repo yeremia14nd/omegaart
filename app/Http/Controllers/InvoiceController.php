@@ -20,7 +20,7 @@ class InvoiceController extends Controller
     {
         $order = Order::where('user_id', auth()->user()->id)->get()->modelKeys();
 
-        $invoices = Invoice::whereIn('order_id', $order)->get();
+        $invoices = Invoice::whereIn('order_id', $order)->where('is_validated', '1')->get();
         $payments = Payment::where('id', $invoices->modelKeys())->get();
 
         return view('invoices.index', [

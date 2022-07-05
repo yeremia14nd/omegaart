@@ -22,6 +22,7 @@ class CreateProductionsTable extends Migration
             $table->string('file_asset')->nullable();
             $table->string('worker_name');
             $table->boolean('isFinished');
+            $table->boolean('onInstallment');
             $table->timestamps();
         });
     }
