@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\Notifikasi;
 use App\Models\Order;
 use App\Models\Survey;
 use Illuminate\Http\Request;
@@ -58,6 +59,7 @@ class DashboardInvoiceController extends Controller
         }
 
         Invoice::create($validatedData);
+        Notifikasi::createNotification('admin', 'invoice');
 
         Order::where('id', $request->order_id)->update(['is_invoice_sent' => 1]);
 

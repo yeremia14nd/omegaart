@@ -215,6 +215,8 @@ Route::put('/installments/{installment}/confirmation', [InstallmentController::c
 Route::resource('/installments', InstallmentController::class)->middleware('auth');
 
 Route::get('/notif', [NotifikasiController::class, 'notif'])->name('notif');
+Route::get('/notif_teknisi', [NotifikasiController::class, 'notif_teknisi'])->name('notif_teknisi');
+Route::get('/notif_estimator', [NotifikasiController::class, 'notif_estimator'])->name('notif_estimator');
 Route::get('/notif_customer', [NotifikasiController::class, 'notif_customer'])->middleware();
 
 Route::get('/total_cart', [CartController::class, 'total_cart']);

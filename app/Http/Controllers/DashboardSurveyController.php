@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notifikasi;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Order;
@@ -134,8 +135,9 @@ class DashboardSurveyController extends Controller
         }
 
         Survey::where('id', $survey->id)->update($validatedData);
+        Notifikasi::createNotification("estimator", "invoice");
 
-        return redirect('/dashboard/surveys')->with('success', 'Survey has been updated!');
+      return redirect('/dashboard/surveys')->with('success', 'Survey has been updated!');
     }
 
     /**

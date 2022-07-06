@@ -17,6 +17,24 @@ class NotifikasiController extends Controller
     return $data;
   }
 
+  public function notif_teknisi()
+  {
+    $data = [
+      'data' => Notifikasi::all_notif('teknisi'),
+      'unread' => Notifikasi::unread_notif_teknisi()
+    ];
+    return $data;
+  }
+
+  public function notif_estimator()
+  {
+    $data = [
+      'data' => Notifikasi::all_notif('estimator'),
+      'unread' => Notifikasi::unread_notif_estimator()
+    ];
+    return $data;
+  }
+
   public function checkout_read($id, $kategori)
   {
     Notifikasi::changeStatus($id);
@@ -24,6 +42,8 @@ class NotifikasiController extends Controller
       return redirect('/dashboard/confirmation');
     } elseif ($kategori == 'survey') {
       return redirect('/dashboard/surveys');
+    } elseif ($kategori == 'invoice') {
+      return redirect('dashboard/invoices');
     }
   }
 

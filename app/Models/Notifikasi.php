@@ -31,6 +31,20 @@ class Notifikasi extends Model
     return $data;
   }
 
+  public static function unread_notif_teknisi()
+  {
+    $data = Notifikasi::where('read_status', 0)->where('user_kategori', 'teknisi')
+      ->count();
+    return $data;
+  }
+
+  public static function unread_notif_estimator()
+  {
+    $data = Notifikasi::where('read_status', 0)->where('user_kategori', 'estimator')
+      ->count();
+    return $data;
+  }
+
   // Show all notif
   public static function all_notif($kat = "admin", $user_id = null)
   {
@@ -39,7 +53,6 @@ class Notifikasi extends Model
       $notif = Notifikasi::all();
     } else {
       $notif = Notifikasi::where('user_kategori', $kat)
-        ->where('notif_target', $user_id)
         ->get();
     }
     return $notif;

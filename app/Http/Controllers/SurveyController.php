@@ -93,6 +93,7 @@ class SurveyController extends Controller
         Order::where('id', $request->order_id)->update(['is_survey_scheduled' => '1']);
 
         Notifikasi::createNotification("admin", "survey");
+        Notifikasi::createNotification("teknisi", "survey");
 
         Survey::create($validatedData);
         return redirect('/surveys')->with('success', 'Survey sudah dijadwal');

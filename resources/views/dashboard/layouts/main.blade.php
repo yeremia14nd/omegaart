@@ -40,9 +40,9 @@
 
 
   <style>
-    trix-toolbar [data-trix-button-group="file-tools"] {
-      display: none;
-    }
+      trix-toolbar [data-trix-button-group="file-tools"] {
+          display: none;
+      }
   </style>
 </head>
 
@@ -96,6 +96,16 @@
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
                 '</a>');
+            } else if (notif.notif_kategori == 'invoice') {
+              $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/invoice" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Ada Invoice Baru Untuk di Validasi<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Ada invoice baru menunggu untuk di validasi.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
             }
           } else {
             if (notif.notif_kategori == 'checkout') {
@@ -114,6 +124,106 @@
                 '<div class="pd_content">' +
                 '<h6>Ada Survey Baru Menunggu Konfirmasi</h6>' +
                 '<p>Ada survey baru yang menunggu untuk konfirmasi.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
+            } else if (notif.notif_kategori == 'invoice') {
+              $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/invoice" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Ada Invoice Baru Untuk di Validasi<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Ada invoice baru menunggu untuk di validasi.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
+            }
+          }
+        });
+      },
+    });
+  })
+
+  $(document).ready(function () {
+    $.ajax({
+      type: "GET",
+      url: "/notif_teknisi",
+      dataType: "JSON",
+      success: function (data) {
+        if (data.unread == 0) {
+          $('#teknisi_unread_count').text(0);
+        } else {
+          $('#teknisi_unread_count').text(data.unread);
+        }
+
+        $('#teknisi_notification_list').html('');
+        $.each(data.data, function (i, notif) {
+
+          if (notif.read_status == 0) {
+            if (notif.notif_kategori == 'survey') {
+              $('#teknisi_notification_list').append('<a href="/checkout_read/' + notif.id + '/survey" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Jadwal Survey Sudah Masuk<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Ada jadwal survey baru yang masuk.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
+            }
+          } else {
+            if (notif.notif_kategori == 'survey') {
+              $('#teknisi_notification_list').append('<a href="/checkout_read/' + notif.id + '/survey" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Jadwal Survey Sudah Masuk</h6>' +
+                '<p>Ada jadwal survey baru yang masuk.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
+            }
+          }
+        });
+      },
+    });
+  })
+
+  $(document).ready(function () {
+    $.ajax({
+      type: "GET",
+      url: "/notif_estimator",
+      dataType: "JSON",
+      success: function (data) {
+        if (data.unread == 0) {
+          $('#estimator_unread_count').text(0);
+        } else {
+          $('#estimator_unread_count').text(data.unread);
+        }
+
+        $('#estimator_notification_list').html('');
+        $.each(data.data, function (i, notif) {
+
+          if (notif.read_status == 0) {
+            if (notif.notif_kategori == 'invoice') {
+              $('#estimator_notification_list').append('<a href="/checkout_read/' + notif.id + '/invoice" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Buat Invoice Untuk Survey Baru<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Buat invoice baru untuk data survey yang baru masuk.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
+            }
+          } else {
+            if (notif.notif_kategori == 'invoice') {
+              $('#estimator_notification_list').append('<a href="/checkout_read/' + notif.id + '/invoice" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Buat Invoice Untuk Survey Baru</h6>' +
+                '<p>Buat invoice baru untuk data survey yang baru masuk.</strong>.</p>' +
                 '</div>' +
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
