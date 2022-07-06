@@ -78,7 +78,7 @@
                 </ul>
               </li>
 
-              @canany(['superadmin','admin'])
+              @canany(['superadmin','admin', 'estimator', 'teknisi'])
               <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-window-reverse"></i>
                   Dashboard</a></li>
               @endcanany
