@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,14 @@ class CustomerController extends Controller
     {
       $id = Auth::id();
       $data = Survey::totalsurvey($id);
-      return $data;
+      $data_2 = Invoice::totalinvoice($id);
+      return $data->total + $data_2->total;
     }
+
+  public function total_invoice()
+  {
+    $id = Auth::id();
+    $data = Invoice::totalinvoice($id);
+    return $data;
+  }
 }

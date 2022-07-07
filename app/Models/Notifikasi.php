@@ -103,6 +103,11 @@ class Notifikasi extends Model
             ->join('surveys AS s', 's.order_id', '=', 'o.id')
             ->whereNotNull('s.assignTo')->whereNull('o.is_invoice_sent')->where('o.user_id', $id)
             ->count();
-   return $data;
+
+    $data_2 = DB::table('invoices AS iv')
+      ->join('orders AS o', 'o.id', '=', 'iv.order_id')
+      ->where('iv.is_validated', 1)->where('o.user_id', $id)
+      ->count();
+   return $data + $data_2;
   }
 }

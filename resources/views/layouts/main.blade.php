@@ -99,13 +99,26 @@
 
         $.ajax({
           type: "GET",
-          url: "/total_pemesanan",
+          url: "/total_invoice",
           dataType: "JSON",
           success: function (data) {
             if (data.total == 0) {
+              $('#count_invoice').text(' Invoice');
+            } else {
+              $('#count_invoice').text(' ' + data.total + ' Invoice');
+            }
+          },
+        });
+
+        $.ajax({
+          type: "GET",
+          url: "/total_pemesanan",
+          dataType: "JSON",
+          success: function (data) {
+            if (data == 0) {
               $('#count_pemesanan').text(' Status Pemesanan');
             } else {
-              $('#count_pemesanan').text(' ' + data.total + ' Status Pemesanan');
+              $('#count_pemesanan').text(' ' + data + ' Status Pemesanan');
             }
           },
         });

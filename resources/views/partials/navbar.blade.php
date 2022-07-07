@@ -70,7 +70,7 @@
                     <a class="dropdown-item" href="/surveys"><span id="count_surveys"></span></a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="/invoices">Invoice</a>
+                    <a class="dropdown-item" href="/invoices"><span id="count_invoice"></span></a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/installments">Pemasangan</a>
