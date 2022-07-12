@@ -11,7 +11,7 @@ class NotifikasiController extends Controller
   public function notif()
   {
     $data = [
-      'data' => Notifikasi::all_notif(),
+      'data' => Notifikasi::all_notif('admin'),
       'unread' => Notifikasi::unread_notif()
     ];
     return $data;
@@ -44,6 +44,12 @@ class NotifikasiController extends Controller
       return redirect('/dashboard/surveys');
     } elseif ($kategori == 'invoice') {
       return redirect('dashboard/invoices');
+    } elseif ($kategori == 'invoice_order') {
+      return redirect('dashboard/payments');
+    } elseif ($kategori == 'produksi') {
+      return redirect('dashboard/productions');
+    } elseif ($kategori == 'installments'){
+      return redirect('dashboard/installments');
     }
   }
 

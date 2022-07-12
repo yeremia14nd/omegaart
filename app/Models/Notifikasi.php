@@ -26,7 +26,7 @@ class Notifikasi extends Model
 
   public static function unread_notif()
   {
-    $data = Notifikasi::where('read_status', 0)
+    $data = Notifikasi::where('read_status', 0)->where('user_kategori', 'admin')
       ->count();
     return $data;
   }
@@ -46,11 +46,12 @@ class Notifikasi extends Model
   }
 
   // Show all notif
-  public static function all_notif($kat = "admin", $user_id = null)
+  public static function all_notif($kat, $user_id = null)
   {
     $notif = null;
     if ($kat == "admin") {
-      $notif = Notifikasi::all();
+      $notif = Notifikasi::where('user_kategori', $kat)
+        ->get();
     } else {
       $notif = Notifikasi::where('user_kategori', $kat)
         ->get();
@@ -106,7 +107,7 @@ class Notifikasi extends Model
 
     $data_2 = DB::table('invoices AS iv')
       ->join('orders AS o', 'o.id', '=', 'iv.order_id')
-      ->where('iv.is_validated', 1)->where('o.user_id', $id)
+      ->where('iv.is_validated', 1)->whereNull('o.is_paid_invoiced')->where('o.user_id', $id)
       ->count();
    return $data + $data_2;
   }

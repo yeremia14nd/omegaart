@@ -106,6 +106,26 @@
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
                 '</a>');
+            } else if (notif.notif_kategori == 'invoice_order') {
+              $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/invoice_order" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Pembayaran Invoice, Jadwalkan Produksi<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Pembayaran baru invoice, silahkan jadwalkan produksi.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
+            } else if (notif.notif_kategori == 'produksi') {
+              $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/installments" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Ajukan Jadwal Pemasangan<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Produksi selesai, atur jadwal pemasangan.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
             }
           } else {
             if (notif.notif_kategori == 'checkout') {
@@ -132,8 +152,28 @@
               $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/invoice" class="dropdown-item">' +
                 '<div class="profile_link">' +
                 '<div class="pd_content">' +
-                '<h6>Ada Invoice Baru Untuk di Validasi<span class="badge bg-secondary">New<span></h6>' +
+                '<h6>Ada Invoice Baru Untuk di Validasi</h6>' +
                 '<p>Ada invoice baru menunggu untuk di validasi.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
+            } else if (notif.notif_kategori == 'invoice_order') {
+              $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/invoice_order" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Pembayaran Invoice, Jadwalkan Produksi</h6>' +
+                '<p>Pembayaran baru invoice, silahkan jadwalkan produksi.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
+            } else if (notif.notif_kategori == 'produksi') {
+              $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/installments" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Ajukan Jadwal Pemasangan</h6>' +
+                '<p>Produksi selesai, atur jadwal pemasangan.</strong>.</p>' +
                 '</div>' +
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
@@ -171,6 +211,16 @@
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
                 '</a>');
+            } else if (notif.notif_kategori == 'produksi') {
+              $('#teknisi_notification_list').append('<a href="/checkout_read/' + notif.id + '/produksi" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Jadwal Baru Produksi<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Ada jadwal produksi baru yang masuk.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
             }
           } else {
             if (notif.notif_kategori == 'survey') {
@@ -179,6 +229,16 @@
                 '<div class="pd_content">' +
                 '<h6>Jadwal Survey Sudah Masuk</h6>' +
                 '<p>Ada jadwal survey baru yang masuk.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
+            } else if (notif.notif_kategori == 'produksi') {
+              $('#teknisi_notification_list').append('<a href="/checkout_read/' + notif.id + '/produksi" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Jadwal Baru Produksi</h6>' +
+                '<p>Ada jadwal produksi baru yang masuk.</strong>.</p>' +
                 '</div>' +
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notifikasi;
 use App\Models\Production;
 use App\Models\Order;
 use App\Models\User;
@@ -62,6 +63,7 @@ class DashboardProductionController extends Controller
 
         Production::create($validatedData);
         Order::where('id', $request->order_id)->update(['is_productioned' => 0]);
+        Notifikasi::createNotification("teknisi", "produksi");
 
         return redirect('/dashboard/productions')->with('success', 'Produksi telah dibuat!');
     }
@@ -169,6 +171,7 @@ class DashboardProductionController extends Controller
         }
 
         Production::where('id', $production->id)->update($validatedData);
+        Notifikasi::createNotification("admin", "produksi");
 
         return redirect('/dashboard/productions')->with('success', 'Produksi telah dikonfirmasi selesai!');
     }

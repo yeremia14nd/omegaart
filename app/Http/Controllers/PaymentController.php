@@ -102,6 +102,8 @@ class PaymentController extends Controller
       'is_paid_confirmed' => 0
     ]);
 
+    Notifikasi::createNotification('admin', 'invoice_order');
+
     return redirect('/invoices')->with('success', 'Pembayaran berhasil, menunggu konfirmasi');
   }
 

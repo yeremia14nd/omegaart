@@ -102,7 +102,7 @@ class DashboardPaymentController extends Controller
             Invoice::where('id', $payment->invoice_id)->update(['is_paid_confirmed' => 1]);
         }
 
-        return redirect('/dashboard/payments')->with('success', 'Payment has been updated!');
+        return redirect('/dashboard/productions/create')->with('success', 'Payment has been updated, add production process!');
     }
 
     /**
