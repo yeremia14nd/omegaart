@@ -112,6 +112,19 @@
 
         $.ajax({
           type: "GET",
+          url: "/total_installments",
+          dataType: "JSON",
+          success: function (data) {
+            if (data.total == 0) {
+              $('#count_installments').text(' Pemasangan');
+            } else {
+              $('#count_installments').text(' ' + data.total + ' Pemasangan');
+            }
+          },
+        });
+
+        $.ajax({
+          type: "GET",
           url: "/total_pemesanan",
           dataType: "JSON",
           success: function (data) {
@@ -133,57 +146,6 @@
             } else {
               $('#unread').text(data.unread);
             }
-            // console.log('test');
-
-            // $('#notification_list').html('');
-            // $.each(data.data, function (i, notif) {
-            //
-            //   if (notif.read_status == 0) {
-            //     if (notif.notif_kategori == 'checkout') {
-            //       $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/checkout" class="dropdown-item">' +
-            //         '<div class="profile_link">' +
-            //         '<div class="pd_content">' +
-            //         '<h6>Ada Transaksi Baru Menunggu Konfirmasi<span class="badge bg-secondary">New<span></h6>' +
-            //         '<p>Ada pesanan baru yang menunggu untuk konfirmasi pembayaran.</strong>.</p>' +
-            //         '</div>' +
-            //         '<div><hr class="dropdown-divider"></div>' +
-            //         '</div>' +
-            //         '</a>');
-            //     } else if (notif.notif_kategori == 'survey') {
-            //       $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/survey" class="dropdown-item">' +
-            //         '<div class="profile_link">' +
-            //         '<div class="pd_content">' +
-            //         '<h6>Ada Survey Baru Menunggu Konfirmasi<span class="badge bg-secondary">New<span></h6>' +
-            //         '<p>Ada survey baru yang menunggu untuk konfirmasi.</strong>.</p>' +
-            //         '</div>' +
-            //         '<div><hr class="dropdown-divider"></div>' +
-            //         '</div>' +
-            //         '</a>');
-            //     }
-            //   } else {
-            //     if (notif.notif_kategori == 'checkout') {
-            //       $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/checkout" class="dropdown-item">' +
-            //         '<div class="profile_link">' +
-            //         '<div class="pd_content">' +
-            //         '<h6>Ada Transaksi Menunggu Konfirmasi</h6>' +
-            //         '<p>Ada pesanan baru yang menunggu untuk konfirmasi pembayaran.</strong>.</p>' +
-            //         '</div>' +
-            //         '<div><hr class="dropdown-divider"></div>' +
-            //         '</div>' +
-            //         '</a>');
-            //     } else if (notif.notif_kategori == 'survey') {
-            //       $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/survey" class="dropdown-item">' +
-            //         '<div class="profile_link">' +
-            //         '<div class="pd_content">' +
-            //         '<h6>Ada Survey Baru Menunggu Konfirmasi</h6>' +
-            //         '<p>Ada survey baru yang menunggu untuk konfirmasi.</strong>.</p>' +
-            //         '</div>' +
-            //         '<div><hr class="dropdown-divider"></div>' +
-            //         '</div>' +
-            //         '</a>');
-            //     }
-            //   }
-            // });
           },
         });
       })

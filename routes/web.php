@@ -227,6 +227,8 @@ Route::get('/total_pemesanan', [CustomerController::class, 'total_pemesanan'])->
 
 Route::get('/total_invoice', [CustomerController::class, 'total_invoice'])->middleware('auth');
 
+Route::get('/total_installments', [CustomerController::class, 'total_installments'])->middleware('auth');
+
 Route::get('/checkout_read/{id}/{kategori}', [NotifikasiController::class, 'checkout_read']);
 
 Route::resource('/history', HistoryController::class)->middleware('auth');
