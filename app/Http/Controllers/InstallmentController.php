@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Installment;
 use App\Http\Requests\StoreInstallmentRequest;
 use App\Http\Requests\UpdateInstallmentRequest;
+use App\Models\Notifikasi;
 
 class InstallmentController extends Controller
 {
@@ -106,6 +107,7 @@ class InstallmentController extends Controller
         ]);
 
         Installment::where('id', $installment->id)->update($validatedData);
+        Notifikasi::createNotification("teknisi", "installments");
 
         return redirect('/installments')->with('success', 'Jadwal Pemasangan sudah dikonfirmasi');
     }
