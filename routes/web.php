@@ -197,13 +197,13 @@ Route::resource('/dashboard/invoices', DashboardInvoiceController::class)->middl
 
 Route::resource('/dashboard/payments', DashboardPaymentController::class)->middleware('auth', 'permit:superadmin,admin,estimator');
 
-Route::get('/dashboard/productions/{production}/confirmProduction', [DashboardProductionController::class, 'updateConfirmProduction'])->middleware('auth', 'permit:superadmin,admin,teknisi');
+Route::get('/dashboard/productions/{production}/confirmProduction', [DashboardProductionController::class, 'updateConfirmProduction'])->middleware('auth');
 
-Route::put('/dashboard/productions/{production}/confirmProduction', [DashboardProductionController::class, 'confirmProduction'])->middleware('auth', 'permit:superadmin,admin,teknisi');
+Route::put('/dashboard/productions/{production}/confirmProduction', [DashboardProductionController::class, 'confirmProduction'])->middleware('auth');
 
-Route::get('/dashboard/productions/checkOrder', [DashboardProductionController::class, 'checkOrder'])->middleware('auth', 'permit:superadmin,admin,teknisi');
+Route::get('/dashboard/productions/checkOrder', [DashboardProductionController::class, 'checkOrder'])->middleware('auth');
 
-Route::resource('/dashboard/productions', DashboardProductionController::class)->middleware('auth', 'permit:superadmin,admin,teknisi');
+Route::resource('/dashboard/productions', DashboardProductionController::class);
 
 //Route for Installment Dashboard
 Route::get('/dashboard/installments/{installment}/confirmInstallment', [DashboardInstallmentController::class, 'updateConfirmInstallment'])->middleware('auth', 'permit:superadmin,admin,teknisi');

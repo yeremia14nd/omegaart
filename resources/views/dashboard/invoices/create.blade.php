@@ -16,9 +16,16 @@
                 <option value="">Silahkan pilih Order</option>
                 @foreach ($orders as $order)
                 @if (old('order_id') == $order->id)
-                <option value="{{ $order->id }}" selected>{{ $order->product->name }} </option>
+                <option value="{{ $order->id }}" selected>
+                    Order ID:{{ $order->id }} {{ $order->product->name }} - Status {{ $order->is_invoice_sent == '1' ?
+                    'Sudah dikirim invoice' : 'Belum dikirim invoice'
+                    }}
+                </option>
                 @else
-                <option value="{{ $order->id }}">{{ $order->product->name }} </option>
+                <option value="{{ $order->id }}">Order ID: {{ $order->id }} -- {{ $order->product->name }} - Status --
+                    {{
+                    $order->is_invoice_sent == '1' ?
+                    'Sudah dikirim invoice' : 'Belum dikirim invoice' }}</option>
                 @endif
                 @endforeach
             </select>
@@ -59,9 +66,8 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Rp.</span>
             </div>
-            <input type="number" class="form-control @error('total_price_product') is-invalid @enderror"
-                id="total_price_product" name="total_price_product"
-                placeholder=" @error('total_price_product') {{ $message }} @enderror "
+            <input type="text" class="form-control @error('total_price_product') is-invalid @enderror" id="price"
+                name="total_price_product" placeholder=" @error('total_price_product') {{ $message }} @enderror "
                 value="{{ old('total_price_product') }}">
         </div>
         <div class="mb-3">

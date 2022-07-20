@@ -91,7 +91,7 @@
             </div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Baharui Produksi</button>
+        <button type="submit" class="btn btn-primary">Update Produksi</button>
     </form>
 </div>
 

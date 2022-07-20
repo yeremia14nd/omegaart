@@ -56,8 +56,8 @@
                 </div>
                 <label for="phoneNumber" class="form-label">Telepon</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
-                        name="phoneNumber" value="{{ old('phoneNumber', $survey->phoneNumber) }}">
+                    <input type="number" class="form-control @error('phoneNumber') is-invalid @enderror"
+                        id="phoneNumber" name="phoneNumber" value="{{ old('phoneNumber', $survey->phoneNumber) }}">
                     @error('phoneNumber')
                     <div class="invalid-feedback"> {{ $message }}
                     </div>

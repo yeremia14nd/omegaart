@@ -12,7 +12,7 @@
 @endif
 
 <div class="table-responsive">
-    <a href="/dashboard/productions/create" class="btn btn-primary m-2">Tambah jadwal produksi</a>
+    <a href="/dashboard/productions/create" class="btn btn-primary m-2">Tambah Jadwal Produksi</a>
     <table class="table table-striped table-sm">
         <thead>
             <tr>

@@ -68,7 +68,7 @@
         <label for="price" class="form-label">Harga Produk</label>
         <div class="input-group mb-3">
             <span class="input-group-text">Rp.</span>
-            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
+            <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
                 placeholder=" @error('price') {{ $message }} @enderror " value="{{ old('price', $product->price) }}">
         </div>
 

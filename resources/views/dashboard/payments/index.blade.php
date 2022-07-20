@@ -23,7 +23,7 @@
                 <th scope="col">Produk</th>
                 <th scope="col">Total harga</th>
                 <th scope="col">Terbayar</th>
-                <th scope="col">Tanggal Pembayaran</th>
+                <th scope="col">Waktu Pembayaran</th>
                 <th scope="col">Konfirmasi</th>
                 <th scope="col">File</th>
                 <th scope="col">Action</th>

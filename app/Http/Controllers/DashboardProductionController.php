@@ -19,6 +19,13 @@ class DashboardProductionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permit:superadmin,admin,teknisi')->only(['index', 'show', 'edit', 'update', 'downloadFile', 'updateConfirmProduction', 'confirmProduction', 'checkOrder']);
+        $this->middleware('permit:superadmin,admin')->only(['create', 'store', 'destroy']);
+    }
+
     public function index()
     {
         return view('dashboard.productions.index', [

@@ -17,11 +17,11 @@
             <div class="row">
                 <div class="col-md text-center">
                     <img id="unsplashImage" src="{{ asset('storage/' . $userprofile->imageAssets) }}"
-                        class="img-fluid img-thumbnail" alt="{{ $userprofile->name }}">
+                        class="img-fluid img-thumbnail" alt="{{ $userprofile->name }}" width="70%">
                 </div>
                 <div class="col-md">
                     <h1 class="mb-2">{{ $userprofile->name }}</h1>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <form action="/profil/{{ $userprofile->userName }}/edit" method="get">
                             @csrf
                             <div class="d-grid gap-2">

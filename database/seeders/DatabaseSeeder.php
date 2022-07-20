@@ -72,19 +72,19 @@ class DatabaseSeeder extends Seeder
         Category::create([
             'name' => 'Sofa',
             'slug' => 'sofa',
-            'imageAssets' => 'images/sofa.png',
+            'imageAssets' => 'product-images/sofa1a.png',
             'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores magnam quam, praesentium nulla voluptatum ratione?'
         ]);
         Category::create([
             'name' => 'Blinds',
             'slug' => 'blind',
-            'imageAssets' => 'images/blinds.png',
+            'imageAssets' => 'product-images/sofa1a.png',
             'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores magnam quam, praesentium nulla voluptatum ratione?'
         ]);
         Category::create([
             'name' => 'Aluminium',
             'slug' => 'aluminium',
-            'imageAssets' => 'images/aluminium.png',
+            'imageAssets' => 'product-images/sofa1a.png',
             'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores magnam quam, praesentium nulla voluptatum ratione?'
         ]);
 

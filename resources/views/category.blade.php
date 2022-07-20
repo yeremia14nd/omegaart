@@ -19,11 +19,14 @@
     @foreach ($products as $item)
     <div class="col-md-4 mb-3">
       <div class="card shadow-sm">
-        <a id="imageLink" href=""><img id="unsplashImage" src="{{ $item->imageAssets }}" class="card-img-top"
-            alt="{{ $item->category->name }}"></a>
+        <a id="imageLink" href=""><img id="unsplashImage" src="{{ asset('storage/' . $item->imageAssets) }}"
+            class="card-img-top" alt="{{ $item->category->name }}"></a>
         <div class="card-body">
           <h5 class="card-title">{{ $item->name }}</h5>
-          <small class="text-muted">dalam Kategori {{ $item->category->name }}</small>
+          <small class="text-muted">di kategori {{ $item->category->name }} </small><small
+            class="text-muted p-1 border rounded" style="font-size: 0.8em">{{
+            $item->productAvailability->availability
+            }}</small>
           <p class="card-text pt-2">{!! $item->excerpt !!}</p>
           <a href="/products/{{ $item->slug }}" class="btn btn-primary">Lihat Produk</a>
           <small class="text-muted">{{ $item->created_at->diffForHumans() }}</small>

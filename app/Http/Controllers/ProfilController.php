@@ -103,7 +103,6 @@ class ProfilController extends Controller
     {
         $rules = [
             'name' => 'required|max:255',
-            // 'userName' => 'required|unique',
             'imageAssets' => 'image|file|max:2048',
             'email' => 'required|email',
             'address' => 'required',
@@ -130,6 +129,13 @@ class ProfilController extends Controller
 
     public function updatePassword(Request $request, User $user)
     {
+        $rules = [
+            'oldPassword' => 'required',
+            'password' => 'required|min:5',
+            'newConfirmPassword' => 'required',
+
+        ];
+
         if (!Hash::check($request->oldPassword, $request->user()->password)) {
             return back()->withErrors([
                 'oldPassword' => ['Password lama salah!']
@@ -142,12 +148,6 @@ class ProfilController extends Controller
             ]);
         }
 
-        $rules = [
-            'oldPassword' => 'required',
-            'password' => 'required|min:5|max:255',
-            'newConfirmPassword' => 'required|min:5|max:255',
-
-        ];
 
         $validatedData = $request->validate($rules);
 

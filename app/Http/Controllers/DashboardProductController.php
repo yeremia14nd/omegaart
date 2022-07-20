@@ -61,6 +61,8 @@ class DashboardProductController extends Controller
             'description' => 'required',
         ]);
 
+        $validatedData['price'] = str_replace(".", "", $request->price);
+
         if ($request->file('imageAssets')) {
             $validatedData['imageAssets'] = $request->file('imageAssets')->store('product-images');
         }
@@ -122,6 +124,8 @@ class DashboardProductController extends Controller
             'stock' => 'required',
             'description' => 'required',
         ];
+
+        $validatedData['price'] = str_replace(".", "", $request->price);
 
         if ($request->slug != $product->slug) {
             $rules['slug'] = 'required|unique:products';

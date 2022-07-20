@@ -23,6 +23,10 @@
                     <h1 class="mb-2">{{ $staff->name }}</h1>
                     <table class="table">
                         <tr>
+                            <td>Role</td>
+                            <td>: {{ $staff->role->name }}</td>
+                        </tr>
+                        <tr>
                             <td>Username</td>
                             <td>: {{ $staff->userName }}</td>
                         </tr>

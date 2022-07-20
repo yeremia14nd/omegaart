@@ -20,17 +20,15 @@ class RegisterController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'userName' => ['required', 'min:3', 'max:255', 'unique:users'],
+            'userName' => ['required', 'min:3', 'unique:users'],
             'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255',
+            'password' => 'required|min:5',
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
 
-        // $request->session()->flash('success', 'Registration Successful! Please Login.');
-
-        return redirect('/login')->with('success', 'Registration Successful! Please Login.');
+        return redirect('/login')->with('success', 'Daftar berhasil! Silahkan Login.');
     }
 }

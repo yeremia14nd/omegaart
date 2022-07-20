@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <h5 class="col-sm-4">Rincian Produk</h5>
     <a href="/shop" class="text-decoration-none col-sm-4 d-flex align-items-end flex-column mt-auto px-0 text-end">
-      Kembali ke toko
+      Kembali ke Toko
     </a>
   </div>
   <div class="row justify-content-center">

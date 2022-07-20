@@ -4,15 +4,15 @@
 
 <div class="row justify-content-center">
 
-    <a href="/profil/{{ $user->userName }}" class="btn btn-success my-3 col-sm-2"> <span
+    <a href="/profil/{{ $user->userName }}" class="btn btn-success my-3 mx-5 col-md-2"> <span
             data-feather="arrow-left"></span>
         Kembali ke Profil</a>
     <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Ubah Profil</h1>
     </div>
 
-    <div class="col-lg-6">
 
+    <div class="col-md-6">
         <form method="post" action="/profil/{{ $user->userName }}" class="mb-5" enctype="multipart/form-data">
             @method('put')
             @csrf
@@ -70,7 +70,7 @@
             </div>
             <label for="phoneNumber" class="form-label">Nomor Telepon</label>
             <div class="input-group mb-3">
-                <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
+                <input type="number" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
                     name="phoneNumber" placeholder=" @error('phoneNumber') {{ $message }} @enderror "
                     value="{{ old('phoneNumber', $user->phoneNumber) }}">
             </div>
@@ -78,6 +78,7 @@
             <button type="submit" class="btn btn-primary">Ubah Profil</button>
         </form>
     </div>
+
 </div>
 
 <script>

@@ -33,13 +33,12 @@
                             <td>Jadwal Survey</td>
                             <td
                                 class="{{ $order->is_survey_scheduled == '1' ? 'bg-success fw-bold' : 'table-danger' }}">
-                                {{
-                                $order->is_survey_scheduled ==
-                                '1' ?
-                                "Sudah dijadwal" : "Belum dijadwal" }}</td>
+                                : {{
+                                $order->is_survey_scheduled == '1' ? "Sudah dijadwal survey" : "Belum dijadwal survey"
+                                }}</td>
                         </tr>
                         <tr>
-                            <td>Survey</td>
+                            <td>Survey Selesai</td>
                             <td class="{{ $order->is_surveyed == '1' ? 'bg-success fw-bold' : 'table-danger' }}">: {{
                                 $order->is_surveyed == '1' ? "Sudah disurvey" : "Belum disurvey" }}</td>
                         </tr>

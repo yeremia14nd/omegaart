@@ -91,6 +91,7 @@ class DashboardOrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $rules = [
+            'is_survey_scheduled' => 'required',
             'is_surveyed' => 'required',
             'is_invoice_sent' => 'required',
             'is_paid_invoiced' => 'required',

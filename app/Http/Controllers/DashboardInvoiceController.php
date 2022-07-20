@@ -51,6 +51,8 @@ class DashboardInvoiceController extends Controller
             'fileAsset' => 'required|file|max:10240'
         ]);
 
+        $validatedData['total_price_product'] = str_replace(".", "", $request->total_price_product);
+
         $file = $request->file('fileAsset');
         $name = $file->getClientOriginalName();
 
@@ -63,7 +65,7 @@ class DashboardInvoiceController extends Controller
 
         Order::where('id', $request->order_id)->update(['is_invoice_sent' => 1]);
 
-        return redirect('/dashboard/invoices')->with('success', 'New Invoice has been added');
+        return redirect('/dashboard/invoices')->with('success', 'Invoice baru sudah ditambahkan');
     }
 
     /**
@@ -110,6 +112,9 @@ class DashboardInvoiceController extends Controller
             'fileAsset' => 'file|max:10240'
         ]);
 
+        $validatedData['total_price_product'] = str_replace(".", "", $request->total_price_product);
+
+
         if ($request->file('fileAsset')) {
             $file = $request->file('fileAsset');
             dd($file);
@@ -122,7 +127,7 @@ class DashboardInvoiceController extends Controller
 
         Invoice::where('id', $invoice->id)->update($validatedData);
 
-        return redirect('/dashboard/invoices')->with('success', 'Invoice sudah di dibaharui');
+        return redirect('/dashboard/invoices')->with('success', 'Invoice sudah dibaharui');
     }
 
     /**
@@ -138,7 +143,7 @@ class DashboardInvoiceController extends Controller
         }
         Invoice::destroy($invoice->id);
 
-        return redirect('/dashboard/invoices')->with('success', 'Invoice has been deleted');
+        return redirect('/dashboard/invoices')->with('success', 'Invoice sudah dihapus');
     }
 
     public function checkOrder(Request $request)

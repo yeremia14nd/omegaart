@@ -104,7 +104,7 @@
             </div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Baharui Pemasangan</button>
+        <button type="submit" class="btn btn-primary">Update Pemasangan</button>
     </form>
 </div>
 
