@@ -49,6 +49,8 @@ class NotifikasiController extends Controller
     } elseif ($kategori == 'produksi') {
       return redirect('dashboard/productions');
     } elseif ($kategori == 'installments'){
+      return redirect('dashboard/installments/create');
+    } elseif ($kategori == 'installments_teknisi'){
       return redirect('dashboard/installments');
     }
   }

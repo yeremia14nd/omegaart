@@ -221,6 +221,16 @@
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
                 '</a>');
+            } else if (notif.notif_kategori == 'installments') {
+              $('#teknisi_notification_list').append('<a href="/checkout_read/' + notif.id + '/installments_teknisi" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Jadwal Pemasangan Baru<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Ada jadwal pemasangan baru.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
             }
           } else {
             if (notif.notif_kategori == 'survey') {
@@ -239,6 +249,16 @@
                 '<div class="pd_content">' +
                 '<h6>Jadwal Baru Produksi</h6>' +
                 '<p>Ada jadwal produksi baru yang masuk.</strong>.</p>' +
+                '</div>' +
+                '<div><hr class="dropdown-divider"></div>' +
+                '</div>' +
+                '</a>');
+            } else if (notif.notif_kategori == 'installments') {
+              $('#teknisi_notification_list').append('<a href="/checkout_read/' + notif.id + '/installments_teknisi" class="dropdown-item">' +
+                '<div class="profile_link">' +
+                '<div class="pd_content">' +
+                '<h6>Jadwal Pemasangan Baru</h6>' +
+                '<p>Ada jadwal pemasangan baru.</strong>.</p>' +
                 '</div>' +
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +

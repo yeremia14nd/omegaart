@@ -109,6 +109,10 @@ class Notifikasi extends Model
       ->join('orders AS o', 'o.id', '=', 'iv.order_id')
       ->where('iv.is_validated', 1)->whereNull('o.is_paid_invoiced')->where('o.user_id', $id)
       ->count();
-   return $data + $data_2;
+
+    $data_3 = DB::table('installments AS ins')
+      ->whereNull('ins.is_customer_confirm_date')->where('ins.user_id', $id)
+      ->count();
+   return $data + $data_2 + $data_3;
   }
 }
