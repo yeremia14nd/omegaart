@@ -59,12 +59,12 @@
 								src="{{ asset('storage/' . $item->imageAssets) }}" class="card-img-top"
 								alt="{{ $item->category->name }}"></a>
 						<div class="card-body">
-							<h5 class="card-title">{{ $item->name }}</h5>
-							<small class="text-muted">idalam Kategori {{ $item->category->name }}</small>
+							<h5 class="card-title">{{ Str::Limit($item->name, 35) }}</h5>
+							<small class="text-muted">di kategori {{ $item->category->name }}</small>
 							<small class="text-muted p-1 border rounded" style="font-size: 0.8em">{{
 								$item->productAvailability->availability
 								}}</small>
-							<p class="card-text pt-2">{{ $item->excerpt }}</p>
+							<p class="card-text pt-2">{!! Str::Limit($item->excerpt, 80) !!}</p>
 							<a href="/products/{{ $item->slug }}" class="btn btn-primary">Lihat produk</a>
 							<small class="text-muted">{{ $item->created_at->diffForHumans() }}</small>
 						</div>

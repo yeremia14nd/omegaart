@@ -54,7 +54,9 @@
                         <div class="d-grid gap-2">
                             <input type="hidden" class="form-control @error('is_validated') is-invalid @enderror "
                                 id="is_validated" name="is_validated" value='1'>
-                            <button type="submit" class="badge bg-success border-0">Validasi Invoice</button>
+                            <button type="submit" class="badge bg-success border-0"
+                                onclick="return confirm('Apakah anda yakin ingin menvalidasi invoice ini?')">Validasi
+                                Invoice</button>
                         </div>
                     </form>
                     @endif
