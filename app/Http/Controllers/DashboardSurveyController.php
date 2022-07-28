@@ -175,4 +175,63 @@ class DashboardSurveyController extends Controller
         $path = $survey->surveyFile;
         return Storage::download($path);
     }
+
+    public function updateSurveyor(Survey $survey)
+    {
+        return view('dashboard.surveys.confirm-surveyor', [
+            'survey' => $survey,
+            'assigns' => User::where('role_id', '4')->get(),
+        ]);
+    }
+
+    public function confirmSurveyor(Request $request, Survey $survey)
+    {
+        $validatedData = $request->validate([
+            'assignTo' => 'required',
+        ]);
+
+        $user = User::where('name', $request->assignTo)->first();
+        $validatedData['assignTo'] = $user->name;
+
+        Survey::where('id', $survey->id)->update($validatedData);
+        return redirect('/dashboard/surveys')->with('success', 'Surveyor sudah dikonfirmasi');
+    }
+
+    public function updateConfirmSurvey(Survey $survey)
+    {
+        return view('dashboard.surveys.confirm-survey', [
+            'survey' => $survey,
+        ]);
+    }
+
+    public function confirmSurvey(Request $request, Survey $survey)
+    {
+        $validatedData = $request->validate([
+            'surveyFile' => 'required|image|file|max:10240|nullable',
+        ]);
+
+        if ($request->file('surveyFile')) {
+            if ($request->oldFile) {
+                Storage::delete($request->oldFile);
+            }
+            $validatedData['surveyFile'] = $request->file('surveyFile')->store('survey-files');
+            Order::where('id', $survey->order_id)->update(['is_surveyed' => 1]);
+        }
+
+        Survey::where('id', $survey->id)->update($validatedData);
+        Notifikasi::createNotification("estimator", "invoice");
+
+        return redirect('/dashboard/surveys')->with('success', 'Survei sudah dikonfirmasi selesai');
+    }
+
+    public function confirmationSchedule(Request $request, Survey $survey)
+    {
+        $validatedData = $request->validate([
+            'is_schedule_confirmed' => 'required',
+        ]);
+
+        Survey::where('id', $survey->id)->update($validatedData);
+
+        return redirect('/dashboard/surveys')->with('success', 'Jadwal Survei sudah dikonfirmasi');
+    }
 }

@@ -36,18 +36,18 @@
                 <td>{{ $product->workDuration }} Hari</td>
                 <td>Rp. {{ number_format($product->price / 1, 0) }}</td>
                 <td>
-                    <a href="/dashboard/products/{{ $product->slug }}" class="badge bg-info">
+                    <a href="/dashboard/products/{{ $product->slug }}" class="badge bg-info" title="Lihat detail">
                         <span data-feather="eye"></span>
                     </a>
-                    <a href="/dashboard/products/{{ $product->slug }}/edit" class="badge bg-warning">
+                    <a href="/dashboard/products/{{ $product->slug }}/edit" class="badge bg-warning" title="Edit">
                         <span data-feather="edit"></span>
                     </a>
                     <form action="/dashboard/products/{{ $product->slug }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Apakah anda yakin ingin menghapus produk ini?')"><span
-                                data-feather="x-circle"></span></button>
+                            onclick="return confirm('Apakah anda yakin ingin menghapus produk ini?')"
+                            title="Hapus"><span data-feather="x-circle"></span></button>
                     </form>
                 </td>
             </tr>

@@ -40,8 +40,16 @@
                             <span class="badge badge-pill badge-success text-dark">Pembayaran Lunas <i
                                     class="bi bi-check-circle-fill"></i></span>
                             @elseif ($invoice->is_paid_confirmed)
-                            <span class="badge badge-pill badge-success text-dark">Pembayaran terkonfirmasi <i
-                                    class="bi bi-check-circle-fill"></i></br>Produk dalam Produksi</span>
+                            <span class="badge badge-pill badge-success text-dark">Pembayaran terkonfirmasi
+                                <i class="bi bi-check-circle-fill"></i></br>Produk dalam Produksi </br>
+                                @foreach ($production as $item)
+                                @if ($invoice->order_id == $item->order_id)
+                                Estimasi {{ $item->work_duration }} Hari Produksi
+                                @else
+                                Estimasi Produksi belum ditentukan
+                                @endif
+                                @endforeach
+                            </span>
                             @elseif ($invoice->is_paid_confirmed === 0)
                             <span class="badge badge-pill badge-success text-dark">Sudah dibayar <i
                                     class="bi bi-check-circle"></i></br>Menunggu Konfirmasi</span>

@@ -89,7 +89,7 @@ class DashboardConfirmationController extends Controller
     $checkout = Checkout::findOrFail($id);
     $status = 2;
     $checkout->update_status($status);
-    return back();
+    return back()->with('success', 'Pembayaran sudah dikonfirmasi');
   }
 
   public function denied($id)
@@ -97,6 +97,6 @@ class DashboardConfirmationController extends Controller
     $checkout = Checkout::findOrFail($id);
     $status = 0;
     $checkout->update_status($status);
-    return back();
+    return back()->with('success', 'Pembayaran ditolak!');
   }
 }

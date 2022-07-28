@@ -20,6 +20,7 @@ class CreateSurveysTable extends Migration
             $table->string('city');
             $table->string('phoneNumber');
             $table->string('description');
+            $table->boolean('is_schedule_confirmed')->nullable();
             $table->string('assignTo')->nullable();
             $table->string('surveyFile')->nullable();
             $table->date('surveyDate');

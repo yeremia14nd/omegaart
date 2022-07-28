@@ -23,6 +23,7 @@
                 <th scope="col">Produk Survei</th>
                 <th scope="col">Tanggal Survei</th>
                 <th scope="col">Waktu Survei</th>
+                <th scope="col">Konfirmasi Survei</th>
                 <th scope="col">Surveyor</th>
                 <th scope="col">Alamat</th>
                 <th scope="col">File Survei</th>
@@ -37,10 +38,30 @@
                 <td>{{ $survey->order->product->name }}</td>
                 <td>{{ $survey->surveyDate }}</td>
                 <td>{{ $survey->surveyTime }}</td>
+                <td>
+                    @if ($survey->is_schedule_confirmed)
+                    <span class="badge badge-pill badge-success text-dark">Sudah Konfirmasi Jadwal
+                        </br>Menunggu Survey</span>
+                    @else
+                    <form action="/surveys/{{ $survey->id}}/confirmationSchedule" method="post">
+                        @method('put')
+                        @csrf
+                        <div class="d-grid gap-2">
+                            <input type="hidden"
+                                class="form-control @error('is_schedule_confirmed') is-invalid @enderror "
+                                id="is_schedule_confirmed" name="is_schedule_confirmed" value='1'>
+                            <button type="submit"
+                                onclick="return confirm('Apakah anda yakin ingin konfirmasi jadwal survei ini?')"
+                                class="badge bg-success border-0">Konfirmasi Jadwal</button>
+                        </div>
+                    </form>
+                    @endif
+                </td>
                 <td>@if ($survey->assignTo)
                     {{ $survey->assignTo }}
                     @else
-                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Silahkan Pilih
+                    <a href="/dashboard/surveys/{{ $survey->id }}/confirmSurveyor" class="badge bg-primary">Silahkan
+                        Pilih
                         Surveyor</a>
                     @endif
                 </td>
@@ -49,7 +70,7 @@
                     <img id="image" src="{{ asset('storage/' . $survey->surveyFile) }}" class="img-fluid" width="50"
                         alt="{{ $survey->surveyFile }}">
                     @else
-                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary"
+                    <a href="/dashboard/surveys/{{ $survey->id }}/confirmSurvey" class="badge bg-primary"
                         onclick="return confirm('Apakah anda ingin konfirmasi survei selesai? Silahkan Upload File Gambar Survei')">Konfirmasi
                         Survei
                         Selesai <br>Silahkan Upload</a>

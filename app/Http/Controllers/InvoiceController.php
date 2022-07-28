@@ -7,7 +7,7 @@ use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
 use App\Models\Order;
 use App\Models\Payment;
-
+use App\Models\Production;
 
 class InvoiceController extends Controller
 {
@@ -21,13 +21,15 @@ class InvoiceController extends Controller
         $order = Order::where('user_id', auth()->user()->id)->get()->modelKeys();
 
         $invoices = Invoice::whereIn('order_id', $order)->where('is_validated', '1')->get();
-        $payments = Payment::where('id', $invoices->modelKeys())->get();
+        // $payments = Payment::where('id', $invoices->modelKeys())->get();
+        $production = Production::where('order_id', $order)->get();
 
         return view('invoices.index', [
             'title' => 'Daftar Invoice',
             'active' => 'invoice',
             'invoices' => $invoices,
-            'payments' => $payments,
+            // 'payments' => $payments,
+            'production' => $production,
         ]);
     }
 

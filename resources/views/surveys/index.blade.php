@@ -43,6 +43,9 @@
                             @elseif ($survey->order->is_surveyed)
                             <span class="badge badge-pill badge-success text-dark">Sudah disurvei <i
                                     class="bi bi-check-circle-fill"></i></br> Menunggu Invoice</span>
+                            @elseif ($survey->is_schedule_confirmed)
+                            <span class="badge badge-pill badge-success text-dark">Jadwal dikonfirmasi <i
+                                    class="bi bi-check-circle-fill"></i></br> Menunggu Survei</span>
                             @else
                             <a href="/surveys/{{ $survey->id }}/edit" class="badge bg-warning">
                                 <span data-feather="edit"></span> Ubah Jadwal

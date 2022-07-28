@@ -137,6 +137,11 @@ Route::get('/surveys/create/{product:slug}', [SurveyController::class, 'create']
 Route::resource('/surveys', SurveyController::class)->middleware('auth');
 
 //Route for Survey Dashboard
+Route::put('/surveys/{survey}/confirmationSchedule', [DashboardSurveyController::class, 'confirmationSchedule'])->middleware('auth');
+Route::get('/dashboard/surveys/{survey}/confirmSurveyor', [DashboardSurveyController::class, 'updateSurveyor'])->middleware('auth');
+Route::put('/dashboard/surveys/{survey}/confirmSurveyor', [DashboardSurveyController::class, 'confirmSurveyor'])->middleware('auth');
+Route::get('/dashboard/surveys/{survey}/confirmSurvey', [DashboardSurveyController::class, 'updateConfirmSurvey'])->middleware('auth');
+Route::put('/dashboard/surveys/{survey}/confirmSurvey', [DashboardSurveyController::class, 'confirmSurvey'])->middleware('auth');
 Route::get('/dashboard/surveys/checkOrder', [DashboardSurveyController::class, 'checkOrder'])->middleware('auth');
 Route::get('/dashboard/surveys/download/{id}', [DashboardSurveyController::class, 'downloadFile'])->name('surveys.downloadFile')->middleware('auth');
 Route::resource('/dashboard/surveys', DashboardSurveyController::class);

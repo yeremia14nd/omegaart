@@ -38,18 +38,18 @@
                 <td><img id="image" src="{{ asset('storage/' . $customer->imageAssets) }}" class="img-fluid" width="50"
                         alt="{{ $customer->username }}"></td>
                 <td>
-                    <a href="/dashboard/customers/{{ $customer->userName }}" class="badge bg-info">
+                    <a href="/dashboard/customers/{{ $customer->userName }}" class="badge bg-info" title="Lihat detail">
                         <span data-feather="eye"></span>
                     </a>
-                    <a href="/dashboard/customers/{{ $customer->userName }}/edit" class="badge bg-warning">
+                    <a href="/dashboard/customers/{{ $customer->userName }}/edit" class="badge bg-warning" title="Edit">
                         <span data-feather="edit"></span>
                     </a>
                     <form action="/dashboard/customers/{{ $customer->userName }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Apakah anda yakin ingin menghapus Customer ini?')"><span
-                                data-feather="x-circle"></span></button>
+                            onclick="return confirm('Apakah anda yakin ingin menghapus Customer ini?')"
+                            title="Hapus"><span data-feather="x-circle"></span></button>
                     </form>
                 </td>
             </tr>

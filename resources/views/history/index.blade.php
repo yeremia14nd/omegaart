@@ -44,7 +44,7 @@
             </td>
             <td>
               @if($row->status == 2)
-              Sudah Dikonfirmasi
+              Sudah Dikonfirmasi. </br> Dikirim dalam 7 hari kerja
               @else
               Menunggu Konfirmasi
               @endif
