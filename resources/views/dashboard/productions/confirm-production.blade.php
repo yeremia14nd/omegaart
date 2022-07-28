@@ -35,7 +35,7 @@
             </option>
         </select>
         <div class="mb-3">
-            <label for="file_asset" class="form-label">Gambar Produksi</label>
+            <label for="file_asset" class="form-label">Foto Produksi</label>
             <input type="hidden" name="oldFile" value="{{ $production->file_asset }}">
             @if ($production->file_asset)
             <img src="{{ asset('storage/' . $production->file_asset) }}"

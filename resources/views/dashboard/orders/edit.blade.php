@@ -48,28 +48,28 @@
                 placeholder=" @error('date') {{ $message }} @enderror " value="{{ old('date', $order->created_at) }}"
                 readonly>
         </div>
-        <label for="is_survey_scheduled" class="form-label">Sudah dijadwal Survey?</label>
+        <label for="is_survey_scheduled" class="form-label">Sudah dijadwal Survei?</label>
         <select class="form-select mb-3" @error('is_survey_scheduled') is-invalid @enderror" id="is_survey_scheduled"
             name="is_survey_scheduled">
             <option value='0' @if (old('is_survey_scheduled', $order->is_survey_scheduled) == 0)
                 selected @endif>Belum
-                dijadwal Survey
+                dijadwal Survei
             </option>
             <option value='1' @if (old('is_survey_scheduled', $order->is_survey_scheduled) == 1)
                 selected
-                @endif>Sudah dijadwal Survey
+                @endif>Sudah dijadwal Survei
             </option>
         </select>
-        <label for="is_surveyed" class="form-label">Survey Selesai?</label>
+        <label for="is_surveyed" class="form-label">Survei Selesai?</label>
         <select class="form-select mb-3" @error('is_surveyed') is-invalid @enderror" id="is_surveyed"
             name="is_surveyed">
             <option value='0' @if (old('is_surveyed', $order->is_surveyed) == 0)
                 selected @endif>Belum
-                di survey
+                disurvei
             </option>
             <option value='1' @if (old('is_surveyed', $order->is_surveyed) == 1)
                 selected
-                @endif>Sudah disurvey
+                @endif>Sudah disurvei
             </option>
         </select>
         <label for="is_invoice_sent" class="form-label">Invoice Terkirim?</label>

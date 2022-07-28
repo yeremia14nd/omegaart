@@ -60,7 +60,7 @@ class DashboardStaffController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/dashboard/staffs')->with('success', 'Staff has been created!');
+        return redirect('/dashboard/staffs')->with('success', 'Staf baru sudah dibuat');
     }
 
     /**
@@ -109,7 +109,7 @@ class DashboardStaffController extends Controller
 
         User::where('id', $user->id)->update($validatedData);
 
-        return redirect('/dashboard/staffs')->with('success', 'Role dari Staff sudah dibaharui!');
+        return redirect('/dashboard/staffs')->with('success', 'Role dari Staf sudah diubah');
     }
 
     /**
@@ -125,6 +125,6 @@ class DashboardStaffController extends Controller
         }
         User::destroy($user->id);
 
-        return redirect('/dashboard/staffs')->with('success', 'Staff has been deleted');
+        return redirect('/dashboard/staffs')->with('success', 'Staf sudah dihapus!');
     }
 }

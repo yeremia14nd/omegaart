@@ -26,7 +26,7 @@ class SurveyController extends Controller
         $survey = Survey::whereIn('order_id', $order)->get();
 
         return view('surveys.index', [
-            'title' => 'Survey List',
+            'title' => 'Survei List',
             'active' => 'survey',
             'surveys' => $survey,
         ]);
@@ -45,7 +45,7 @@ class SurveyController extends Controller
         if (session()->has('order')) {
             // $product = Product::where('id', $order->product_id)->first();
             return view('surveys.create', [
-                'title' => 'Survey Form',
+                'title' => 'Survei Form',
                 'active' => 'survey',
                 'order' => $order,
                 'product' => $order->product,
@@ -96,7 +96,7 @@ class SurveyController extends Controller
         Notifikasi::createNotification("teknisi", "survey");
 
         Survey::create($validatedData);
-        return redirect('/surveys')->with('success', 'Survey sudah dijadwal');
+        return redirect('/surveys')->with('success', 'Survei sudah dijadwal');
     }
 
     /**
@@ -150,7 +150,7 @@ class SurveyController extends Controller
 
         Survey::where('id', $survey->id)->update($validatedData);
 
-        return redirect('/surveys')->with('success', 'Jadwal Survey berhasil diubah');
+        return redirect('/surveys')->with('success', 'Jadwal Survei berhasil diubah');
     }
 
     /**

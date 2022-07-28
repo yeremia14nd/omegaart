@@ -47,21 +47,21 @@
                     @else
                     <a href="/dashboard/productions/{{ $production->id }}/confirmProduction"
                         class="badge bg-primary">Konfirmasi Selesai <br>
-                        Silahkan unggah Gambar</a>
+                        Silahkan Unggah Foto</a>
                     @endif
                 </td>
                 <td>
-                    <a href="/dashboard/productions/{{ $production->id }}" class="badge bg-info">
+                    <a href="/dashboard/productions/{{ $production->id }}" class="badge bg-info" title="Lihat detail">
                         <span data-feather="eye"></span>
                     </a>
-                    <a href="/dashboard/productions/{{ $production->id }}/edit" class="badge bg-warning">
+                    <a href="/dashboard/productions/{{ $production->id }}/edit" class="badge bg-warning" title="Edit">
                         <span data-feather="edit"></span>
                     </a>
                     <form action="/dashboard/productions/{{ $production->id}}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Are you sure to delete this production?')"><span
+                            onclick="return confirm('Apakah anda yakin ingin menghapus produksi?')" title="Hapus"><span
                                 data-feather="x-circle"></span></button>
                     </form>
                 </td>

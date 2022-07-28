@@ -79,12 +79,14 @@ class PaymentController extends Controller
       'description' => 'required',
     ]);
 
-    if ($request->total_price_paid < $invoice->total_price_product) {
+    $validatedData['total_price_paid'] = str_replace(".", "", $request->total_price_paid);
+
+    if ($validatedData['total_price_paid'] < $invoice->total_price_product) {
       $validatedData['has_paid_down_payment'] = 1;
       $validatedData['has_paid_full'] = 0;
     }
 
-    if ($request->total_price_paid == $invoice->total_price_product || $request->total_price_paid > $invoice->total_price_product) {
+    if ($validatedData['total_price_paid'] == $invoice->total_price_product || $validatedData['total_price_paid'] > $invoice->total_price_product) {
       $validatedData['has_paid_down_payment'] = 1;
       $validatedData['has_paid_full'] = 1;
     }

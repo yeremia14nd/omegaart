@@ -62,7 +62,7 @@ class DashboardInstallmentController extends Controller
 
         Installment::create($validatedData);
 
-        return redirect('/dashboard/installments')->with('success', 'Jadwal Pemasangan telah dibuat!');
+        return redirect('/dashboard/installments')->with('success', 'Jadwal Pemasangan sudah dibuat');
     }
 
     /**
@@ -129,7 +129,7 @@ class DashboardInstallmentController extends Controller
 
         Installment::where('id', $installment->id)->update($validatedData);
 
-        return redirect('/dashboard/installments')->with('success', 'Informasi Pemasangan telah diperbaharui!');
+        return redirect('/dashboard/installments')->with('success', 'Informasi Pemasangan sudah diperbaharui!');
     }
 
     public function updateConfirmInstallment(Installment $installment)
@@ -164,7 +164,7 @@ class DashboardInstallmentController extends Controller
 
         Installment::where('id', $installment->id)->update($validatedData);
 
-        return redirect('/dashboard/installments')->with('success', 'Konfirmasi produk sudah terpasang!');
+        return redirect('/dashboard/installments')->with('success', 'Konfirmasi produk sudah terpasang');
     }
 
     /**
@@ -179,10 +179,11 @@ class DashboardInstallmentController extends Controller
             Storage::delete($installment->file_asset);
         }
         Production::where('id', $installment->production_id)->update(['onInstallment' => 0]);
+        Order::where('id', $installment->production->order_id)->update(['is_installed' => null]);
 
         Installment::destroy($installment->id);
 
-        return redirect('/dashboard/installments')->with('success', 'Pemasangan dihapus');
+        return redirect('/dashboard/installments')->with('success', 'Pemasangan sudah dihapus!');
     }
 
     public function checkProduction(Request $request)

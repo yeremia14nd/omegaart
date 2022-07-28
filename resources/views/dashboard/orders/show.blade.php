@@ -30,17 +30,17 @@
                             <td>: {{ $order->created_at->format('l, d-M-Y, H:i A') }}</td>
                         </tr>
                         <tr>
-                            <td>Jadwal Survey</td>
+                            <td>Jadwal Survei</td>
                             <td
                                 class="{{ $order->is_survey_scheduled == '1' ? 'bg-success fw-bold' : 'table-danger' }}">
                                 : {{
-                                $order->is_survey_scheduled == '1' ? "Sudah dijadwal survey" : "Belum dijadwal survey"
+                                $order->is_survey_scheduled == '1' ? "Sudah dijadwal survei" : "Belum dijadwal survei"
                                 }}</td>
                         </tr>
                         <tr>
-                            <td>Survey Selesai</td>
+                            <td>Survei Selesai</td>
                             <td class="{{ $order->is_surveyed == '1' ? 'bg-success fw-bold' : 'table-danger' }}">: {{
-                                $order->is_surveyed == '1' ? "Sudah disurvey" : "Belum disurvey" }}</td>
+                                $order->is_surveyed == '1' ? "Sudah disurvei" : "Belum disurvei" }}</td>
                         </tr>
                         <tr>
                             <td>Invoice</td>

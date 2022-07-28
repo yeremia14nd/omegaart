@@ -72,7 +72,7 @@ class DashboardProductionController extends Controller
         Order::where('id', $request->order_id)->update(['is_productioned' => 0]);
         Notifikasi::createNotification("teknisi", "produksi");
 
-        return redirect('/dashboard/productions')->with('success', 'Produksi telah dibuat!');
+        return redirect('/dashboard/productions')->with('success', 'Produksi sudah dibuat');
     }
 
     /**
@@ -138,7 +138,7 @@ class DashboardProductionController extends Controller
 
         Production::where('id', $production->id)->update($validatedData);
 
-        return redirect('/dashboard/productions')->with('success', 'Produksi telah diperbaharui!');
+        return redirect('/dashboard/productions')->with('success', 'Produksi sudah diperbaharui');
     }
 
     /**
@@ -180,7 +180,7 @@ class DashboardProductionController extends Controller
         Production::where('id', $production->id)->update($validatedData);
         Notifikasi::createNotification("admin", "produksi");
 
-        return redirect('/dashboard/productions')->with('success', 'Produksi telah dikonfirmasi selesai!');
+        return redirect('/dashboard/productions')->with('success', 'Produksi sudah dikonfirmasi selesai!');
     }
 
     public function destroy(Production $production)
@@ -190,7 +190,7 @@ class DashboardProductionController extends Controller
         }
         Production::destroy($production->id);
 
-        return redirect('/dashboard/productions')->with('success', 'Produksi dihapus');
+        return redirect('/dashboard/productions')->with('success', 'Produksi sudah dihapus!');
     }
 
     public function checkOrder(Request $request)

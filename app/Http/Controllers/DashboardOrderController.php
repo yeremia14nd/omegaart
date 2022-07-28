@@ -51,7 +51,7 @@ class DashboardOrderController extends Controller
         Order::create($validatedData);
 
         return redirect('/dashboard/orders')->with([
-            'success' => 'New Order has been added',
+            'success' => 'Order baru sudah ditambahkan',
         ]);
     }
 
@@ -106,7 +106,7 @@ class DashboardOrderController extends Controller
 
         Order::where('id', $order->id)->update($validatedData);
 
-        return redirect('/dashboard/orders')->with('success', 'Order has been updated!');
+        return redirect('/dashboard/orders')->with('success', 'Order sudah diubah');
     }
 
     /**
@@ -119,6 +119,6 @@ class DashboardOrderController extends Controller
     {
         Order::destroy($order->id);
 
-        return redirect('/dashboard/orders')->with('success', 'Order has been deleted');
+        return redirect('/dashboard/orders')->with('success', 'Order sudah dihapus!');
     }
 }

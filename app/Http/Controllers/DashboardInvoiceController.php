@@ -127,7 +127,7 @@ class DashboardInvoiceController extends Controller
 
         Invoice::where('id', $invoice->id)->update($validatedData);
 
-        return redirect('/dashboard/invoices')->with('success', 'Invoice sudah dibaharui');
+        return redirect('/dashboard/invoices')->with('success', 'Invoice sudah diubah');
     }
 
     /**
@@ -143,7 +143,7 @@ class DashboardInvoiceController extends Controller
         }
         Invoice::destroy($invoice->id);
 
-        return redirect('/dashboard/invoices')->with('success', 'Invoice sudah dihapus');
+        return redirect('/dashboard/invoices')->with('success', 'Invoice sudah dihapus!');
     }
 
     public function checkOrder(Request $request)

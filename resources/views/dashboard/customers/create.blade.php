@@ -22,7 +22,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="userName" class="form-label">User Name</label>
+            <label for="userName" class="form-label">Username</label>
             <input type="text" class="form-control @error('userName') is-invalid @enderror" id="userName"
                 name="userName" value="{{ old('userName') }}">
             @error('userName')
@@ -32,7 +32,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Gambar Customer</label>
+            <label for="image" class="form-label">Foto Profil</label>
             <img class="img-preview img-fluid mb-3 col-sm-5">
             <input class="form-control @error('imageAssets') is-invalid @enderror" type="file" id="image"
                 name="imageAssets" onchange="previewImage()">

@@ -61,7 +61,7 @@
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/surveys*') ? 'active' : '' }}" href="/dashboard/surveys">
           <span data-feather="map"></span>
-          Survey
+          Survei
         </a>
       </li>
       @endcanany
@@ -85,7 +85,7 @@
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/confirmation*') ? 'active' : '' }}" href="/dashboard/confirmation">
           <span data-feather="credit-card"></span>
-          Pembayaran Available Produk
+          Pembayaran Available Product
         </a>
       </li>
       @endcanany
@@ -109,7 +109,7 @@
       <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/staffs*') ? 'active' : '' }}" href="/dashboard/staffs">
           <span data-feather="users"></span>
-          Daftar Staff
+          Daftar Staf
         </a>
       </li>
       @endcanany

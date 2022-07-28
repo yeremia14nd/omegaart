@@ -33,12 +33,12 @@
         <img id="unsplashImage" src="{{ asset('storage/' . $item->imageAssets) }}" class="img-fluid img-thumbnail"
           alt="{{ $item->category->name }}">
         <div class="card-body">
-          <h5 class="card-title">{{ Str::Limit($item->name, 35) }}</h5>
+          <h5 class="card-title">{{ Str::Limit($item->name, 24) }}</h5>
           <small class="text-muted ">di kategori {{ $item->category->name }}</small>
           <small class="text-muted p-1 border rounded" style="font-size: 0.8em">{{
             $item->productAvailability->availability
             }}</small>
-          <p class="card-text pt-2">{!! Str::Limit($item->excerpt, 80) !!}</p>
+          <p class="card-text pt-2">{!! Str::Limit($item->excerpt, 90) !!}</p>
           <a href="/products/{{ $item->slug }}" class="btn btn-primary">Lihat Produk</a>
         </div>
       </div>

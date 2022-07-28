@@ -49,7 +49,7 @@ class DashboardProductController extends Controller
         // return $request->file('imageAssets')->store('product-images');
 
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required',
             'slug' => 'required|unique:products',
             'category_id' => 'required',
             'product_availability_id' => 'required',
@@ -73,7 +73,7 @@ class DashboardProductController extends Controller
 
         Product::create($validatedData);
 
-        return redirect('/dashboard/products')->with('success', 'New Product has been added');
+        return redirect('/dashboard/products')->with('success', 'Produk baru sudah ditambahkan');
     }
 
     /**
@@ -145,7 +145,7 @@ class DashboardProductController extends Controller
 
         Product::where('id', $product->id)->update($validatedData);
 
-        return redirect('/dashboard/products')->with('success', 'Product has been updated!');
+        return redirect('/dashboard/products')->with('success', 'Produk sudah diubah!');
     }
 
     /**
@@ -161,7 +161,7 @@ class DashboardProductController extends Controller
         }
         Product::destroy($product->id);
 
-        return redirect('/dashboard/products')->with('success', 'Product has been deleted');
+        return redirect('/dashboard/products')->with('success', 'Produk sudah dihapus');
     }
 
     public function checkSlug(Request $request)

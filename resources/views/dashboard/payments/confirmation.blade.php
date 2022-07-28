@@ -70,15 +70,15 @@
           <form action="{{ route('confirmation.approved', $row->id) }}" method="post" class="d-inline">
             @method('patch')
             @csrf
-            <button class="badge bg-success border-0" onclick="return confirm('Konfirmasi Bukti Pembayaran ?')"><span
-                data-feather="edit"></span></button>
+            <button class="badge bg-success border-0" onclick="return confirm('Konfirmasi Bukti Pembayaran?')"
+              title="Konfirmasi Benar"><span data-feather="edit"></span></button>
           </form>
           @if($row->status == 1)
           <form action="{{ route('confirmation.denied', $row->id) }}" method="post" class="d-inline">
             @method('patch')
             @csrf
-            <button class="badge bg-danger border-0" onclick="return confirm('Tolak Bukti Pembayaran ?')"><span
-                data-feather="x-circle"></span></button>
+            <button class="badge bg-danger border-0" onclick="return confirm('Tolak Bukti Pembayaran?')"
+              title="Tolak"><span data-feather="x-circle"></span></button>
           </form>
           @endif
         </td>

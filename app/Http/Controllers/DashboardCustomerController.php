@@ -39,7 +39,7 @@ class DashboardCustomerController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required|max:255',
+            'name' => 'required',
             'userName' => 'required|unique:users',
             'imageAssets' => 'image|file|max:2048',
             'email' => 'required|email',
@@ -55,7 +55,7 @@ class DashboardCustomerController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/dashboard/customers')->with('success', 'Customers has been created!');
+        return redirect('/dashboard/customers')->with('success', 'Data customer sudah ditambah');
     }
 
     /**
@@ -118,7 +118,7 @@ class DashboardCustomerController extends Controller
 
         User::where('id', $user->id)->update($validatedData);
 
-        return redirect('/dashboard/customers')->with('success', 'Customers has been updated!');
+        return redirect('/dashboard/customers')->with('success', 'Data customer sudah diubah!');
     }
 
     /**
@@ -134,6 +134,6 @@ class DashboardCustomerController extends Controller
         }
         User::destroy($user->id);
 
-        return redirect('/dashboard/customers')->with('success', 'Customer has been deleted');
+        return redirect('/dashboard/customers')->with('success', 'Data customer sudah dihapus!');
     }
 }

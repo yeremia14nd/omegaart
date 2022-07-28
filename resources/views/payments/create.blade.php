@@ -72,9 +72,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupPrepend3">Rp</span>
                     </div>
-                    <input type="number" class="form-control @error('total_price_paid') is-invalid @enderror"
-                        id="total_price_paid" name="total_price_paid"
-                        placeholder=" @error('total_price_paid') {{ $message }} @enderror "
+                    <input type="text" class="form-control @error('total_price_paid') is-invalid @enderror" id="price"
+                        name="total_price_paid" placeholder=" @error('total_price_paid') {{ $message }} @enderror "
                         value="{{ old('total_price_paid') }}">
                 </div>
                 <div class="mb-3">
@@ -116,5 +115,14 @@
             imgPreview.src = oFREvent.target.result;
         }
     }
+</script>
+<script src="/js/autoNumeric.min.js"></script>
+<script>
+    const price = new AutoNumeric('#price', {
+      decimalPlaces: '0',
+      decimalCharacter: ',',
+      digitGroupSeparator: '.'
+    });  
+    
 </script>
 @endsection

@@ -90,8 +90,8 @@
               $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/survey" class="dropdown-item">' +
                 '<div class="profile_link">' +
                 '<div class="pd_content">' +
-                '<h6>Ada Survey Baru Menunggu Konfirmasi<span class="badge bg-secondary">New<span></h6>' +
-                '<p>Ada survey baru yang menunggu untuk konfirmasi.</strong>.</p>' +
+                '<h6>Ada Survei Baru Menunggu Konfirmasi<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Ada survei baru yang menunggu untuk konfirmasi.</strong>.</p>' +
                 '</div>' +
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
@@ -142,8 +142,8 @@
               $('#notification_list').append('<a href="/checkout_read/' + notif.id + '/survey" class="dropdown-item">' +
                 '<div class="profile_link">' +
                 '<div class="pd_content">' +
-                '<h6>Ada Survey Baru Menunggu Konfirmasi</h6>' +
-                '<p>Ada survey baru yang menunggu untuk konfirmasi.</strong>.</p>' +
+                '<h6>Ada Survei Baru Menunggu Konfirmasi</h6>' +
+                '<p>Ada survei baru yang menunggu untuk konfirmasi.</strong>.</p>' +
                 '</div>' +
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
@@ -205,8 +205,8 @@
               $('#teknisi_notification_list').append('<a href="/checkout_read/' + notif.id + '/survey" class="dropdown-item">' +
                 '<div class="profile_link">' +
                 '<div class="pd_content">' +
-                '<h6>Jadwal Survey Sudah Masuk<span class="badge bg-secondary">New<span></h6>' +
-                '<p>Ada jadwal survey baru yang masuk.</strong>.</p>' +
+                '<h6>Jadwal Survei Sudah Masuk<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Ada jadwal survei baru yang masuk.</strong>.</p>' +
                 '</div>' +
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
@@ -237,8 +237,8 @@
               $('#teknisi_notification_list').append('<a href="/checkout_read/' + notif.id + '/survey" class="dropdown-item">' +
                 '<div class="profile_link">' +
                 '<div class="pd_content">' +
-                '<h6>Jadwal Survey Sudah Masuk</h6>' +
-                '<p>Ada jadwal survey baru yang masuk.</strong>.</p>' +
+                '<h6>Jadwal Survei Sudah Masuk</h6>' +
+                '<p>Ada jadwal survei baru yang masuk.</strong>.</p>' +
                 '</div>' +
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
@@ -290,8 +290,8 @@
               $('#estimator_notification_list').append('<a href="/checkout_read/' + notif.id + '/invoice" class="dropdown-item">' +
                 '<div class="profile_link">' +
                 '<div class="pd_content">' +
-                '<h6>Buat Invoice Untuk Survey Baru<span class="badge bg-secondary">New<span></h6>' +
-                '<p>Buat invoice baru untuk data survey yang baru masuk.</strong>.</p>' +
+                '<h6>Buat Invoice Untuk Survei Baru<span class="badge bg-secondary">New<span></h6>' +
+                '<p>Buat invoice baru untuk data survei yang baru masuk.</strong>.</p>' +
                 '</div>' +
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
@@ -302,8 +302,8 @@
               $('#estimator_notification_list').append('<a href="/checkout_read/' + notif.id + '/invoice" class="dropdown-item">' +
                 '<div class="profile_link">' +
                 '<div class="pd_content">' +
-                '<h6>Buat Invoice Untuk Survey Baru</h6>' +
-                '<p>Buat invoice baru untuk data survey yang baru masuk.</strong>.</p>' +
+                '<h6>Buat Invoice Untuk Survei Baru</h6>' +
+                '<p>Buat invoice baru untuk data survei yang baru masuk.</strong>.</p>' +
                 '</div>' +
                 '<div><hr class="dropdown-divider"></div>' +
                 '</div>' +
@@ -316,15 +316,7 @@
   })
   </script>
   <script src="/js/dashboard.js"></script>
-  <script src="/js/autoNumeric.min.js"></script>
-  <script>
-    const price = new AutoNumeric('#price', {
-    decimalPlaces: '0',
-    decimalCharacter: ',',
-    digitGroupSeparator: '.'
-  });  
-  
-  </script>
+
 </body>
 
 </html>

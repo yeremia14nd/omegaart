@@ -19,7 +19,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nama Produk</th>
                 <th scope="col">Kategori</th>
-                <th scope="col">gambar</th>
+                <th scope="col">Gambar</th>
                 <th scope="col">Durasi Kerja</th>
                 <th scope="col">Harga</th>
                 <th scope="col">Action</th>

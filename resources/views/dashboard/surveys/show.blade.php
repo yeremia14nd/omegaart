@@ -3,12 +3,12 @@
 @section('container')
 <div class="container">
     <div class="row my-3">
-        <h5 class="col-sm-4 mt-3">Detail Survey</h5>
+        <h5 class="col-sm-4 mt-3">Detail Survei</h5>
     </div>
     <div class="row">
         <div class="col-lg-8">
             <a href="/dashboard/surveys" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali
-                ke Semua Survey</a>
+                ke Semua Survei</a>
             <div class="row">
                 <div class="col-md">
                     <h1 class="mb-2 text-muted">Produk: {{ $survey->order->product->name }}</h1>
@@ -30,11 +30,11 @@
                             <td>: {{ $survey->phoneNumber }}</td>
                         </tr>
                         <tr>
-                            <td>Tanggal Survey</td>
+                            <td>Tanggal Survei</td>
                             <td>: {{ $survey->surveyDate }}</td>
                         </tr>
                         <tr>
-                            <td>Waktu Survey</td>
+                            <td>Waktu Survei</td>
                             <td>: {{ $survey->surveyTime }}</td>
                         </tr>
                         <tr>
@@ -48,7 +48,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Survey File</td>
+                            <td>Survei File</td>
                             <td>: @if ($survey->surveyFile)
                                 <a href="/dashboard/surveys/download/{{ $survey->id }}">{{ $survey->surveyFile
                                     }}</a>

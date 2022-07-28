@@ -59,18 +59,18 @@
                     @endif
                 </td>
                 <td>
-                    <a href="/dashboard/installments/{{ $installment->id }}" class="badge bg-info">
+                    <a href="/dashboard/installments/{{ $installment->id }}" class="badge bg-info" title="Lihat detail">
                         <span data-feather="eye"></span>
                     </a>
-                    <a href="/dashboard/installments/{{ $installment->id }}/edit" class="badge bg-warning">
+                    <a href="/dashboard/installments/{{ $installment->id }}/edit" class="badge bg-warning" title="Edit">
                         <span data-feather="edit"></span>
                     </a>
                     <form action="/dashboard/installments/{{ $installment->id}}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Are you sure to delete this installment?')"><span
-                                data-feather="x-circle"></span></button>
+                            onclick="return confirm('Apakah anda yakin ingin menghapus pemasangan?')"
+                            title="Hapus"><span data-feather="x-circle"></span></button>
                     </form>
                 </td>
             </tr>

@@ -72,7 +72,7 @@ class DashboardSurveyController extends Controller
         Survey::create($validatedData);
         Order::where('id', $request->order_id)->update(['is_survey_scheduled' => '1']);
 
-        return redirect('/dashboard/surveys')->with('success', 'New Survey has been scheduled');
+        return redirect('/dashboard/surveys')->with('success', 'Survei baru sudah ditambahkan');
     }
 
     /**
@@ -137,7 +137,7 @@ class DashboardSurveyController extends Controller
         Survey::where('id', $survey->id)->update($validatedData);
         Notifikasi::createNotification("estimator", "invoice");
 
-      return redirect('/dashboard/surveys')->with('success', 'Survey has been updated!');
+        return redirect('/dashboard/surveys')->with('success', 'Survei sudah diubah');
     }
 
     /**
@@ -148,10 +148,13 @@ class DashboardSurveyController extends Controller
      */
     public function destroy(Survey $survey)
     {
-
+        Order::where('id', $survey->order_id)->update([
+            'is_survey_scheduled' => null,
+            'is_surveyed' => null,
+        ]);
         Survey::destroy($survey->id);
 
-        return redirect('/dashboard/surveys')->with('success', 'Survey has been deleted');
+        return redirect('/dashboard/surveys')->with('success', 'Survei sudah dihapus!');
     }
 
     public function checkOrder(Request $request)

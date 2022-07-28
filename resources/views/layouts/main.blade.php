@@ -11,7 +11,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   {{-- Bootstrap Icon --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
@@ -23,54 +23,53 @@
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
   </script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-          crossorigin="anonymous"></script>
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-          crossorigin="anonymous"></script>
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
 </head>
 
 
 <body>
-@include('partials.navbar')
-<main>
-  <div class="mt-5 pt-3">
-    @yield('container')
-  </div>
-  <!-- FOOTER -->
+  @include('partials.navbar')
+  <main>
+    <div class="mt-5 pt-3">
+      @yield('container')
+    </div>
+    <!-- FOOTER -->
 
-  <footer class="py-5 mt-5" style="background-color: #DB9955; color:white">
-    <div class="container">
-      <div class="">
-        <div class="row justify-content-between">
-          <div class="col-md-4">
-            <h2>OMEGA ART</h2>
-            <p>Omega Art merupakan perusahaan yang bergerak dibidang pengerjaan dan pemasangan produk
-              interior dan eksterior untuk bangunan anda..</p>
-          </div>
-          <div class="col-2">
-            <h5>Links</h5>
-            <ul class="list-unstyled d-flex">
-              <li class="ms-2"><a class="link-light" href="https://www.instagram.com/omegaart48/" target="_blank"><i
-                    class="bi bi-instagram"></i></a></li>
-              <li class="ms-2"><a class="link-light"
-                                  href="https://www.facebook.com/aluminiumkacagordenminimalislasercuttingmurah"
-                                  target="_blank"><i
-                    class="bi bi-facebook"></i></a></li>
-            </ul>
-          </div>
-          <div class="d-flex py-4 my-4 border-top">
-            <p>&copy; 2022 CV.OMEGA ART. All rights reserved.</p>
+    <footer class="py-5 mt-5" style="background-color: #DB9955; color:white">
+      <div class="container">
+        <div class="">
+          <div class="row justify-content-between">
+            <div class="col-md-4">
+              <h2>OMEGA ART</h2>
+              <p>Omega Art merupakan perusahaan yang bergerak dibidang pengerjaan dan pemasangan produk
+                interior dan eksterior untuk bangunan anda..</p>
+            </div>
+            <div class="col-2">
+              <h5>Links</h5>
+              <ul class="list-unstyled d-flex">
+                <li class="ms-2"><a class="link-light" href="https://www.instagram.com/omegaart48/" target="_blank"><i
+                      class="bi bi-instagram"></i></a></li>
+                <li class="ms-2"><a class="link-light"
+                    href="https://www.facebook.com/aluminiumkacagordenminimalislasercuttingmurah" target="_blank"><i
+                      class="bi bi-facebook"></i></a></li>
+              </ul>
+            </div>
+            <div class="d-flex py-4 my-4 border-top">
+              <p>&copy; 2022 CV.OMEGA ART. All rights reserved.</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <script type="text/javascript">
-      $(document).ready(function () {
+      <script type="text/javascript">
+        $(document).ready(function () {
         $.ajax({
           type: "GET",
           url: "/total_cart",
@@ -149,15 +148,15 @@
           },
         });
       })
-    </script>
+      </script>
 
-  </footer>
+    </footer>
 
-  {{-- <script src="/js/omegaart.js"></script> --}}
-</main>
+    {{-- <script src="/js/omegaart.js"></script> --}}
+  </main>
 
 
-@yield('javascript')
+  @yield('javascript')
 </body>
 
 </html>

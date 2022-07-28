@@ -88,7 +88,7 @@
             </option>
         </select>
         <div class="mb-3">
-            <label for="file_asset" class="form-label">Gambar Pemasangan</label>
+            <label for="file_asset" class="form-label">Foto Pemasangan</label>
             <input type="hidden" name="oldFile" value="{{ $installment->file_asset }}">
             @if ($installment->file_asset)
             <img src="{{ asset('storage/' . $installment->file_asset) }}"

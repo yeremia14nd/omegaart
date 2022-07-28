@@ -149,5 +149,14 @@
         }
     }
 </script>
+<script src="/js/autoNumeric.min.js"></script>
+<script>
+    const price = new AutoNumeric('#price', {
+      decimalPlaces: '0',
+      decimalCharacter: ',',
+      digitGroupSeparator: '.'
+    });  
+    
+</script>
 
 @endsection

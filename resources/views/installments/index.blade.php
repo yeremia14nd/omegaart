@@ -56,7 +56,9 @@
                                     <input type="hidden"
                                         class="form-control @error('is_customer_confirm_date') is-invalid @enderror "
                                         id="is_customer_confirm_date" name="is_customer_confirm_date" value='1'>
-                                    <button type="submit" class="badge bg-success border-0">Konfirmasi Jadwal</button>
+                                    <button type="submit"
+                                        onclick="return confirm('Apakah anda yakin ingin konfirmasi jadwal pemasangan ini?')"
+                                        class="badge bg-success border-0">Konfirmasi Jadwal</button>
                                 </div>
                             </form>
                             @endif

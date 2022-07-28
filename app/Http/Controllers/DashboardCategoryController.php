@@ -45,7 +45,7 @@ class DashboardCategoryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required',
             'slug' => 'required|unique:categories',
             'imageAssets' => 'required|image|file|max:2048',
             'description' => 'required',
@@ -59,7 +59,7 @@ class DashboardCategoryController extends Controller
 
         Category::create($validatedData);
 
-        return redirect('/dashboard/categories')->with('success', 'New Category has been added');
+        return redirect('/dashboard/categories')->with('success', 'Kategori baru sudah ditambahkan');
     }
 
     /**
@@ -118,7 +118,7 @@ class DashboardCategoryController extends Controller
 
         Category::where('id', $category->id)->update($validatedData);
 
-        return redirect('/dashboard/categories')->with('success', 'Category has been updated!');
+        return redirect('/dashboard/categories')->with('success', 'Kategori sudah diubah!');
     }
 
     /**
@@ -134,7 +134,7 @@ class DashboardCategoryController extends Controller
         }
         Category::destroy($category->id);
 
-        return redirect('/dashboard/categories')->with('success', 'Categories has been deleted');
+        return redirect('/dashboard/categories')->with('success', 'Kategori sudah dihapus!');
     }
 
     public function checkSlug(Request $request)

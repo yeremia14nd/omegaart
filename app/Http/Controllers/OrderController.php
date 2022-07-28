@@ -55,7 +55,7 @@ class OrderController extends Controller
         session(['order' => $order]);
 
         return redirect('/surveys/create')->with([
-            'success' => 'Continue Order to Survey',
+            'success' => 'Continue Order to Survei',
         ]);
     }
 

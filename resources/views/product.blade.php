@@ -55,7 +55,7 @@
               <input type="hidden" class="form-control @error('product_id') is-invalid @enderror " id="product_id"
                 name="product_id" value="{{ $product->id }}">
               @endif
-              <button type="submit" class="btn btn-primary">Lanjut Order dan Survey</button>
+              <button type="submit" class="btn btn-primary">Lanjut Order dan Survei</button>
             </div>
           </form>
           @endif

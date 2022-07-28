@@ -2,10 +2,10 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Tambah Survey Baru</h1>
+    <h1 class="h2">Tambah Survei Baru</h1>
 </div>
 <a href="/dashboard/surveys" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali ke Semua
-    Survey</a>
+    Survei</a>
 
 <div class="col-lg-8">
     <form method="post" action="/dashboard/surveys" class="mb-5">
@@ -66,19 +66,19 @@
             <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city"
                 placeholder=" @error('city') {{ $message }} @enderror " value="{{ old('city') }}" required>
         </div>
-        <label for="surveyDate" class="form-label">Tanggal Survey</label>
+        <label for="surveyDate" class="form-label">Tanggal Survei</label>
         <div class="input-group mb-3">
             <input type="date" class="form-control @error('surveyDate') is-invalid @enderror" id="surveyDate"
                 name="surveyDate" placeholder=" @error('surveyDate') {{ $message }} @enderror "
                 value="{{ old('surveyDate') }}" required>
         </div>
-        <label for="surveyTime" class="form-label">Waktu Survey</label>
+        <label for="surveyTime" class="form-label">Waktu Survei</label>
         <div class="input-group mb-3">
             <input type="time" class="form-control @error('surveyTime') is-invalid @enderror" id="surveyTime"
                 name="surveyTime" placeholder=" @error('surveyTime') {{ $message }} @enderror "
                 value="{{ old('surveyTime') }}" required>
         </div>
-        <label for="description" class="form-label">Deskripsi Survey</label>
+        <label for="description" class="form-label">Deskripsi Survei</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                 name="description" placeholder=" @error('description') {{ $message }} @enderror "
@@ -102,7 +102,7 @@
             {{ $message }}
         </div>
         @enderror
-        <button type="submit" class="btn btn-primary">Tambah Survey</button>
+        <button type="submit" class="btn btn-primary">Tambah Survei</button>
     </form>
 </div>
 

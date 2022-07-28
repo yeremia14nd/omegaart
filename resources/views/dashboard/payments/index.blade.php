@@ -48,18 +48,18 @@
                 <td><img id="image" src="{{ asset('storage/' . $payment->image_asset) }}" class="img-fluid" width="50"
                         alt="{{ $payment->image_asset }}"></td>
                 <td>
-                    <a href="/dashboard/payments/{{ $payment->id }}" class="badge bg-info">
+                    <a href="/dashboard/payments/{{ $payment->id }}" class="badge bg-info" title="Lihat detail">
                         <span data-feather="eye"></span>
                     </a>
-                    <a href="/dashboard/payments/{{ $payment->id }}/edit" class="badge bg-warning">
+                    <a href="/dashboard/payments/{{ $payment->id }}/edit" class="badge bg-warning" title="Konfirmasi">
                         <span data-feather="edit"></span>
                     </a>
                     <form action="/dashboard/payments/{{ $payment->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Apakah anda yakin ingin menghapus pembayaran ini?')"><span
-                                data-feather="x-circle"></span></button>
+                            onclick="return confirm('Apakah anda yakin ingin menghapus pembayaran ini?')"
+                            title="Hapus"><span data-feather="x-circle"></span></button>
                     </form>
                 </td>
             </tr>

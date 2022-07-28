@@ -96,31 +96,32 @@ Route::get('/categories/{category:slug}', function (Category $category) {
     ]);
 });
 
+//Route for Login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-
+//Route for Register
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
+//Route for Dashboard Controller
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth', 'permit:superadmin,admin,estimator,teknisi');
 
-
-// Route for Products Dashboard
+// Route for Dashboard Products
 Route::get('/dashboard/products/checkSlug', [DashboardProductController::class, 'checkSlug'])->middleware('auth', 'permit:superadmin,admin');
 
 Route::resource('/dashboard/products', DashboardProductController::class)->middleware('auth', 'permit:superadmin,admin');
 
 
-//Route for Categories Dashboard
+//Route for Dashboard Categories
 Route::get('/dashboard/categories/checkSlug', [DashboardCategoryController::class, 'checkSlug'])->middleware('auth', 'permit:superadmin,admin');
 Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('auth', 'permit:superadmin,admin');
 
-//Route for Customers Dashboard
+//Route for Dashboard Customers
 Route::resource('/dashboard/customers', DashboardCustomerController::class)->parameters(['customers' => 'user',])->scoped(['user' => 'userName',])->middleware('auth', 'permit:superadmin,admin');
 
-//Route for order
+//Route for Order Customer side
 Route::resource('/orders', OrderController::class)->middleware('auth');
 Route::get('/users/order-list/{order}', function (Order $order) {
     return view('order-list', [
@@ -128,12 +129,13 @@ Route::get('/users/order-list/{order}', function (Order $order) {
         'order' => $order->orderItem,
     ]);
 });
-//Route for Order Dashboard
+//Route for Dashboard Order
 Route::resource('/dashboard/orders', DashboardOrderController::class)->middleware('auth', 'permit:superadmin,admin');
 
 //Route for Survey
 Route::get('/surveys/create/{product:slug}', [SurveyController::class, 'create'])->middleware('auth');
 Route::resource('/surveys', SurveyController::class)->middleware('auth');
+
 //Route for Survey Dashboard
 Route::get('/dashboard/surveys/checkOrder', [DashboardSurveyController::class, 'checkOrder'])->middleware('auth');
 Route::get('/dashboard/surveys/download/{id}', [DashboardSurveyController::class, 'downloadFile'])->name('surveys.downloadFile')->middleware('auth');
@@ -161,13 +163,14 @@ Route::group(['prefix' => 'cart'], function () {
     Route::post('/empty_session', [CartController::class, 'emptySession'])->name('cart.empty');
 });
 
-// payment
+// Route for Payment Customer side
 Route::group(['middleware' => 'auth', 'prefix' => 'checkout'], function () {
     Route::get('/{id}', [PaymentController::class, 'index'])->name('checkout');
     Route::post('/add', [PaymentController::class, 'add_checkout'])->name('checkout.add');
     Route::patch('/payment/{id}', [PaymentController::class, 'payment'])->name('checkout.payment');
     Route::get('/confirmation/{id}', [PaymentController::class, 'confirmation_payment'])->name('checkout.confirmation');
 });
+Route::resource('/payments', PaymentController::class)->middleware('auth');
 
 // Route for Payment Availability 
 Route::group([
@@ -181,54 +184,52 @@ Route::group([
 
 //Route for Payment for order survey product Dashboard
 Route::get('/dashboard/payments/download/{id}', [DashboardPaymentController::class, 'downloadFile'])->name('payments.downloadFile')->middleware('auth', 'permit:superadmin,admin,estimator');
-Route::resource('/payments', PaymentController::class)->middleware('auth');
+Route::resource('/dashboard/payments', DashboardPaymentController::class)->middleware('auth', 'permit:superadmin,admin,estimator');
 
 //Route for StaffList Dashboard
 Route::resource('/dashboard/staffs', DashboardStaffController::class)->parameters(['staffs' => 'user',])->scoped(['user' => 'userName',])->middleware('auth', 'permit:superadmin');
 
-
+//Route for Invoice Customer side
 Route::resource('/invoices', InvoiceController::class)->middleware('auth', 'permit:superadmin,admin,estimator');
 
+//Route for Dashboard Invoice
 Route::put('/dashboard/invoices/{invoice}/validation', [DashboardInvoiceController::class, 'validationInvoice'])->middleware('auth', 'permit:superadmin');
-
 Route::get('/dashboard/invoices/checkOrder', [DashboardInvoiceController::class, 'checkOrder'])->middleware('auth', 'permit:superadmin,admin,estimator');
 Route::get('/dashboard/invoices/download/{id}', [DashboardInvoiceController::class, 'downloadFile'])->name('invoices.downloadFile')->middleware('auth', 'permit:superadmin,admin,estimator,customer');
 Route::resource('/dashboard/invoices', DashboardInvoiceController::class)->middleware('auth', 'permit:superadmin,admin,estimator');
 
-Route::resource('/dashboard/payments', DashboardPaymentController::class)->middleware('auth', 'permit:superadmin,admin,estimator');
-
+//Route for Dashboard Production
 Route::get('/dashboard/productions/{production}/confirmProduction', [DashboardProductionController::class, 'updateConfirmProduction'])->middleware('auth');
-
 Route::put('/dashboard/productions/{production}/confirmProduction', [DashboardProductionController::class, 'confirmProduction'])->middleware('auth');
-
 Route::get('/dashboard/productions/checkOrder', [DashboardProductionController::class, 'checkOrder'])->middleware('auth');
-
 Route::resource('/dashboard/productions', DashboardProductionController::class);
 
-//Route for Installment Dashboard
+//Route for Dashboard Installment
 Route::get('/dashboard/installments/{installment}/confirmInstallment', [DashboardInstallmentController::class, 'updateConfirmInstallment'])->middleware('auth', 'permit:superadmin,admin,teknisi');
 Route::put('/dashboard/installments/{installment}/confirmInstallment', [DashboardInstallmentController::class, 'confirmInstallment'])->middleware('auth', 'permit:superadmin,admin,teknisi');
 Route::get('/dashboard/installments/checkProduction', [DashboardInstallmentController::class, 'checkProduction'])->middleware('auth', 'permit:superadmin,admin,teknisi');
 Route::resource('/dashboard/installments', DashboardInstallmentController::class)->middleware('auth', 'permit:superadmin,admin,teknisi');
+
 //Route for Installment Customer side
 Route::put('/installments/{installment}/confirmation', [InstallmentController::class, 'confirmationSchedule'])->middleware('auth');
 Route::resource('/installments', InstallmentController::class)->middleware('auth');
 
+//Route for Notifikasi
 Route::get('/notif', [NotifikasiController::class, 'notif'])->name('notif');
 Route::get('/notif_teknisi', [NotifikasiController::class, 'notif_teknisi'])->name('notif_teknisi');
 Route::get('/notif_estimator', [NotifikasiController::class, 'notif_estimator'])->name('notif_estimator');
 Route::get('/notif_customer', [NotifikasiController::class, 'notif_customer'])->middleware();
+Route::get('/checkout_read/{id}/{kategori}', [NotifikasiController::class, 'checkout_read']);
 
+//Route for Cart
 Route::get('/total_cart', [CartController::class, 'total_cart']);
 
 Route::get('/total_surveys', [SurveyController::class, 'total_surveys'])->middleware('auth');
 
+//Route for Customer
 Route::get('/total_pemesanan', [CustomerController::class, 'total_pemesanan'])->middleware('auth');
-
 Route::get('/total_invoice', [CustomerController::class, 'total_invoice'])->middleware('auth');
-
 Route::get('/total_installments', [CustomerController::class, 'total_installments'])->middleware('auth');
 
-Route::get('/checkout_read/{id}/{kategori}', [NotifikasiController::class, 'checkout_read']);
-
+//Route for History
 Route::resource('/history', HistoryController::class)->middleware('auth');

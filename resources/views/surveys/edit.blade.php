@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div
             class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Perubahan Jadwal Survey</h1>
+            <h1 class="h2">Perubahan Jadwal Survei</h1>
         </div>
         <div class="d-flex justify-content-center">
             <a href="/surveys/" class="btn btn-outline-danger px-5">
@@ -37,7 +37,7 @@
                     @enderror
                 </div>
 
-                <label for="address" class="form-label">Alamat untuk Survey</label>
+                <label for="address" class="form-label">Alamat untuk Survei</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Address</span>
                     <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
@@ -63,7 +63,7 @@
                     </div>
                     @enderror
                 </div>
-                <label for="surveyDate" class="form-label">Tanggal Survey</label>
+                <label for="surveyDate" class="form-label">Tanggal Survei</label>
                 <div class="input-group mb-3">
                     <input type="date" class="form-control @error('surveyDate') is-invalid @enderror" id="surveyDate"
                         name="surveyDate" value="{{ old('surveyDate', $survey->surveyDate) }}">
@@ -73,7 +73,7 @@
                     </div>
                     @enderror
                 </div>
-                <label for="surveyTime" class="form-label">Waktu Survey</label>
+                <label for="surveyTime" class="form-label">Waktu Survei</label>
                 <div class="input-group mb-3">
                     <input type="time" class="form-control @error('surveyTime') is-invalid @enderror" id="surveyTime"
                         name="surveyTime" placeholder=" @error('surveyTime') {{ $message }} @enderror "
@@ -96,7 +96,7 @@
                     @enderror
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary col-lg-6">Perbaharui Jadwal Survey</button>
+                    <button type="submit" class="btn btn-primary col-lg-6">Perbaharui Jadwal Survei</button>
                 </div>
             </form>
         </div>

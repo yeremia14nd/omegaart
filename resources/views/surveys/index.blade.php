@@ -10,7 +10,7 @@
         @endif
         <div
             class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Daftar Survey Anda</h1>
+            <h1 class="h2">Daftar Survei Anda</h1>
         </div>
 
         <div class="table-responsive">
@@ -22,8 +22,8 @@
                         <th scope="col">Alamat</th>
                         <th scope="col">Kota</th>
                         <th scope="col">Deskripsi</th>
-                        <th scope="col">Tanggal Survey</th>
-                        <th scope="col">Waktu Survey</th>
+                        <th scope="col">Tanggal Survei</th>
+                        <th scope="col">Waktu Survei</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -38,10 +38,10 @@
                         <td>{{ $survey->surveyDate }}</td>
                         <td>{{ $survey->surveyTime }}</td>
                         <td>@if($survey->order->is_invoice_sent)
-                            <span class="badge badge-pill badge-success text-dark">Survey Selesai <i
+                            <span class="badge badge-pill badge-success text-dark">Survei Selesai <i
                                     class="bi bi-check-circle-fill"></i></span>
                             @elseif ($survey->order->is_surveyed)
-                            <span class="badge badge-pill badge-success text-dark">Sudah disurvey <i
+                            <span class="badge badge-pill badge-success text-dark">Sudah disurvei <i
                                     class="bi bi-check-circle-fill"></i></br> Menunggu Invoice</span>
                             @else
                             <a href="/surveys/{{ $survey->id }}/edit" class="badge bg-warning">

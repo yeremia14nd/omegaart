@@ -20,8 +20,8 @@
                 <th scope="col">Nama Produk</th>
                 <th scope="col">Customer</th>
                 <th scope="col">Tanggal Order</th>
-                <th scope="col">Jadwal Survey</th>
-                <th scope="col">Survey</th>
+                <th scope="col">Jadwal Survei</th>
+                <th scope="col">Survei</th>
                 <th scope="col">Invoice</th>
                 <th scope="col">Terbayar</th>
                 <th scope="col">Produksi</th>
@@ -35,7 +35,7 @@
             @foreach ($orders as $order)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $order->product->name }}</td>
+                <td>Order ID: {{ $order->id }} {{ $order->product->name }} </td>
                 <td>{{ $order->user->name }}</td>
                 <td>{{ $order->created_at->format('l, d-M-Y, H:i A') }}</td>
                 <td class="{{ $order->is_survey_scheduled == '1' ? 'bg-success fw-bold' : 'table-danger' }}">{{
@@ -45,7 +45,7 @@
                 <td class="{{ $order->is_surveyed == '1' ? 'bg-success fw-bold' : 'table-danger' }}">{{
                     $order->is_surveyed ==
                     '1' ?
-                    "Sudah disurvey" : "Belum disurvey" }}</td>
+                    "Sudah disurvei" : "Belum disurvei" }}</td>
                 <td class="{{ $order->is_invoice_sent == '1' ? 'bg-success fw-bold' : 'table-danger' }}">{{
                     $order->is_invoice_sent == '1' ? 'Sudah dikirim invoice' : 'Belum dikirim invoice'
                     }}</td>

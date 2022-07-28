@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Daftar Survey</h1>
+    <h1 class="h2">Daftar Survei</h1>
 </div>
 
 @if (session()->has('success'))
@@ -12,18 +12,20 @@
 @endif
 
 <div class="table-responsive">
-    <a href="/dashboard/surveys/create" class="btn btn-primary m-2">Tambah Survey Baru</a>
+    @canany(['superadmin', 'admin'])
+    <a href="/dashboard/surveys/create" class="btn btn-primary m-2">Tambah Survei Baru</a>
+    @endcanany
     <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Customer</th>
-                <th scope="col">Produk Survey</th>
-                <th scope="col">Tanggal Survey</th>
-                <th scope="col">Waktu Survey</th>
+                <th scope="col">Produk Survei</th>
+                <th scope="col">Tanggal Survei</th>
+                <th scope="col">Waktu Survei</th>
                 <th scope="col">Surveyor</th>
                 <th scope="col">Alamat</th>
-                <th scope="col">File Survey</th>
+                <th scope="col">File Survei</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -47,24 +49,29 @@
                     <img id="image" src="{{ asset('storage/' . $survey->surveyFile) }}" class="img-fluid" width="50"
                         alt="{{ $survey->surveyFile }}">
                     @else
-                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary">Konfirmasi Survey
+                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-primary"
+                        onclick="return confirm('Apakah anda ingin konfirmasi survei selesai? Silahkan Upload File Gambar Survei')">Konfirmasi
+                        Survei
                         Selesai <br>Silahkan Upload</a>
                     @endif
                 </td>
+
                 <td>
-                    <a href="/dashboard/surveys/{{ $survey->id }}" class="badge bg-info">
+                    <a href="/dashboard/surveys/{{ $survey->id }}" class="badge bg-info" title="Lihat detail">
                         <span data-feather="eye"></span>
                     </a>
-                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-warning">
+                    <a href="/dashboard/surveys/{{ $survey->id }}/edit" class="badge bg-warning" title="Edit">
                         <span data-feather="edit"></span>
                     </a>
+                    @canany(['superadmin', 'admin'])
                     <form action="/dashboard/surveys/{{ $survey->id}}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="badge bg-danger border-0"
-                            onclick="return confirm('Are you sure to delete this survey?')"><span
-                                data-feather="x-circle"></span></button>
+                            onclick="return confirm('Apakah anda yakin ingin menghapus survei?')" data-toggle="tooltip"
+                            data-placement="top" title="Hapus"><span data-feather="x-circle"></span></button>
                     </form>
+                    @endcanany
                 </td>
             </tr>
             @endforeach

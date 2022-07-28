@@ -4,7 +4,7 @@
 <a href="/dashboard/categories" class="btn btn-success my-3"> <span data-feather="arrow-left"></span> Kembali ke Semua
     Kategori</a>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"> Ubat Kategori</h1>
+    <h1 class="h2"> Ubah Kategori</h1>
 </div>
 
 <div class="col-lg-8">

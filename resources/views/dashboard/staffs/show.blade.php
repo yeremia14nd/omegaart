@@ -3,12 +3,12 @@
 @section('container')
 <div class="container">
     <div class="row my-3">
-        <h5 class="col-sm-4 mt-3">Detail Staff</h5>
+        <h5 class="col-sm-4 mt-3">Detail Staf</h5>
     </div>
     <div class="row">
         <div class="col-lg-8">
             <a href="/dashboard/staffs" class="btn btn-success mb-3"> <span data-feather="arrow-left"></span> Kembali ke
-                Semua Staff</a>
+                Semua Staf</a>
             <div class="row">
                 <div class="col-md text-center">
                     @if ($staff->imageAssets)
