@@ -18,12 +18,6 @@ class Product extends Model
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where('name', 'like', '%' . $search . '%');
         });
-
-        // $query->when($filters['category'] ?? false, function ($query, $category) {
-        //     return $query->whereHas('category', function ($query) use ($category) {
-        //         $query->where('slug', $category);
-        //     });
-        // });
     }
 
     public function category()
@@ -39,11 +33,6 @@ class Product extends Model
     public function order()
     {
         return $this->hasMany(Order::class);
-    }
-
-    public function orderItem()
-    {
-        return $this->hasMany(OrderItem::class);
     }
 
     public function cartItem()

@@ -48,14 +48,15 @@ class NotifikasiController extends Controller
       return redirect('dashboard/payments');
     } elseif ($kategori == 'produksi') {
       return redirect('dashboard/productions');
-    } elseif ($kategori == 'installments'){
+    } elseif ($kategori == 'installments') {
       return redirect('dashboard/installments/create');
-    } elseif ($kategori == 'installments_teknisi'){
+    } elseif ($kategori == 'installments_teknisi') {
       return redirect('dashboard/installments');
     }
   }
 
-  public function notif_customer(){
+  public function notif_customer()
+  {
     $data = [
       'unread' => Notifikasi::surveys(Auth::id())
     ];

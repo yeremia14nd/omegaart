@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SurveyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $order = Order::where('user_id', auth()->user()->id)->get()->modelKeys();
@@ -32,12 +27,6 @@ class SurveyController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    //untuk tampilan buat form survey
     public function create(Request $request)
     {
         $order = session('order');
@@ -58,12 +47,6 @@ class SurveyController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreSurveyRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreSurveyRequest $request)
     {
         //mencari product yang disurvey dari nama produk di request
@@ -99,23 +82,6 @@ class SurveyController extends Controller
         return redirect('/surveys')->with('success', 'Survei sudah dijadwal');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Survey $survey)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Survey $survey)
     {
         // dd($survey);
@@ -130,13 +96,6 @@ class SurveyController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateSurveyRequest  $request
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateSurveyRequest $request, Survey $survey)
     {
         $validatedData = $request->validate([
@@ -151,17 +110,6 @@ class SurveyController extends Controller
         Survey::where('id', $survey->id)->update($validatedData);
 
         return redirect('/surveys')->with('success', 'Jadwal Survei berhasil diubah');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Survey $survey)
-    {
-        //
     }
 
     public function total_surveys()

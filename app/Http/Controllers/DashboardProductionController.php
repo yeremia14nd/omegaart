@@ -14,11 +14,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardProductionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -33,11 +29,6 @@ class DashboardProductionController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('dashboard.productions.create', [
@@ -46,12 +37,6 @@ class DashboardProductionController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $survey = Survey::where('order_id', $request->order_id)->first();
@@ -75,12 +60,6 @@ class DashboardProductionController extends Controller
         return redirect('/dashboard/productions')->with('success', 'Produksi sudah dibuat');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Production  $production
-     * @return \Illuminate\Http\Response
-     */
     public function show(Production $production)
     {
         return view('dashboard.productions.show', [
@@ -88,12 +67,6 @@ class DashboardProductionController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Production  $production
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Production $production)
     {
         return view('dashboard.productions.edit', [
@@ -103,13 +76,6 @@ class DashboardProductionController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Production  $production
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Production $production)
     {
         $rules = [
@@ -141,12 +107,6 @@ class DashboardProductionController extends Controller
         return redirect('/dashboard/productions')->with('success', 'Produksi sudah diperbaharui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Production  $production
-     * @return \Illuminate\Http\Response
-     */
     public function updateConfirmProduction(Production $production)
     {
         return view('dashboard.productions.confirm-production', [

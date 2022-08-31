@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardSurveyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct()
     {
@@ -35,11 +30,6 @@ class DashboardSurveyController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $order = Order::whereNull('is_survey_scheduled')->get();
@@ -50,12 +40,6 @@ class DashboardSurveyController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -75,12 +59,6 @@ class DashboardSurveyController extends Controller
         return redirect('/dashboard/surveys')->with('success', 'Survei baru sudah ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
-     */
     public function show(Survey $survey)
     {
         return view('dashboard.surveys.show', [
@@ -88,12 +66,6 @@ class DashboardSurveyController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Survey $survey)
     {
         return view('dashboard.surveys.edit', [
@@ -102,13 +74,6 @@ class DashboardSurveyController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Survey $survey)
     {
         $validatedData = $request->validate([
@@ -140,12 +105,6 @@ class DashboardSurveyController extends Controller
         return redirect('/dashboard/surveys')->with('success', 'Survei sudah diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Survey  $survey
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Survey $survey)
     {
         Order::where('id', $survey->order_id)->update([

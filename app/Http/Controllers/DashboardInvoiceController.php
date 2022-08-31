@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardInvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('dashboard.invoices.index', [
@@ -23,11 +19,6 @@ class DashboardInvoiceController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('dashboard.invoices.create', [
@@ -35,12 +26,6 @@ class DashboardInvoiceController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -68,12 +53,6 @@ class DashboardInvoiceController extends Controller
         return redirect('/dashboard/invoices')->with('success', 'Invoice baru sudah ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
     public function show(Invoice $invoice)
     {
         return view('dashboard.invoices.show', [
@@ -82,12 +61,6 @@ class DashboardInvoiceController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Invoice $invoice)
     {
         return view('dashboard.invoices.edit', [
@@ -96,13 +69,6 @@ class DashboardInvoiceController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Invoice $invoice)
     {
         $validatedData = $request->validate([
@@ -130,12 +96,6 @@ class DashboardInvoiceController extends Controller
         return redirect('/dashboard/invoices')->with('success', 'Invoice sudah diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Invoice $invoice)
     {
         if ($invoice->fileAsset) {

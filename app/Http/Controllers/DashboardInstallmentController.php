@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardInstallmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('dashboard.installments.index', [
@@ -24,11 +20,6 @@ class DashboardInstallmentController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('dashboard.installments.create', [
@@ -37,12 +28,6 @@ class DashboardInstallmentController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -65,12 +50,6 @@ class DashboardInstallmentController extends Controller
         return redirect('/dashboard/installments')->with('success', 'Jadwal Pemasangan sudah dibuat');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Installment  $installment
-     * @return \Illuminate\Http\Response
-     */
     public function show(Installment $installment)
     {
         return view('dashboard.installments.show', [
@@ -78,12 +57,6 @@ class DashboardInstallmentController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Installment  $installment
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Installment $installment)
     {
         return view('dashboard.installments.edit', [
@@ -92,13 +65,6 @@ class DashboardInstallmentController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Installment  $installment
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Installment $installment)
     {
         $rules = [
@@ -167,12 +133,6 @@ class DashboardInstallmentController extends Controller
         return redirect('/dashboard/installments')->with('success', 'Konfirmasi produk sudah terpasang');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Installment  $installment
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Installment $installment)
     {
         if ($installment->file_asset) {

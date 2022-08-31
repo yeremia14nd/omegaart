@@ -9,11 +9,7 @@ use App\Models\Notifikasi;
 
 class InstallmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $installments = Installment::where('user_id', auth()->user()->id)->get();
@@ -24,44 +20,6 @@ class InstallmentController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreInstallmentRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreInstallmentRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Installment  $installment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Installment $installment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Installment  $installment
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Installment $installment)
     {
         return view('installments.edit', [
@@ -71,13 +29,6 @@ class InstallmentController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateInstallmentRequest  $request
-     * @param  \App\Models\Installment  $installment
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateInstallmentRequest $request, Installment $installment)
     {
         $validatedData = $request->validate([
@@ -88,17 +39,6 @@ class InstallmentController extends Controller
         Installment::where('id', $installment->id)->update($validatedData);
 
         return redirect('/installments')->with('success', 'Ulasan sudah terkirim');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Installment  $installment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Installment $installment)
-    {
-        //
     }
 
     public function confirmationSchedule(UpdateInstallmentRequest $request, Installment $installment)

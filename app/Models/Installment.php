@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class Installment extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $guarded = ['id'];
+  protected $guarded = ['id'];
 
-    public function production()
-    {
-        return $this->belongsTo(Production::class);
-    }
+  public function production()
+  {
+    return $this->belongsTo(Production::class);
+  }
 
   public static function totalinstallments($id)
   {

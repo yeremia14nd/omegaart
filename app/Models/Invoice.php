@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\DB;
 
 class Invoice extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $guarded = ['id'];
+  protected $guarded = ['id'];
 
-    public function order()
-    {
-        return $this->belongsTo(Order::class);
-    }
+  public function order()
+  {
+    return $this->belongsTo(Order::class);
+  }
 
-    public function payment()
-    {
-        return $this->hasMany(Payment::class);
-    }
+  public function payment()
+  {
+    return $this->hasMany(Payment::class);
+  }
 
   public static function totalinvoice($id)
   {

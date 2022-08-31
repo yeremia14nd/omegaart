@@ -161,7 +161,8 @@
                 <label class="mb-3">Upload Bukti Pembayaran</label>
                 <input type="file" name="bukti_pembayaran" class="form-control">
               </div>
-              <button type="submit" class="btn btn-primary btn-block mt-4" style="width: 100%">Checkout</button>
+              <button type="submit" class="btn btn-primary btn-block mt-4" style="width: 100%">Pembayaran
+                Checkout</button>
             </div>
           </div>
         </div>
@@ -280,7 +281,8 @@
               <img class="img-preview img-fluid mb-3 col-sm-5">
               <input type="file" name="bukti_pembayaran" class="form-control" id="image" onchange="previewImage()">
             </div>
-            <button type="submit" class="btn btn-primary btn-block mt-4" style="width: 100%">Checkout</button>
+            <button type="submit" class="btn btn-primary btn-block mt-4" style="width: 100%">Pembayaran
+              Checkout</button>
           </div>
         </div>
       </div>
