@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\UpdateOrderRequest;
-use App\Models\User;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreOrderRequest;
 
 
 

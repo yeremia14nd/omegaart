@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
-use App\Http\Requests\StoreInvoiceRequest;
-use App\Http\Requests\UpdateInvoiceRequest;
 use App\Models\Order;
-use App\Models\Payment;
 use App\Models\Production;
 
 class InvoiceController extends Controller

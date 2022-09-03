@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Notifikasi;
 use App\Models\Survey;
+use App\Models\Order;
 use App\Http\Requests\StoreSurveyRequest;
 use App\Http\Requests\UpdateSurveyRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class SurveyController extends Controller

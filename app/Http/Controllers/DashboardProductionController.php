@@ -7,7 +7,6 @@ use App\Models\Production;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Survey;
-use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
