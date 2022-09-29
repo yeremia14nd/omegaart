@@ -21,7 +21,7 @@ class CreateInstallmentsTable extends Migration
             $table->time('start_installment_time');
             $table->boolean('is_customer_confirm_date')->nullable();
             $table->string('address');
-            $table->string('city');
+            // $table->string('city');
             $table->string('worker');
             $table->string('file_asset')->nullable();
             $table->boolean('is_installed')->nullable();

@@ -32,7 +32,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Foto Profil Staf</label>
+            <label for="imageAssets" class="form-label">Foto Profil Staf</label>
             <img class="img-preview img-fluid mb-3 col-sm-5">
             <input class="form-control @error('imageAssets') is-invalid @enderror" type="file" id="image"
                 name="imageAssets" onchange="previewImage()">
@@ -63,18 +63,18 @@
         </div>
         <div class="mb-3">
             <label for="role_id" class="form-label">Role Staf</label>
-            <select class="form-select @error('role_id') is-invalid @enderror" name="role_id" required>
+            <select class="form-select @error('role_id') is-invalid @enderror" name="role_id">
                 <option value="">Silahkan pilih role</option>
                 <option value="2">Admin</option>
                 <option value="3">Estimator</option>
                 <option value="4">Teknisi</option>
             </select>
+            @error('role_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('assignRole')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <small class="d-block text-muted my-2">Default Password dari setiap staf yang dibuat Admin adalah
             "password"</small>
         <button type="submit" class="btn btn-primary">Tambah Staf</button>

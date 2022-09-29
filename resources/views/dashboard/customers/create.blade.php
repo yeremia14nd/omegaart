@@ -32,7 +32,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Foto Profil</label>
+            <label for="imageAssets" class="form-label">Foto Profil</label>
             <img class="img-preview img-fluid mb-3 col-sm-5">
             <input class="form-control @error('imageAssets') is-invalid @enderror" type="file" id="image"
                 name="imageAssets" onchange="previewImage()">

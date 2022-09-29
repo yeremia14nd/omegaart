@@ -29,12 +29,12 @@
                 @endif
                 @endforeach
             </select>
+            @error('order_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('order_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <div class="mb-3">
             <label for="text" class="form-label">Nama Customer</label>
             <input type="text" class="form-control @error('customer') is-invalid @enderror" id="customer"

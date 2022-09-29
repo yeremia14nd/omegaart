@@ -79,12 +79,12 @@
                 <option value=3>Estimator</option>
                 <option value=4>Teknisi</option>
             </select>
+            @error('role_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('role_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
 
         <button type="submit" class="btn btn-primary">Ubah Role Staf</button>
     </form>

@@ -44,7 +44,6 @@ class DashboardSurveyController extends Controller
         $validatedData = $request->validate([
             'order_id' => 'required',
             'address' => 'required',
-            'city' => 'required',
             'phoneNumber' => 'required',
             'surveyDate' => 'required',
             'surveyTime' => 'required',
@@ -77,7 +76,6 @@ class DashboardSurveyController extends Controller
     {
         $validatedData = $request->validate([
             'address' => 'required',
-            'city' => 'required',
             'phoneNumber' => 'required',
             'surveyDate' => 'required',
             'surveyTime' => 'required',
@@ -148,10 +146,8 @@ class DashboardSurveyController extends Controller
             'assignTo' => 'required',
         ]);
 
-        $user = User::where('name', $request->assignTo)->first();
-        $validatedData['assignTo'] = $user->name;
-
         Survey::where('id', $survey->id)->update($validatedData);
+
         return redirect('/dashboard/surveys')->with('success', 'Surveyor sudah dikonfirmasi');
     }
 

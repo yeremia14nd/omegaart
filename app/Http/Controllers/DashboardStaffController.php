@@ -35,13 +35,16 @@ class DashboardStaffController extends Controller
             'email' => 'required|email',
             'address' => 'required',
             'phoneNumber' => 'required',
+            'role_id' => 'required'
         ];
 
         $validatedData = $request->validate($rules);
         $validatedData['password'] = bcrypt('password');
         $validatedData['role_id'] = $request->role_id;
 
-        $validatedData['imageAssets'] = $request->file('imageAssets')->store('staff-images');
+        if ($request->file('imageAssets')) {
+            $validatedData['imageAssets'] = $request->file('imageAssets')->store('staff-images');
+        }
 
         User::create($validatedData);
 

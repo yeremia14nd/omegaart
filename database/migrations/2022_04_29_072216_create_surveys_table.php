@@ -17,7 +17,7 @@ class CreateSurveysTable extends Migration
             $table->id();
             $table->foreignId('order_id');
             $table->string('address');
-            $table->string('city');
+            // $table->string('city');
             $table->string('phoneNumber');
             $table->string('description');
             $table->boolean('is_schedule_confirmed')->nullable();

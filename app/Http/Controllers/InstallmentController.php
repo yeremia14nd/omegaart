@@ -35,7 +35,6 @@ class InstallmentController extends Controller
             'description' => 'required',
         ]);
 
-        // dd($installment);
         Installment::where('id', $installment->id)->update($validatedData);
 
         return redirect('/installments')->with('success', 'Ulasan sudah terkirim');

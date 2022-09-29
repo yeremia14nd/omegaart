@@ -27,12 +27,12 @@
                 @endif
                 @endforeach
             </select>
+            @error('order_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('order_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <div class="mb-3">
             <label for="customer" class="form-label">Nama Customer</label>
             <input type="text" class="form-control @error('customer') is-invalid @enderror" id="customer"
@@ -44,16 +44,26 @@
             <input type="date" class="form-control @error('start_production') is-invalid @enderror"
                 id="start_production" name="start_production"
                 placeholder=" @error('start_production') {{ $message }} @enderror "
-                value="{{ old('start_production') }}" required>
+                value="{{ old('start_production') }}">
+            @error('start_production')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <label for="work_duration" class="form-label">Durasi Produksi (cth: 14 hari kerja)</label>
         <div class="input-group mb-3">
             <input type="number" class="form-control @error('work_duration') is-invalid @enderror" id="work_duration"
                 name="work_duration" placeholder=" @error('work_duration') {{ $message }} @enderror "
-                value="{{ old('work_duration') }}" required>
+                value="{{ old('work_duration') }}">
             <div class="input-group-append">
                 <span class="input-group-text">Hari Kerja</span>
             </div>
+            @error('work_duration')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="surveyor" class="form-label">Nama Surveyor</label>
@@ -63,7 +73,7 @@
         </div>
         <div class="mb-3">
             <label for="worker_name" class="form-label">Teknisi Produksi</label>
-            <select class="form-select @error('worker_name') is-invalid @enderror" name="worker_name" required>
+            <select class="form-select @error('worker_name') is-invalid @enderror" name="worker_name">
                 <option value="" class="text-muted">Pilih Teknisi</option>
                 @foreach ($workers as $worker)
                 @if (old('worker_name') == $worker->name)
@@ -73,12 +83,12 @@
                 @endif
                 @endforeach
             </select>
+            @error('worker_name')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('worker_name')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <button type="submit" class="btn btn-primary">Buat Jadwal Produksi</button>
     </form>
 </div>

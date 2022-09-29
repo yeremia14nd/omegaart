@@ -33,6 +33,8 @@
         <div class="mb-3">
             <label for="category" class="form-label">Kategori</label>
             <select class="form-select @error('category_id') is-invalid @enderror" name="category_id">
+                <option value='' class="text-muted">Silahkan pilih kategori
+                </option>
                 @foreach ($categories as $category)
                 @if (old('category_id') == $category->id)
                 <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
@@ -41,17 +43,17 @@
                 @endif
                 @endforeach
             </select>
+            @error('category_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('category_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <div class="mb-3">
             <label for="product_availability_id" class="form-label">Availability</label>
-            <select class="form-select mb-3" @error('product_availability_id') is-invalid @enderror"
+            <select class="form-select mb-3" @error('product_availability_id') is-invalid @enderror
                 id="product_availability_id" name="product_availability_id">
-                <option value=''>Silahkan pilih jenis availability
+                <option value='' class="text-muted">Silahkan pilih jenis availability
                 </option>
                 @foreach ($product_availability as $availability)
                 @if (old('product_availability_id') == $availability->id)
@@ -62,12 +64,12 @@
                 </option>
                 @endforeach
             </select>
+            @error('product_availability_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('product_availability_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <div class="mb-3">
             <label for="image" class="form-label">Gambar Produk</label>
             <img class="img-preview img-fluid mb-3 col-sm-5">

@@ -30,9 +30,6 @@ class DashboardProductController extends Controller
 
     public function store(Request $request)
     {
-
-        // return $request->file('imageAssets')->store('product-images');
-
         $validatedData = $request->validate([
             'name' => 'required',
             'slug' => 'required|unique:products',
@@ -52,9 +49,7 @@ class DashboardProductController extends Controller
             $validatedData['imageAssets'] = $request->file('imageAssets')->store('product-images');
         }
 
-        // $validatedData['employee_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->description), 150);
-        // $validatedData['imageAssets'] = 'images1';
 
         Product::create($validatedData);
 
@@ -80,7 +75,7 @@ class DashboardProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $rules = [
-            'name' => 'required|max:255',
+            'name' => 'required',
             'category_id' => 'required',
             'product_availability_id' => 'required',
             'imageAssets' => 'image|file|max:2048',

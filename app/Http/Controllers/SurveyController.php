@@ -56,7 +56,6 @@ class SurveyController extends Controller
             // 'name' => 'required|max:255',
             // 'email' => 'required|email',
             'address' => 'required',
-            'city' => 'required',
             'phoneNumber' => 'required',
             'description' => 'required',
             'surveyDate' => 'required',
@@ -98,7 +97,6 @@ class SurveyController extends Controller
     {
         $validatedData = $request->validate([
             'address' => 'required',
-            'city' => 'required',
             'phoneNumber' => 'required',
             'description' => 'required',
             'surveyDate' => 'required',
@@ -107,7 +105,7 @@ class SurveyController extends Controller
 
         Survey::where('id', $survey->id)->update($validatedData);
 
-        return redirect('/surveys')->with('success', 'Jadwal Survei berhasil diubah');
+        return redirect('/surveys')->with('success', 'Jadwal survei berhasil diubah');
     }
 
     public function total_surveys()

@@ -42,12 +42,12 @@
                 @endif
                 @endforeach
             </select>
+            @error('category_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('category_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <div class="mb-3">
             <label for="image" class="form-label">Gambar Produk</label>
             <input type="hidden" name="oldImage" value="{{ $product->imageAssets }}">

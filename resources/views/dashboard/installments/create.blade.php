@@ -24,12 +24,12 @@
                 @endif
                 @endforeach
             </select>
+            @error('production_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('production_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <div class="mb-3">
             <label for="customer" class="form-label">Nama Customer</label>
             <input type="text" class="form-control @error('customer') is-invalid @enderror" id="customer"
@@ -43,18 +43,28 @@
             <input type="date" class="form-control @error('start_installment') is-invalid @enderror"
                 id="start_installment" name="start_installment"
                 placeholder=" @error('start_installment') {{ $message }} @enderror "
-                value="{{ old('start_installment') }}" required>
+                value="{{ old('start_installment') }}">
+            @error('start_installment')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <label for="start_installment_time" class="form-label">Waktu Mulai Pemasangan</label>
         <div class="input-group mb-3">
             <input type="time" class="form-control @error('start_installment_time') is-invalid @enderror"
                 id="start_installment_time" name="start_installment_time"
                 placeholder=" @error('start_installment_time') {{ $message }} @enderror "
-                value="{{ old('start_installment_time') }}" required>
+                value="{{ old('start_installment_time') }}">
+            @error('start_installment_time')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="worker" class="form-label">Teknisi pemasangan</label>
-            <select class="form-select @error('worker') is-invalid @enderror" name="worker" required>
+            <select class="form-select @error('worker') is-invalid @enderror" name="worker">
                 <option value="" class="text-muted">Pilih Teknisi</option>
                 @foreach ($workers as $worker)
                 @if (old('worker') == $worker->name)
@@ -64,23 +74,22 @@
                 @endif
                 @endforeach
             </select>
+            @error('worker')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('worker')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <label for="address" class="form-label">Alamat Pemasangan</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
-                placeholder=" @error('address') {{ $message }} @enderror " value="{{ old('address') }}" required
-                readonly>
+                placeholder=" @error('address') {{ $message }} @enderror " value="{{ old('address') }}" readonly>
         </div>
-        <label for="city" class="form-label">Kota</label>
+        {{-- <label for="city" class="form-label">Kota</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city"
-                placeholder=" @error('city') {{ $message }} @enderror " value="{{ old('city') }}" required readonly>
-        </div>
+                placeholder=" @error('city') {{ $message }} @enderror " value="{{ old('city') }}" readonly>
+        </div> --}}
         <button type="submit" class="btn btn-primary">Buat Jadwal Pemasangan</button>
     </form>
 </div>
@@ -97,7 +106,7 @@
             customer.value = data.name,                                  
             user_id.value = data.user_id,                                  
             address.value = data.address,                                  
-            city.value = data.city,                                  
+            // city.value = data.city,                                  
          ])        
     }); 
     

@@ -50,7 +50,6 @@ class PaymentController extends Controller
 
   public function store(Request $request)
   {
-    // dd($request);
     $invoice = Invoice::where('id', $request->invoice_id)->first();
 
     $validatedData = $request->validate([
@@ -77,7 +76,7 @@ class PaymentController extends Controller
     if ($request->file('image_asset')) {
       $validatedData['image_asset'] = $request->file('image_asset')->store('transfer-images');
     }
-    // dd($validatedData);
+
     Payment::create($validatedData);
 
     Order::where('id', $invoice->order->id)->update(['is_paid_invoiced' => 1]);
@@ -99,7 +98,7 @@ class PaymentController extends Controller
     $input['user_id'] = $id;
     $input['total'] = $request->total;
     $input['payment_photo'] = 'null';
-    $input['pay_until'] = date('Y-m-d H:i:s', strtotime(" +1 days"));
+    // $input['pay_until'] = date('Y-m-d H:i:s', strtotime(" +1 days"));
     $input['shipping_address'] = 'test';
     $input['status'] = 0;
     $input['cart_id'] = $id_cart;

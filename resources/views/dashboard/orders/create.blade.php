@@ -21,10 +21,10 @@
                 @endif
                 @endforeach
             </select>
-        </div>
-        @error('user_id')
-        <div class="invalid-feedback">
-            {{ $message }}
+            @error('user_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
         </div>
         @enderror
         <div class="mb-3">

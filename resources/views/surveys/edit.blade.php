@@ -44,7 +44,7 @@
                         name="address" placeholder=" @error('address') {{ $message }} @enderror "
                         value="{{ old('address', $survey->address) }}">
                 </div>
-                <label for="city" class="form-label">Kota</label>
+                {{-- <label for="city" class="form-label">Kota</label>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city"
                         value="{{ old('city', $survey->city) }}">
@@ -53,7 +53,7 @@
                         {{ $message }}
                     </div>
                     @enderror
-                </div>
+                </div> --}}
                 <label for="phoneNumber" class="form-label">Telepon</label>
                 <div class="input-group mb-3">
                     <input type="number" class="form-control @error('phoneNumber') is-invalid @enderror"

@@ -24,7 +24,7 @@
         </div>
         <div class="mb-3">
             <label for="assignTo" class="form-label">Surveyor yang Bertugas</label>
-            <select class="form-select @error('assignTo') is-invalid @enderror" name="assignTo" autofocus required>
+            <select class="form-select @error('assignTo') is-invalid @enderror" name="assignTo" autofocus>
                 <option value="">Pilih Surveyor</option>
                 @foreach ($assigns as $assignRole)
                 @if (old('assignTo', $survey->assignTo) == $assignRole->name)
@@ -34,12 +34,12 @@
                 @endif
                 @endforeach
             </select>
+            @error('assignTo')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('assignTo')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <button type="submit" class="btn btn-primary">Konfirmasi Surveyor</button>
     </form>
 </div>

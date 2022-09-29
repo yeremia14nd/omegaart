@@ -130,8 +130,8 @@
             </div>
           </div>
           <div class="col-6" style="background: #f8f8f8; height: 100%">
-            <div id="countdown">
-            </div>
+            {{-- <div id="countdown">
+            </div> --}}
             <div class="m-4">
               <h5 class="mb-3">Ringkasan Order</h5>
               <div class="ringkasan d-flex flex-column">
@@ -236,8 +236,8 @@
           </div>
         </div>
         <div class="col-6" style="background: #f8f8f8; height: 100%">
-          <div id="countdown">
-          </div>
+          {{-- <div id="countdown">
+          </div> --}}
           <div class="m-4">
             <h5 class="mb-3">Ringkasan Order</h5>
             <div class="ringkasan d-flex flex-column">
@@ -292,33 +292,33 @@
 
   @section('javascript')
   <script>
-    CountDownTimer('{{$checkout->created_at}}', 'countdown');
-  function CountDownTimer(dt, id)
-  {
-    var end = new Date('{{$checkout->pay_until}}');
-    var _second = 1000;
-    var _minute = _second * 60;
-    var _hour = _minute * 60;
-    var _day = _hour * 24;
-    var timer;
-    function showRemaining() {
-      var now = new Date();
-      var distance = end - now;
-      if (distance < 0) {
+    //   CountDownTimer('{{$checkout->created_at}}', 'countdown');
+  // function CountDownTimer(dt, id)
+  // {
+  //   var end = new Date('{{$checkout->pay_until}}');
+  //   var _second = 1000;
+  //   var _minute = _second * 60;
+  //   var _hour = _minute * 60;
+  //   var _day = _hour * 24;
+  //   var timer;
+  //   function showRemaining() {
+  //     var now = new Date();
+  //     var distance = end - now;
+  //     if (distance < 0) {
 
-        clearInterval(timer);
-        document.getElementById(id).innerHTML = '<b>Pembayaran Sudah Tidak Valid</b> ';
-        return;
-      }
-      var days = Math.floor(distance / _day);
-      var hours = Math.floor((distance % _day) / _hour);
-      var minutes = Math.floor((distance % _hour) / _minute);
-      var seconds = Math.floor((distance % _minute) / _second);
+  //       clearInterval(timer);
+  //       document.getElementById(id).innerHTML = '<b>Pembayaran Sudah Tidak Valid</b> ';
+  //       return;
+  //     }
+  //     var days = Math.floor(distance / _day);
+  //     var hours = Math.floor((distance % _day) / _hour);
+  //     var minutes = Math.floor((distance % _hour) / _minute);
+  //     var seconds = Math.floor((distance % _minute) / _second);
 
-      document.getElementById(id).innerHTML ='<h5>Silahkan Bayar Sebelum ' + hours + ' Jam ' + minutes + ' Menit ' + seconds + ' Detik' + '</h5>';
-    }
-    timer = setInterval(showRemaining, 1000);
-  }
+  //     document.getElementById(id).innerHTML ='<h5>Silahkan Bayar Sebelum ' + hours + ' Jam ' + minutes + ' Menit ' + seconds + ' Detik' + '</h5>';
+  //   }
+  //   timer = setInterval(showRemaining, 1000);
+  // }
 
   function previewImage() {
         const image = document.querySelector('#image');

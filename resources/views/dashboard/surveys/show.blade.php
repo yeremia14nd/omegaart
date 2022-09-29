@@ -21,10 +21,10 @@
                             <td>Alamat</td>
                             <td>: {{ $survey->address }}</td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             <td>Kota</td>
                             <td>: {{ $survey->city }}</td>
-                        </tr>
+                        </tr> --}}
                         <tr>
                             <td>Telepon</td>
                             <td>: {{ $survey->phoneNumber }}</td>

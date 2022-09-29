@@ -26,24 +26,8 @@
           </li> --}}
         </ul>
 
-        {{-- <ul class="nav justify-content-end">--}}
-          {{-- <li class="nav-item dropdown">--}}
-            {{-- <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownNotif" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">--}}
-              {{-- <span--}} {{-- class="badge badge-light" --}} {{-- id="unread" --}} {{-- style="position: absolute;--}}
-{{--                right: -7px;--}}
-{{--                top: 8px;--}}
-{{--                background: #ccc;--}}
-{{--                color: #333;--}}
-{{--                border-radius: 50%">0--}}
-                {{-- </span>--}}
-                {{-- </a>--}}
-            {{-- </li>--}}
-          {{-- </ul>--}}
-
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           @auth
-
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -59,10 +43,13 @@
               <li><a class="dropdown-item" href="/profil/{{ auth()->user()->userName }}"><i class="bi bi-person"></i>
                   Profil</a></li>
               <li><a class="dropdown-item" href="/cart"><i class="bi bi-bag"></i><span id="count"></span></a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-bell"></i><span id="count_pemesanan"></span><i
+              <li><a class="nav-link dropdown-toggle dropdown-item" role="button" id="subMenuDropdown"
+                  data-bs-target="collapse" aria-expanded="false" href="#collapseDropdown"
+                  aria-controls="collapseDropdown"><i class="bi bi-bell"></i><span id="count_pemesanan"></span><i
                     class="bi bi-three-dots-vertical"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-submenu">
+                <ul class="collapse dropdown-menu dropdown-submenu" id="collapseDropdown"
+                  aria-labelledby="subMenuDropdown">
                   <li>
                     <a class="dropdown-item" href="/history">History</a>
                   </li>
@@ -94,12 +81,10 @@
             </ul>
           </li>
           @else
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link {{ ($active === 'login') ? 'active' : '' }}" href="/login"><i
-                  class="bi bi-box-arrow-in-right"></i> Login</a>
-            </li>
-          </ul>
+          <li class="nav-item">
+            <a class="nav-link {{ ($active === 'login') ? 'active' : '' }}" href="/login"><i
+                class="bi bi-box-arrow-in-right"></i> Login</a>
+          </li>
           @endauth
         </ul>
       </div>

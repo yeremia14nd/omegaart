@@ -18,7 +18,7 @@ class CreateCheckoutsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('total');
             $table->string('payment_photo');
-            $table->timestamp('pay_until');
+            // $table->timestamp('pay_until');
             $table->string('shipping_address');
             $table->integer('status');
             $table->timestamps();

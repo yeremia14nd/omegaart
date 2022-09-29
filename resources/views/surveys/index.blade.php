@@ -33,7 +33,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $survey->order->product->name }}</td>
                         <td>{{ $survey->address }}</td>
-                        <td>{{ $survey->city }}</td>
+                        {{-- <td>{{ $survey->city }}</td> --}}
                         <td>{{ $survey->description }}</td>
                         <td>{{ $survey->surveyDate }}</td>
                         <td>{{ $survey->surveyTime }}</td>

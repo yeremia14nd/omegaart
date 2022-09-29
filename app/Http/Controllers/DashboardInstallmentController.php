@@ -37,7 +37,6 @@ class DashboardInstallmentController extends Controller
             'start_installment' => 'required',
             'start_installment_time' => 'required',
             'address' => 'required',
-            'city' => 'required',
             'worker' => 'required',
         ];
 
@@ -71,7 +70,6 @@ class DashboardInstallmentController extends Controller
             'start_installment' => 'required',
             'start_installment_time' => 'required',
             'address' => 'required',
-            'city' => 'required',
             'worker' => 'required',
             'file_asset' => 'image|file|max:10240|nullable',
             'is_installed' => 'required',
@@ -95,7 +93,7 @@ class DashboardInstallmentController extends Controller
 
         Installment::where('id', $installment->id)->update($validatedData);
 
-        return redirect('/dashboard/installments')->with('success', 'Informasi Pemasangan sudah diperbaharui!');
+        return redirect('/dashboard/installments')->with('success', 'Informasi Pemasangan sudah diperbaharui');
     }
 
     public function updateConfirmInstallment(Installment $installment)
@@ -154,7 +152,6 @@ class DashboardInstallmentController extends Controller
             'name' => $production->order->user->name,
             'user_id' => $production->order->user->id,
             'address' => $production->survey->address,
-            'city' => $production->survey->city,
         ]);
     }
 }

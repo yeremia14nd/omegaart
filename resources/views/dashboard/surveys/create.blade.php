@@ -22,12 +22,12 @@
                 @endif
                 @endforeach
             </select>
+            @error('order_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('order_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <div class="mb-3">
             <label for="customer" class="form-label">Nama Customer</label>
             <input type="text" class="form-control @error('customer') is-invalid @enderror" id="customer"
@@ -53,40 +53,50 @@
         <div class="input-group mb-3">
             <input type="tel" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
                 name="phoneNumber" placeholder=" @error('phoneNumber') {{ $message }} @enderror "
-                value="{{ old('phoneNumber') }}" required>
+                value="{{ old('phoneNumber') }}">
         </div>
         <label for="address" class="form-label">Alamat Survey</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
-                placeholder=" @error('address') {{ $message }} @enderror " value="{{ old('address') }}" required>
+                placeholder=" @error('address') {{ $message }} @enderror " value="{{ old('address') }}">
         </div>
 
-        <label for="city" class="form-label">Kota</label>
+        {{-- <label for="city" class="form-label">Kota</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city"
-                placeholder=" @error('city') {{ $message }} @enderror " value="{{ old('city') }}" required>
-        </div>
+                placeholder=" @error('city') {{ $message }} @enderror " value="{{ old('city') }}">
+        </div> --}}
         <label for="surveyDate" class="form-label">Tanggal Survei</label>
         <div class="input-group mb-3">
             <input type="date" class="form-control @error('surveyDate') is-invalid @enderror" id="surveyDate"
                 name="surveyDate" placeholder=" @error('surveyDate') {{ $message }} @enderror "
-                value="{{ old('surveyDate') }}" required>
+                value="{{ old('surveyDate') }}">
+            @error('surveyDate')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <label for="surveyTime" class="form-label">Waktu Survei</label>
         <div class="input-group mb-3">
             <input type="time" class="form-control @error('surveyTime') is-invalid @enderror" id="surveyTime"
                 name="surveyTime" placeholder=" @error('surveyTime') {{ $message }} @enderror "
-                value="{{ old('surveyTime') }}" required>
+                value="{{ old('surveyTime') }}">
+            @error('surveyTime')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <label for="description" class="form-label">Deskripsi Survei</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                 name="description" placeholder=" @error('description') {{ $message }} @enderror "
-                value="{{ old('description') }}" required>
+                value="{{ old('description') }}">
         </div>
         <div class="mb-3">
             <label for="assignTo" class="form-label">Surveyor yang Bertugas</label>
-            <select class="form-select @error('assignTo') is-invalid @enderror" name="assignTo" required>
+            <select class="form-select @error('assignTo') is-invalid @enderror" name="assignTo">
                 <option value="" class="text-muted">Pilih surveyor...</option>
                 @foreach ($assigns as $assignRole)
                 @if (old('assignRole') == $assignRole->name)
@@ -96,12 +106,12 @@
                 @endif
                 @endforeach
             </select>
+            @error('assignTo')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('assignRole')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <button type="submit" class="btn btn-primary">Tambah Survei</button>
     </form>
 </div>

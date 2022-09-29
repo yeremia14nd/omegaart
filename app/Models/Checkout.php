@@ -18,7 +18,7 @@ class Checkout extends Model
     'user_id',
     'total',
     'payment_photo',
-    'pay_until',
+    // 'pay_until',
     'shipping_address',
     'status',
     'cart_id',

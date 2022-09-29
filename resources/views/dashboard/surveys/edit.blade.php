@@ -15,12 +15,12 @@
             <label for="name" class="form-label">Nama Customer yang disurvei</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                 value="{{ old('name', $survey->order->user->name)}}" readonly>
+            @error('name')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('name')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
@@ -40,12 +40,12 @@
                 {{ $message }}
             </div>
             @enderror
+            @error('product_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('product_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
         <label for="address" class="form-label">Alamat Survei</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
@@ -53,12 +53,12 @@
                 value="{{ old('address', $survey->address) }}" {{ Auth::user()->role_id === 4 ? 'readonly' : '' }}>
         </div>
 
-        <label for="city" class="form-label">Kota</label>
+        {{-- <label for="city" class="form-label">Kota</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city"
                 placeholder=" @error('city') {{ $message }} @enderror " value="{{ old('city', $survey->city) }}" {{
                 Auth::user()->role_id === 4 ? 'readonly' : '' }}>
-        </div>
+        </div> --}}
         <label for="phoneNumber" class="form-label">Telepon</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror" id="phoneNumber"
@@ -72,6 +72,11 @@
                 name="surveyDate" placeholder=" @error('surveyDate') {{ $message }} @enderror "
                 value="{{ old('surveyDate', $survey->surveyDate) }}" {{ Auth::user()->role_id === 4 ? 'readonly' : ''
             }}>
+            @error('surveyDate')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <label for="surveyTime" class="form-label">Waktu Survei</label>
         <div class="input-group mb-3">
@@ -79,6 +84,11 @@
                 name="surveyTime" placeholder=" @error('surveyTime') {{ $message }} @enderror "
                 value="{{ old('surveyTime', $survey->surveyTime) }}" {{ Auth::user()->role_id === 4 ? 'readonly' : ''
             }}>
+            @error('surveyTime')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <label for="description" class="form-label">Deskripsi Survei</label>
         <div class="input-group mb-3">
@@ -89,7 +99,7 @@
         @canany(['superadmin', 'admin'])
         <div class="mb-3">
             <label for="assignTo" class="form-label">Surveyor yang Bertugas</label>
-            <select class="form-select @error('assignTo') is-invalid @enderror" name="assignTo" autofocus required>
+            <select class="form-select @error('assignTo') is-invalid @enderror" name="assignTo" autofocus>
                 <option value="">Pilih Surveyor</option>
                 @foreach ($assigns as $assignRole)
                 @if (old('assignTo', $survey->assignTo) == $assignRole->name)
@@ -99,12 +109,12 @@
                 @endif
                 @endforeach
             </select>
+            @error('assignTo')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
-        @error('assignTo')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-        @enderror
 
         @elsecanany(['teknisi'])
         <label for="assignTo" class="form-label">Surveyor yang Bertugas</label>

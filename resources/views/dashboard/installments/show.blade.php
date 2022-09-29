@@ -34,10 +34,10 @@
                             <td>Alamat Pemasangan</td>
                             <td>: {{ $installment->address}} </td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             <td>Kota</td>
                             <td>: {{ $installment->city}} </td>
-                        </tr>
+                        </tr> --}}
                         <tr>
                             <td>Teknisi Pemasangan</td>
                             <td>: {{ $installment->worker }}</td>
