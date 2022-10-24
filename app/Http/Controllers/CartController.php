@@ -29,7 +29,7 @@ class CartController extends Controller
       );
       // dd($data);
 
-      return view('cart', $data)->with('no', 1)->with(session('cart'));
+      return view('cart', $data)->with('no', 1);
     } else {
       $data = array(
         'title' => 'Cart',
@@ -55,7 +55,6 @@ class CartController extends Controller
     ];
 
     session(['cart' => $cart]);
-    dd(session('cart'));
     return redirect('/cart');
   }
 
