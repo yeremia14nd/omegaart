@@ -30,7 +30,7 @@ class CartItemController extends Controller
     if (Auth::check()) { //jika user sudah login
       Cart::addToCart($itemuser->id, $id);
 
-      return redirect()->route('cart')->with('success', 'Produk Berhasil Ditambah ke Cart');
+      return redirect()->route('cart')->with('success', 'Produk berhasil ditambah ke Cart');
     } else { //jika user belum login
       $carts = session()->get('cart');
 
@@ -48,14 +48,14 @@ class CartItemController extends Controller
 
         session()->put('cart', $carts);
 
-        return redirect()->route('cart')->with('success', 'Produk Berhasil Ditambah ke Cart');
+        return redirect()->route('cart')->with('success', 'Produk berhasil ditambah ke Cart');
       }
 
       //jika cart tidak kosong, maka cek apakah produk ini ada lalu menambahkan quantity
       if (isset($carts[$id])) {
         $carts[$id]['quantity']++;
         session()->put('cart', $carts);
-        return redirect()->route('cart')->with('success', 'Produk Berhasil Ditambah ke Cart');
+        return redirect()->route('cart')->with('success', 'Produk berhasil ditambah ke Cart');
       }
 
       //jika item tidak ada di cart, maka ditambah di cart dengan quantity 1
@@ -67,7 +67,7 @@ class CartItemController extends Controller
         "subtotal" => $itemproduk->price * 1
       ];
       session()->put('cart', $carts);
-      return redirect()->route('cart')->with('success', 'Produk Berhasil Ditambah ke Cart');
+      return redirect()->route('cart')->with('success', 'Produk berhasil ditambah ke Cart');
     }
   }
 
@@ -82,15 +82,18 @@ class CartItemController extends Controller
       $cartitem->updatedetail($cartitem, $qty, $cartitem->price);
       //update total cart
       $cartitem->cart->updatetotal($cartitem->cart, $cartitem->price);
-      return back()->with('success', 'Item Berhasil diupdate');
+      return back()->with('success', 'Item berhasil di-update');
     }
     if ($param == 'kurang') {
-      //update detail cart
       $qty = 1;
-      $cartitem->updatedetail($cartitem, '-' . $qty, $cartitem->price);
-      //update total cart
-      $cartitem->cart->updatetotal($cartitem->cart, '-' . $cartitem->price);
-      return back()->with('success', 'Item berhasil diupdate');
+      if ($cartitem->quantity < 1) {
+        return back()->with('success', 'Item kosong');
+      } else {
+        $cartitem->updatedetail($cartitem, '-' . $qty, $cartitem->price);
+        //update total cart
+        $cartitem->cart->updatetotal($cartitem->cart, '-' . $cartitem->price);
+        return back()->with('success', 'Item berhasil di-update');
+      }
     }
   }
 
@@ -100,9 +103,9 @@ class CartItemController extends Controller
     //update total cart terlebih dahulu
     $cartitem->cart->updatetotal($cartitem->cart, '-' . $cartitem->subtotal);
     if ($cartitem->delete()) {
-      return back()->with('success', 'Item Berhasil Dihapus');
+      return back()->with('success', 'Item berhasil dihapus');
     } else {
-      return back()->with('error', 'Item Gagal Dihapus');
+      return back()->with('error', 'Item gagal dihapus');
     }
   }
 
@@ -114,13 +117,17 @@ class CartItemController extends Controller
         $cart = session()->get('cart');
         $cart[$id]["quantity"]++;
         session()->put('cart', $cart);
-        return back()->with('success', 'Item Berhasil diupdate');
+        return back()->with('success', 'Item berhasil di-update');
       }
       if ($param == 'kurang') {
         $cart = session()->get('cart');
-        $cart[$id]["quantity"]--;
-        session()->put('cart', $cart);
-        return back()->with('success', 'Item Berhasil diupdate');
+        if ($cart[$id]["quantity"] == 0) {
+          return back()->with('success', 'Item kosong');
+        } else {
+          $cart[$id]["quantity"]--;
+          session()->put('cart', $cart);
+          return back()->with('success', 'Item berhasil di-update');
+        }
       }
     }
   }
@@ -133,7 +140,7 @@ class CartItemController extends Controller
         unset($cart[$id]);
         session()->put('cart', $cart);
       }
-      return back()->with('success', 'Item Berhasil Dihapus');
+      return back()->with('success', 'Item berhasil dihapus');
     }
   }
 }

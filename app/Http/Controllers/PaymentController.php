@@ -92,28 +92,31 @@ class PaymentController extends Controller
 
   public function add_checkout(Request $request)
   {
-    $id = Auth::id();
-    $id_cart = $request->id_cart;
+    if ($request->has('total')) {
+      $id = Auth::id();
+      $id_cart = $request->id_cart;
+      $input['user_id'] = $id;
+      $input['total'] = $request->total;
+      $input['payment_photo'] = 'null';
+      // $input['pay_until'] = date('Y-m-d H:i:s', strtotime(" +1 days"));
+      $input['shipping_address'] = 'test';
+      $input['status'] = 0;
+      $input['cart_id'] = $id_cart;
+      $input['payment_type'] = 'empty';
 
-    $input['user_id'] = $id;
-    $input['total'] = $request->total;
-    $input['payment_photo'] = 'null';
-    // $input['pay_until'] = date('Y-m-d H:i:s', strtotime(" +1 days"));
-    $input['shipping_address'] = 'test';
-    $input['status'] = 0;
-    $input['cart_id'] = $id_cart;
-    $input['payment_type'] = 'empty';
+      $checkout = Checkout::create($input);
 
-    $checkout = Checkout::create($input);
-
-    if ($checkout) {
-      Cart::where('id', $id_cart)
-        ->update([
-          'status_cart' => 'checkout'
-        ]);
-      return redirect()->route('checkout', $checkout->id)->with('success', 'Silahkan Mengisi Data Berikut Untuk Pengiriman');
+      if ($checkout) {
+        Cart::where('id', $id_cart)
+          ->update([
+            'status_cart' => 'checkout'
+          ]);
+        return redirect()->route('checkout', $checkout->id)->with('success', 'Silahkan Mengisi Data Berikut Untuk Pengiriman');
+      } else {
+        return redirect()->route('cart')->with('success', 'Produk Berhasil Ditambah ke Cart');
+      }
     } else {
-      return redirect()->route('cart')->with('success', 'Produk Berhasil Ditambah ke Cart');
+      return back();
     }
   }
 
@@ -125,15 +128,14 @@ class PaymentController extends Controller
     $kota = $request->kota;
     $kelurahan = $request->kelurahan;
     $kodepos = $request->kodepos;
-    $phone = $request->phone_number;
-
+    $phone_number = $request->phone_number;
 
     $shipping_address = $address . ', ' . $kelurahan . ', ' . $kota . ', ' . $provinsi . ', ' . $kodepos;
     $payment_type = $request->payment;
 
     if ($request->file('bukti_pembayaran')) {
       $payment_photo = $request->file('bukti_pembayaran')->store('payment');
-      $checkout->updatecheckout($shipping_address, $payment_type, $payment_photo, $phone);
+      $checkout->updatecheckout($shipping_address, $payment_type, $payment_photo, $phone_number);
 
       // Add notification
       Notifikasi::createNotification("admin", "checkout");

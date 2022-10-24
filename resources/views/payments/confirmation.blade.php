@@ -48,8 +48,6 @@
 <div class="container">
   <div class="row pr-4">
     <div class="col-6 center" style="background: #f8f8f8; height: 100%">
-      {{-- <div id="countdown">
-      </div> --}}
       <div class="m-4">
         @if($checkout->status == 1)
         <h5 class="mb-3" style="text-align: center">Menunggu Konfirmasi Pembayaran</h5>

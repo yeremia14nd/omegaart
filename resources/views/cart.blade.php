@@ -108,7 +108,7 @@
                       @method('patch')
                       @csrf()
                       <input type="hidden" name="param" value="kurang">
-                      <button class="btn btn-primary btn-sm">
+                      <button class="btn btn-primary btn-sm" title="Kurang">
                         -
                       </button>
                     </form>
@@ -119,7 +119,7 @@
                       @method('patch')
                       @csrf()
                       <input type="hidden" name="param" value="tambah">
-                      <button class="btn btn-primary btn-sm update-cart">
+                      <button class="btn btn-primary btn-sm update-cart" title="Tambah">
                         +
                       </button>
                     </form>
@@ -198,6 +198,7 @@
         <div class="card-footer">
           <div class="row">
             <div class="col">
+              @if (session('cart'))
               <form action="{{ route('checkout.add') }}" method="post">
                 @csrf
                 @if (Auth::check())
@@ -212,6 +213,7 @@
                 @endif
                 <button class="btn btn-primary btn-block">Checkout</button>
               </form>
+              @endif
             </div>
             <div class="col">
               @if (Auth::check())
