@@ -26,6 +26,7 @@ class RegisterController extends Controller
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['role_id'] = 5;
 
         User::create($validatedData);
 

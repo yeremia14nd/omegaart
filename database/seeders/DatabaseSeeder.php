@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Lestari 1 No. 7, Surabaya',
             'phoneNumber' => '085544332212',
             'password' => bcrypt('password'),
-            'role_id' => 2,
+            'role_id' => 5,
         ]);
 
         User::factory(10)->create();
@@ -118,30 +118,122 @@ class DatabaseSeeder extends Seeder
         Category::create([
             'name' => 'Blinds',
             'slug' => 'blind',
-            'imageAssets' => 'product-images/sofa1a.png',
+            'imageAssets' => 'product-images/rollerblinds.jpg',
             'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores magnam quam, praesentium nulla voluptatum ratione?'
         ]);
         Category::create([
             'name' => 'Aluminium',
             'slug' => 'aluminium',
-            'imageAssets' => 'product-images/sofa1a.png',
+            'imageAssets' => 'product-images/aluminium.jpg',
             'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores magnam quam, praesentium nulla voluptatum ratione?'
         ]);
 
-        Product::factory(20)->create();
+        Product::create([
+            'category_id' => 1,
+            'product_availability_id' => 1,
+            'name' => 'Sofa 2-Seater',
+            'slug' => 'sofa-2-seater',
+            'excerpt' => 'Sofa nyaman untuk hunian anda, sofa ini dapat diatur sesuai keinginan anda untuk diletakkan di ruangan manapun',
+            'price' => 2000000,
+            'workDuration' => 7,
+            'weight' => 50,
+            'stock' => 12,
+            'description' => 'Sofa ini dapat diatur sesuai keinginan Anda untuk diletakkan di ruang manapun di rumah. Dengan jumlah 2 dudukan, desain, dan sesuaikan dengan fungsi ruangannya. Saat keluarga atau rumah Anda tumbuh, tambahkan lagi dudukannya dan biarkan kursi sofa minimalis ini juga ikut tumbuh bersama Anda. Temukan berbagai kursi sofa terlengkap dan lihat juga model sofa tamu minimalis terbaru berikut sesuai dengan keinginan Anda.',
+            'imageAssets' => 'product-images/sofa1a.png',
+        ]);
         Product::create([
             'category_id' => 2,
-            'product_availability_id' => 1,
+            'product_availability_id' => 2,
             'name' => 'Roller Blinds',
             'slug' => 'roller-blinds',
-            'excerpt' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores magnam quam, praesentium nulla voluptatum ratione?',
+            'excerpt' => 'Roller blinds untuk jendela kaca anda. Blinds dengan kain yang mampu memblokir sinar UV. Variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan,',
             'price' => 1250000,
             'workDuration' => 14,
             'weight' => 2,
             'stock' => 50,
-            'description' => 'Vestibulum vitae orci ac nisl dictum sagittis. Fusce eleifend scelerisque est sed tempor. Proin accumsan tristique metus, at consequat augue laoreet vestibulum. Ut consectetur ex turpis, et aliquam nunc euismod at. Nullam non dignissim urna, in ultricies nulla. Donec eget massa ex. Duis eget laoreet magna. Praesent iaculis nunc at quam congue, venenatis viverra ex posuere. Curabitur at lorem efficitur, facilisis massa non, dignissim ex. Etiam risus risus, dapibus eu scelerisque eget, volutpat et ipsum. Ut viverra ullamcorper ex ut lobortis. Aenean non aliquet ante. Fusce suscipit vestibulum massa et viverra. Vestibulum vel rutrum dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;',
+            'description' => 'Blinds dengan kain yang mampu memblokir sinar UV. Variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan. Roller blinds menambah keindahan bagi rumah anda. Roller blinds dengan kain yang mampu memblokir cahaya hingga 100%, kain indoor berkualitas dan variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan, Roller blinds menambah keindahan bagi jendela rumah anda',
+            'imageAssets' => 'product-images/rollerblinds.jpg',
+        ]);
+        Product::create([
+            'category_id' => 1,
+            'product_availability_id' => 1,
+            'name' => 'Sofa 3-Seater',
+            'slug' => 'sofa-3-seater',
+            'excerpt' => 'Sofa nyaman untuk hunian anda, sofa ini dapat diatur sesuai keinginan anda untuk diletakkan di ruangan manapun',
+            'price' => 2500000,
+            'workDuration' => 7,
+            'weight' => 50,
+            'stock' => 12,
+            'description' => 'Sofa ini dapat diatur sesuai keinginan Anda untuk diletakkan di ruang manapun di rumah. Dengan jumlah 3 dudukan, desain, dan sesuaikan dengan fungsi ruangannya. Saat keluarga atau rumah Anda tumbuh, tambahkan lagi dudukannya dan biarkan kursi sofa minimalis ini juga ikut tumbuh bersama Anda. Temukan berbagai kursi sofa terlengkap dan lihat juga model sofa tamu minimalis terbaru berikut sesuai dengan keinginan Anda.',
+            'imageAssets' => 'product-images/sofa1b.png',
+        ]);
+        Product::create([
+            'category_id' => 2,
+            'product_availability_id' => 2,
+            'name' => 'Roller Blinds Outdoor',
+            'slug' => 'roller-blinds-outdoor',
+            'excerpt' => 'Roller blinds untuk outdoor. Blinds dengan kain yang mampu memblokir sinar UV. Variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan,',
+            'price' => 1000000,
+            'workDuration' => 14,
+            'weight' => 2,
+            'stock' => 50,
+            'description' => 'Blinds dengan kain yang mampu memblokir sinar UV. Variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan. Roller blinds menambah keindahan bagi rumah anda. Roller blinds dengan kain yang mampu memblokir cahaya hingga 100%, kain indoor berkualitas dan variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan, Roller blinds menambah keindahan bagi jendela rumah anda',
+            'imageAssets' => 'product-images/rollerblindout.jpg',
+        ]);
+        Product::create([
+            'category_id' => 1,
+            'product_availability_id' => 1,
+            'name' => 'Sofa 4-Seater',
+            'slug' => 'sofa-4-seater',
+            'excerpt' => 'Sofa nyaman untuk hunian anda, sofa ini dapat diatur sesuai keinginan anda untuk diletakkan di ruangan manapun',
+            'price' => 3500000,
+            'workDuration' => 7,
+            'weight' => 60,
+            'stock' => 12,
+            'description' => 'Sofa ini dapat diatur sesuai keinginan Anda untuk diletakkan di ruang manapun di rumah. Dengan jumlah 4 dudukan, desain, dan sesuaikan dengan fungsi ruangannya. Saat keluarga atau rumah Anda tumbuh, tambahkan lagi dudukannya dan biarkan kursi sofa minimalis ini juga ikut tumbuh bersama Anda. Temukan berbagai kursi sofa terlengkap dan lihat juga model sofa tamu minimalis terbaru berikut sesuai dengan keinginan Anda.',
             'imageAssets' => 'product-images/sofa1a.png',
         ]);
+        Product::create([
+            'category_id' => 2,
+            'product_availability_id' => 2,
+            'name' => 'Roller Blinds Regular',
+            'slug' => 'roller-blinds-regular',
+            'excerpt' => 'Roller blinds untuk jendela kaca anda. Blinds dengan kain yang mampu memblokir sinar UV. Variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan,',
+            'price' => 1250000,
+            'workDuration' => 14,
+            'weight' => 2,
+            'stock' => 50,
+            'description' => 'Blinds dengan kain yang mampu memblokir sinar UV. Variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan. Roller blinds menambah keindahan bagi rumah anda. Roller blinds dengan kain yang mampu memblokir cahaya hingga 100%, kain indoor berkualitas dan variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan, Roller blinds menambah keindahan bagi jendela rumah anda',
+            'imageAssets' => 'product-images/rollerblinds.jpg',
+        ]);
+        Product::create([
+            'category_id' => 1,
+            'product_availability_id' => 1,
+            'name' => 'Sofa 2-Seater 1',
+            'slug' => 'sofa-2-seater-1',
+            'excerpt' => 'Sofa nyaman untuk hunian anda, sofa ini dapat diatur sesuai keinginan anda untuk diletakkan di ruangan manapun',
+            'price' => 2700000,
+            'workDuration' => 7,
+            'weight' => 55,
+            'stock' => 10,
+            'description' => 'Sofa ini dapat diatur sesuai keinginan Anda untuk diletakkan di ruang manapun di rumah. Dengan jumlah 2 dudukan, desain, dan sesuaikan dengan fungsi ruangannya. Saat keluarga atau rumah Anda tumbuh, tambahkan lagi dudukannya dan biarkan kursi sofa minimalis ini juga ikut tumbuh bersama Anda. Temukan berbagai kursi sofa terlengkap dan lihat juga model sofa tamu minimalis terbaru berikut sesuai dengan keinginan Anda.',
+            'imageAssets' => 'product-images/sofa1b.png',
+        ]);
+        Product::create([
+            'category_id' => 2,
+            'product_availability_id' => 2,
+            'name' => 'Roller Blinds Outdoor Reg',
+            'slug' => 'roller-blinds-outdoor-reg',
+            'excerpt' => 'Roller blinds untuk outdoor. Blinds dengan kain yang mampu memblokir sinar UV. Variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan,',
+            'price' => 1400000,
+            'workDuration' => 14,
+            'weight' => 4,
+            'stock' => 20,
+            'description' => 'Blinds dengan kain yang mampu memblokir sinar UV. Variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan. Roller blinds menambah keindahan bagi rumah anda. Roller blinds dengan kain yang mampu memblokir cahaya hingga 100%, kain indoor berkualitas dan variasi warna beragam, dengan sistem tarikan roller yang praktis dan mudah digunakan, Roller blinds menambah keindahan bagi jendela rumah anda',
+            'imageAssets' => 'product-images/rollerblindout.jpg',
+        ]);
+        Product::factory(5)->create();
+
         Cart::factory(5)->create();
         CartItem::factory(15)->create();
     }
